@@ -143,7 +143,7 @@ class ParagraphsAddModesTest extends ParagraphsTestBase {
       $this->assertEquals($button->getValue(), $options[$key]);
     }
     $this->assertEquals(count($buttons), count($options), 'The amount of select options matches with the given array');
-    $this->assertNotEquals($this->xpath('//*[@name="' . $paragraphs_field .'_add_more"]'), [], 'The add button is displayed');
+    $this->assertNotEquals($this->xpath('//*[@name="' . $paragraphs_field . '_add_more"]'), [], 'The add button is displayed');
   }
 
   /**
@@ -154,7 +154,7 @@ class ParagraphsAddModesTest extends ParagraphsTestBase {
     $this->loginAsAdmin([
       'administer content types',
       'administer node form display',
-      'edit any paragraphed_test content'
+      'edit any paragraphed_test content',
     ]);
 
     // Add a Paragraphed test content.
@@ -183,7 +183,7 @@ class ParagraphsAddModesTest extends ParagraphsTestBase {
     $this->drupalGet('node/add/paragraphed_test');
     $this->assertSession()->pageTextContains('No Paragraph added yet.');
 
-    // Check if default type is created only for new host
+    // Check if default type is created only for new host.
     $this->setDefaultParagraphType('paragraphed_test', 'paragraphs', 'paragraphs_settings_edit', 'text_image');
     $this->removeDefaultParagraphType('paragraphed_test');
     $edit = ['title[0][value]' => 'New Host'];
@@ -200,7 +200,7 @@ class ParagraphsAddModesTest extends ParagraphsTestBase {
     $this->loginAsAdmin([
       'administer content types',
       'administer node form display',
-      'edit any paragraphed_test content'
+      'edit any paragraphed_test content',
     ]);
 
     // Add a Paragraphed test content.
@@ -221,4 +221,5 @@ class ParagraphsAddModesTest extends ParagraphsTestBase {
     $this->drupalGet('node/add/paragraphed_test');
     $this->assertSession()->pageTextContains('No Paragraph added yet.');
   }
+
 }

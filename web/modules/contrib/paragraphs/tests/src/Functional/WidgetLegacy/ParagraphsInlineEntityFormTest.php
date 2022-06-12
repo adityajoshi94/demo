@@ -37,7 +37,7 @@ class ParagraphsInlineEntityFormTest extends ParagraphsTestBase {
       'cardinality_number' => 1,
     ], [
       'required' => TRUE,
-      'settings[handler_settings][target_bundles][article]' => TRUE
+      'settings[handler_settings][target_bundles][article]' => TRUE,
     ]);
 
     // Enable IEF simple widget.
@@ -89,7 +89,7 @@ class ParagraphsInlineEntityFormTest extends ParagraphsTestBase {
       'cardinality_number' => '1',
     ], [
       'required' => TRUE,
-      'settings[handler_settings][target_bundles][article]' => TRUE
+      'settings[handler_settings][target_bundles][article]' => TRUE,
     ]);
 
     // Set cardinality explicit to -1.

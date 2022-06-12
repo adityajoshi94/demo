@@ -42,8 +42,7 @@ class ParagraphsAddWidgetTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp()
-  {
+  protected function setUp() {
     parent::setUp();
     $this->placeDefaultBlocks();
 
@@ -67,7 +66,7 @@ class ParagraphsAddWidgetTest extends WebDriverTestBase {
     $this->assertSession()->assertWaitOnAjaxRequest();
     $edit = [
       'fields[field_paragraphs][settings_edit_form][settings][edit_mode]' => 'closed',
-      'fields[field_paragraphs][settings_edit_form][settings][add_mode]' => 'modal'
+      'fields[field_paragraphs][settings_edit_form][settings][add_mode]' => 'modal',
     ];
     $this->submitForm($edit, 'Update');
     $this->assertSession()->assertWaitOnAjaxRequest();

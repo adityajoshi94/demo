@@ -31,7 +31,7 @@ class TokenMenuTest extends TokenTestBase {
     'content_translation',
   ];
 
-  function testMenuTokens() {
+  public function testMenuTokens() {
     // Make sure we have a body field on the node type.
     $this->drupalCreateContentType(['type' => 'page']);
     // Add a menu.
@@ -99,8 +99,7 @@ class TokenMenuTest extends TokenTestBase {
     $node = $this->drupalCreateNode();
 
     // Allow main menu for this node type.
-    //$this->config('menu.entity.node.' . $node->getType())->set('available_menus', ['main-menu'])->save();
-
+    // $this->config('menu.entity.node.' . $node->getType())->set('available_menus', ['main-menu'])->save();
     // Add a node menu link.
     /** @var \Drupal\menu_link_content\MenuLinkContentInterface $node_link */
     $node_link = MenuLinkContent::create([
@@ -289,7 +288,7 @@ class TokenMenuTest extends TokenTestBase {
    * Tests that the module doesn't affect integrity of the menu, when
    * translating them and that menu links tokens are correct.
    */
-  function testMultilingualMenu() {
+  public function testMultilingualMenu() {
     // Place the menu block.
     $this->drupalPlaceBlock('system_menu_block:main');
 
@@ -379,11 +378,11 @@ class TokenMenuTest extends TokenTestBase {
       'menu_name' => 'menu_test',
     ];
     $child_1 = $base_options + [
-        'title' => 'child_1 title EN',
-        'link' => ['uri' => 'internal:/menu-test/hierarchy/parent/child_1'],
-        'parent' => $link->getPluginId(),
-        'langcode' => 'en',
-      ];
+      'title' => 'child_1 title EN',
+      'link' => ['uri' => 'internal:/menu-test/hierarchy/parent/child_1'],
+      'parent' => $link->getPluginId(),
+      'langcode' => 'en',
+    ];
     $child_1 = MenuLinkContent::create($child_1);
     $child_1->save();
 
@@ -410,7 +409,7 @@ class TokenMenuTest extends TokenTestBase {
     // Create a menu with a simple link hierarchy :
     // - parent
     //   - child-1
-    //      - child-1-1
+    //     - child-1-1.
     Menu::create([
       'id' => 'menu_test',
       'label' => 'Test menu',
@@ -420,22 +419,22 @@ class TokenMenuTest extends TokenTestBase {
       'menu_name' => 'menu_test',
     ];
     $parent = $base_options + [
-        'title' => 'parent title',
-        'link' => ['uri' => 'internal:/menu-test/hierarchy/parent'],
+      'title' => 'parent title',
+      'link' => ['uri' => 'internal:/menu-test/hierarchy/parent'],
     ];
     $parent = MenuLinkContent::create($parent);
     $parent->save();
     $child_1 = $base_options + [
-        'title' => 'child_1 title',
-        'link' => ['uri' => 'internal:/menu-test/hierarchy/parent/child_1'],
-        'parent' => $parent->getPluginId(),
+      'title' => 'child_1 title',
+      'link' => ['uri' => 'internal:/menu-test/hierarchy/parent/child_1'],
+      'parent' => $parent->getPluginId(),
     ];
     $child_1 = MenuLinkContent::create($child_1);
     $child_1->save();
     $child_1_1 = $base_options + [
-        'title' => 'child_1_1 title',
-        'link' => ['uri' => 'internal:/menu-test/hierarchy/parent/child_1/child_1_1'],
-        'parent' => $child_1->getPluginId(),
+      'title' => 'child_1_1 title',
+      'link' => ['uri' => 'internal:/menu-test/hierarchy/parent/child_1/child_1_1'],
+      'parent' => $child_1->getPluginId(),
     ];
     $child_1_1 = MenuLinkContent::create($child_1_1);
     $child_1_1->save();

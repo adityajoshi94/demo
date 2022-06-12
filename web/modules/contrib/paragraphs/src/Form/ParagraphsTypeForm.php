@@ -8,8 +8,8 @@ use Drupal\Core\Form\SubformState;
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\field_ui\FieldUI;
 use Drupal\paragraphs\ParagraphsBehaviorManager;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\paragraphs\ParagraphsTypeInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Form controller for paragraph type forms.
@@ -74,24 +74,24 @@ class ParagraphsTypeForm extends EntityForm {
       ]));
     }
 
-    $form['label'] = array(
+    $form['label'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Label'),
       '#maxlength' => 255,
       '#default_value' => $paragraphs_type->label(),
       '#description' => $this->t("Label for the Paragraphs type."),
       '#required' => TRUE,
-    );
+    ];
 
-    $form['id'] = array(
+    $form['id'] = [
       '#type' => 'machine_name',
       '#default_value' => $paragraphs_type->id(),
-      '#machine_name' => array(
+      '#machine_name' => [
         'exists' => 'paragraphs_type_load',
-      ),
+      ],
       '#maxlength' => 32,
       '#disabled' => !$paragraphs_type->isNew(),
-    );
+    ];
 
     $form['icon_file'] = [
       '#title' => $this->t('Paragraph type icon'),
@@ -117,15 +117,17 @@ class ParagraphsTypeForm extends EntityForm {
     if ($behavior_plugin_definitions = $this->paragraphsBehaviorManager->getApplicableDefinitions($paragraphs_type)) {
       $form['message'] = [
         '#type' => 'container',
-        '#markup' => $this->t('Behavior plugins are only supported by the stable paragraphs widget.', [], ['context' =>
-          'paragraphs']),
-        '#attributes' => ['class' => ['messages', 'messages--warning']]
+        '#markup' => $this->t('Behavior plugins are only supported by the stable paragraphs widget.', [], [
+          'context' =>
+          'paragraphs',
+        ]),
+        '#attributes' => ['class' => ['messages', 'messages--warning']],
       ];
       $form['behavior_plugins'] = [
         '#type' => 'details',
         '#title' => $this->t('Behaviors', [], ['context' => 'paragraphs']),
         '#tree' => TRUE,
-        '#open' => TRUE
+        '#open' => TRUE,
       ];
       $config = $paragraphs_type->get('behavior_plugins');
       // Alphabetically sort plugins by plugin label.
@@ -150,9 +152,9 @@ class ParagraphsTypeForm extends EntityForm {
             '#title' => $behavior_plugin_definition['label'],
             '#states' => [
               'visible' => [
-                  ':input[name="behavior_plugins[' . $id . '][enabled]"]' => ['checked' => TRUE],
-              ]
-            ]
+                ':input[name="behavior_plugins[' . $id . '][enabled]"]' => ['checked' => TRUE],
+              ],
+            ],
           ];
         }
       }
@@ -221,9 +223,9 @@ class ParagraphsTypeForm extends EntityForm {
     }
 
     $status = $paragraphs_type->save();
-    $this->messenger->addMessage($this->t('Saved the %label Paragraphs type.', array(
+    $this->messenger->addMessage($this->t('Saved the %label Paragraphs type.', [
       '%label' => $paragraphs_type->label(),
-    )));
+    ]));
     if (($status == SAVED_NEW && $this->moduleHandler->moduleExists('field_ui'))
       && $route_info = FieldUI::getOverviewRouteInfo('paragraph', $paragraphs_type->id())) {
       $form_state->setRedirectUrl($route_info);

@@ -3,10 +3,13 @@
 namespace Drupal\commerce;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\entity\BundleFieldDefinition as EntityBundleFieldDefinition;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
-use Drupal\entity\BundleFieldDefinition as EntityBundleFieldDefinition;
 
+/**
+ *
+ */
 class ConfigurableFieldManager implements ConfigurableFieldManagerInterface {
 
   /**

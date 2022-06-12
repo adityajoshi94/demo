@@ -2,10 +2,12 @@
 
 namespace Drupal\ctools\Plugin\Condition;
 
-use Drupal\node\Plugin\Condition\NodeType as CoreNodeType;
 use Drupal\ctools\ConstraintConditionInterface;
+use Drupal\node\Plugin\Condition\NodeType as CoreNodeType;
 
-
+/**
+ *
+ */
 class NodeType extends CoreNodeType implements ConstraintConditionInterface {
 
   /**

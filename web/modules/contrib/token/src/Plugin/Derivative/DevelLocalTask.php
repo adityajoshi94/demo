@@ -9,12 +9,18 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\StringTranslation\TranslationInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+/**
+ *
+ */
 class DevelLocalTask extends DeriverBase implements ContainerDeriverInterface {
 
   use StringTranslationTrait;
 
   protected $entityTypeManager;
 
+  /**
+   *
+   */
   public function __construct(EntityTypeManagerInterface $entity_type_manager, TranslationInterface $string_translation) {
     $this->entityTypeManager = $entity_type_manager;
     $this->stringTranslation = $string_translation;
@@ -53,4 +59,5 @@ class DevelLocalTask extends DeriverBase implements ContainerDeriverInterface {
 
     return $this->derivatives;
   }
+
 }

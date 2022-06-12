@@ -21,7 +21,6 @@ namespace Drupal\apigee_m10n_add_credit\Plugin\AddCreditEntityType;
 
 use Drupal\apigee_edge\Entity\DeveloperInterface;
 use Drupal\apigee_m10n_add_credit\AddCreditConfig;
-use Drupal\apigee_m10n_add_credit\Annotation\AddCreditEntityType;
 use Drupal\apigee_m10n_add_credit\Plugin\AddCreditEntityTypeBase;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;

@@ -4,6 +4,9 @@ namespace Drupal\commerce_log\Plugin\LogCategory;
 
 use Drupal\Core\Plugin\PluginBase;
 
+/**
+ *
+ */
 class LogCategory extends PluginBase implements LogCategoryInterface {
 
   /**

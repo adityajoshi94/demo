@@ -105,7 +105,7 @@ class PathautoCommands extends DrushCommands {
   }
 
   /**
-   * Delete URL aliases
+   * Delete URL aliases.
    *
    * @command pathauto:aliases-delete
    *

@@ -20,9 +20,7 @@
 namespace Drupal\apigee_m10n_add_credit\Plugin\Validation\Constraint;
 
 use CommerceGuys\Intl\Formatter\CurrencyFormatterInterface;
-use Drupal\apigee_m10n_add_credit\Element\PriceRange;
 use Drupal\apigee_m10n_add_credit\Plugin\Field\FieldType\PriceRangeItem;
-use Drupal\commerce_price\Calculator;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Validator\Constraint;

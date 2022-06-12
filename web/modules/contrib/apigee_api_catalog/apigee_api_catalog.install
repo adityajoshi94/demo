@@ -118,7 +118,7 @@ function apigee_api_catalog_update_8804(&$sandbox) {
  * Deprecated step.
  */
 function apigee_api_catalog_update_8805() {
-//  return \Drupal::service('apigee_api_catalog.updates')->update8805();
+  // Return \Drupal::service('apigee_api_catalog.updates')->update8805();.
 }
 
 /**

@@ -5,12 +5,12 @@ namespace Drupal\paragraphs\Entity;
 use Drupal\Core\Config\Entity\ConfigEntityBundleBase;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityWithPluginCollectionInterface;
+use Drupal\Core\File\FileSystemInterface;
 use Drupal\file\Entity\File;
 use Drupal\paragraphs\ParagraphsBehaviorCollection;
 use Drupal\paragraphs\ParagraphsTypeInterface;
-use Drupal\Core\File\FileSystemInterface;
 
-  /**
+/**
  * Defines the ParagraphsType entity.
  *
  * @ConfigEntityType(

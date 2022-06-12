@@ -2,16 +2,16 @@
 
 namespace Drupal\smtp\Form;
 
-use Drupal\Core\Extension\ModuleHandlerInterface;
-use PHPMailer\PHPMailer\PHPMailer;
 use Drupal\Component\Utility\EmailValidatorInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Mail\MailManagerInterface;
 use Drupal\Core\Messenger\Messenger;
 use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\Core\Url;
+use PHPMailer\PHPMailer\PHPMailer;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -279,7 +279,7 @@ class SMTPConfigForm extends ConfigFormBase {
       '#title' => $this->t('Hostname'),
       '#default_value' => $config->get('smtp_client_hostname'),
       '#description' => $this->t('The hostname to use in the Message-Id and Received headers, and as the default HELO string. Leave blank for using %server_name.',
-        ['%server_name' => isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : 'localhost.localdomain']),
+        ['%server_name' => $_SERVER['SERVER_NAME'] ?? 'localhost.localdomain']),
       '#disabled' => $this->isOverridden('smtp_client_hostname'),
     ];
     $form['client']['smtp_client_helo'] = [
@@ -351,7 +351,7 @@ class SMTPConfigForm extends ConfigFormBase {
 
     if ($values['smtp_timeout'] == '' || $values['smtp_timeout'] < 1) {
       $form_state->setErrorByName('smtp_timeout', $this->t('You must enter a Timeout value greater than 0.'));
-    } 
+    }
 
     if ($values['smtp_from'] && !$this->emailValidator->isValid($values['smtp_from'])) {
       $form_state->setErrorByName('smtp_from', $this->t('The provided from e-mail address is not valid.'));

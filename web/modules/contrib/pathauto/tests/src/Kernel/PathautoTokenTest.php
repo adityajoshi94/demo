@@ -2,9 +2,9 @@
 
 namespace Drupal\Tests\pathauto\Kernel;
 
+use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\KernelTests\KernelTestBase;
-use Drupal\Component\Render\FormattableMarkup;
 
 /**
  * Tests tokens provided by Pathauto.
@@ -36,7 +36,7 @@ class PathautoTokenTest extends KernelTestBase {
     $replacements = $this->assertTokens('array', $data, $tokens);
 
     // Ensure that the cleanTokenValues() method does not alter this token value.
-    /* @var \Drupal\pathauto\AliasCleanerInterface $alias_cleaner */
+    /** @var \Drupal\pathauto\AliasCleanerInterface $alias_cleaner */
     $alias_cleaner = \Drupal::service('pathauto.alias_cleaner');
     $alias_cleaner->cleanTokenValues($replacements, $data, []);
     $this->assertEquals('test-first-arg/array-value', $replacements['[array:join-path]']);

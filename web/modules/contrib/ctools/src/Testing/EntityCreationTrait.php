@@ -4,7 +4,9 @@ namespace Drupal\ctools\Testing;
 
 use Drupal\Component\Render\FormattableMarkup;
 
-
+/**
+ *
+ */
 trait EntityCreationTrait {
 
   /**

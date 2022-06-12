@@ -6,6 +6,9 @@ use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityViewBuilder;
 
+/**
+ *
+ */
 class LogViewBuilder extends EntityViewBuilder {
 
   /**

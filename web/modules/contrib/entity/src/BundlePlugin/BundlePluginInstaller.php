@@ -8,6 +8,9 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Field\FieldDefinitionListenerInterface;
 use Drupal\Core\Field\FieldStorageDefinitionListenerInterface;
 
+/**
+ *
+ */
 class BundlePluginInstaller implements BundlePluginInstallerInterface {
 
   /**

@@ -14,4 +14,5 @@ interface EntityNeedsSaveInterface {
    *   TRUE if the entity needs to be saved.
    */
   public function needsSave();
+
 }

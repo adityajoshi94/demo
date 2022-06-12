@@ -2,9 +2,9 @@
 
 namespace Drupal\Tests\ctools_views\Functional;
 
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Tests\views_ui\Functional\UITestBase;
 use Drupal\views\Tests\ViewTestData;
-use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
  * Tests ctools_views block display plugin overrides settings from a basic View.

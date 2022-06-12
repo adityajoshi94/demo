@@ -16,7 +16,7 @@ class ParagraphsUninstallTest extends BrowserTestBase {
    *
    * @var array
    */
-  protected static $modules = array('paragraphs_demo');
+  protected static $modules = ['paragraphs_demo'];
 
   /**
    * {@inheritdoc}
@@ -29,10 +29,10 @@ class ParagraphsUninstallTest extends BrowserTestBase {
   public function setUp(): void {
     parent::setUp();
 
-    $admin_user = $this->drupalCreateUser(array(
+    $admin_user = $this->drupalCreateUser([
       'administer paragraphs types',
       'administer modules',
-    ));
+    ]);
     $this->drupalLogin($admin_user);
   }
 

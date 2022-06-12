@@ -17,9 +17,9 @@ class ParagraphsConfigTest extends ParagraphsTestBase {
    *
    * @var array
    */
-  protected static $modules = array(
+  protected static $modules = [
     'content_translation',
-  );
+  ];
 
   /**
    * Tests adding paragraphs with no translation enabled.
@@ -62,7 +62,7 @@ class ParagraphsConfigTest extends ParagraphsTestBase {
     $this->drupalGet('node/' . $node->id() . '/translations');
     $this->clickLink('Add');
     // Save the translation.
-   $this->submitForm([], 'Save (this translation)');
+    $this->submitForm([], 'Save (this translation)');
     $this->assertSession()->pageTextContains('paragraphed_test paragraphed_title has been updated.');
   }
 

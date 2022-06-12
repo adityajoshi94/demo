@@ -1,23 +1,5 @@
 <?php
 
-/**
- * Copyright 2018 Google Inc.
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * version 2 as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- * MA 02110-1301, USA.
- */
-
 namespace Drupal\apigee_edge\Entity\Controller;
 
 use Apigee\Edge\Api\Management\Controller\AppCredentialController as EdgeAppCredentialController;
@@ -26,9 +8,9 @@ use Apigee\Edge\Structure\AttributesProperty;
 use Drupal\apigee_edge\Entity\Controller\Cache\AppCacheByOwnerFactoryInterface;
 use Drupal\apigee_edge\Event\AppCredentialAddApiProductEvent;
 use Drupal\apigee_edge\Event\AppCredentialCreateEvent;
+use Drupal\apigee_edge\Event\AppCredentialDeleteApiProductEvent;
 use Drupal\apigee_edge\Event\AppCredentialDeleteEvent;
 use Drupal\apigee_edge\Event\AppCredentialGenerateEvent;
-use Drupal\apigee_edge\Event\AppCredentialDeleteApiProductEvent;
 use Drupal\apigee_edge\SDKConnectorInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
@@ -188,7 +170,7 @@ abstract class AppCredentialControllerBase implements AppCredentialControllerInt
    * {@inheritdoc}
    */
   public function getAttribute(string $entity_id, string $name): string {
-    // TODO Get this from cache if available.
+    // @todo Get this from cache if available.
     return $this->decorated()->getAttribute($entity_id, $name);
   }
 
@@ -196,7 +178,7 @@ abstract class AppCredentialControllerBase implements AppCredentialControllerInt
    * {@inheritdoc}
    */
   public function getAttributes(string $entity_id): AttributesProperty {
-    // TODO Get this from cache if available.
+    // @todo Get this from cache if available.
     return $this->decorated()->getAttributes($entity_id);
   }
 
@@ -211,7 +193,7 @@ abstract class AppCredentialControllerBase implements AppCredentialControllerInt
    * {@inheritdoc}
    */
   public function load(string $consumer_key): AppCredentialInterface {
-    // TODO Get this from app cache if available.
+    // @todo Get this from app cache if available.
     return $this->decorated()->load($consumer_key);
   }
 

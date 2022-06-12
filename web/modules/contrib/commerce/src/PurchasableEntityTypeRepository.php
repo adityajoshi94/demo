@@ -5,6 +5,9 @@ namespace Drupal\commerce;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 
+/**
+ *
+ */
 class PurchasableEntityTypeRepository implements PurchasableEntityTypeRepositoryInterface {
 
   /**

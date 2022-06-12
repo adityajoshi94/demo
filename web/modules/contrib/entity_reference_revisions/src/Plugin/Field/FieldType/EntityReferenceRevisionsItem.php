@@ -46,14 +46,14 @@ class EntityReferenceRevisionsItem extends EntityReferenceItem implements Option
   public function storageSettingsForm(array &$form, FormStateInterface $form_state, $has_data) {
 
     $entity_types = \Drupal::entityTypeManager()->getDefinitions();
-    $options = array();
+    $options = [];
     foreach ($entity_types as $entity_type) {
       if ($entity_type->isRevisionable()) {
         $options[$entity_type->id()] = $entity_type->getLabel();
       }
     }
 
-    $element['target_type'] = array(
+    $element['target_type'] = [
       '#type' => 'select',
       '#title' => $this->t('Type of item to reference'),
       '#options' => $options,
@@ -61,7 +61,7 @@ class EntityReferenceRevisionsItem extends EntityReferenceItem implements Option
       '#required' => TRUE,
       '#disabled' => $has_data,
       '#size' => 1,
-    );
+    ];
 
     return $element;
   }
@@ -70,7 +70,7 @@ class EntityReferenceRevisionsItem extends EntityReferenceItem implements Option
    * {@inheritdoc}
    */
   public static function getPreconfiguredOptions() {
-    $options = array();
+    $options = [];
 
     // Add all the commonly referenced entity types as distinct pre-configured
     // options.
@@ -87,8 +87,8 @@ class EntityReferenceRevisionsItem extends EntityReferenceItem implements Option
         'field_storage_config' => [
           'settings' => [
             'target_type' => $entity_type->id(),
-          ]
-        ]
+          ],
+        ],
       ];
       $default_reference_settings = $entity_type->get('default_reference_revision_settings');
       if (is_array($default_reference_settings)) {
@@ -110,7 +110,7 @@ class EntityReferenceRevisionsItem extends EntityReferenceItem implements Option
 
     if ($target_type_info->getKey('revision')) {
       $target_revision_id_definition = DataReferenceTargetDefinition::create('integer')
-        ->setLabel(t('@label revision ID', array('@label' => $target_type_info->getLabel())))
+        ->setLabel(t('@label revision ID', ['@label' => $target_type_info->getLabel()]))
         ->setSetting('unsigned', TRUE);
 
       $target_revision_id_definition->setRequired(TRUE);
@@ -138,12 +138,12 @@ class EntityReferenceRevisionsItem extends EntityReferenceItem implements Option
     $schema = parent::schema($field_definition);
 
     if ($target_type_info->getKey('revision')) {
-      $schema['columns']['target_revision_id'] = array(
+      $schema['columns']['target_revision_id'] = [
         'description' => 'The revision ID of the target entity.',
         'type' => 'int',
         'unsigned' => TRUE,
-      );
-      $schema['indexes']['target_revision_id'] = array('target_revision_id');
+      ];
+      $schema['indexes']['target_revision_id'] = ['target_revision_id'];
     }
 
     return $schema;
@@ -216,16 +216,16 @@ class EntityReferenceRevisionsItem extends EntityReferenceItem implements Option
       $this->writePropertyValue('target_revision_id', $property->getValue()->getRevisionId());
     }
     elseif ($property_name == 'target_id' && $this->target_id != NULL && $this->target_revision_id) {
-      $this->writePropertyValue('entity', array(
+      $this->writePropertyValue('entity', [
         'target_id' => $this->target_id,
         'target_revision_id' => $this->target_revision_id,
-      ));
+      ]);
     }
     elseif ($property_name == 'target_revision_id' && $this->target_revision_id && $this->target_id) {
-      $this->writePropertyValue('entity', array(
+      $this->writePropertyValue('entity', [
         'target_id' => $this->target_id,
         'target_revision_id' => $this->target_revision_id,
-      ));
+      ]);
     }
     if ($notify && isset($this->parent)) {
       $this->parent->onChange($this->name);
@@ -259,7 +259,6 @@ class EntityReferenceRevisionsItem extends EntityReferenceItem implements Option
     if (!$has_new) {
       // Create a new revision if it is a composite entity in a host with a new
       // revision.
-
       $host = $this->getEntity();
       $needs_save = $this->entity instanceof EntityNeedsSaveInterface && $this->entity->needsSave();
 
@@ -449,7 +448,7 @@ class EntityReferenceRevisionsItem extends EntityReferenceItem implements Option
                       ->getBundleOf(),
                     '%field_name' => $field_definition->getName(),
                     '%entity_type' => $field_definition->getTargetEntityTypeId(),
-                    '%bundle' => $field_definition->getTargetBundle()
+                    '%bundle' => $field_definition->getTargetBundle(),
                   ]);
               }
             }
@@ -498,7 +497,7 @@ class EntityReferenceRevisionsItem extends EntityReferenceItem implements Option
     $label = NULL;
     if ($label_key = $target_type->getKey('label')) {
       $random = new Random();
-      // @TODO set the length somehow less arbitrary.
+      // @todo set the length somehow less arbitrary.
       $label = $random->word(mt_rand(1, 10));
     }
 
@@ -517,7 +516,7 @@ class EntityReferenceRevisionsItem extends EntityReferenceItem implements Option
       $field_storage = $instance->getFieldStorageDefinition();
       $max = $cardinality = $field_storage->getCardinality();
       if ($cardinality == FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED) {
-        // Just an arbitrary number for 'unlimited'
+        // Just an arbitrary number for 'unlimited'.
         $max = rand(1, 5);
       }
       $field_name = $field_storage->getName();

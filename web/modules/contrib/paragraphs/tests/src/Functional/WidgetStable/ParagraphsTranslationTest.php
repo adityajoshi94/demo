@@ -6,8 +6,8 @@ use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\language\Entity\ConfigurableLanguage;
-use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\node\Entity\Node;
+use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\user\Entity\Role;
 
 /**
@@ -22,7 +22,7 @@ class ParagraphsTranslationTest extends ParagraphsTestBase {
    *
    * @var array
    */
-  protected static $modules = array(
+  protected static $modules = [
     'content_translation',
     'link',
     'image',
@@ -30,8 +30,8 @@ class ParagraphsTranslationTest extends ParagraphsTestBase {
     'field_ui',
     'block',
     'language',
-    'node'
-  );
+    'node',
+  ];
 
   /**
    * {@inheritdoc}
@@ -75,7 +75,7 @@ class ParagraphsTranslationTest extends ParagraphsTestBase {
       'settings[paragraph][images][fields][field_images_demo]' => TRUE,
       'settings[paragraph][text_image][fields][field_image_demo]' => TRUE,
       'settings[paragraph][text_image][fields][field_text_demo]' => TRUE,
-      'settings[node][paragraphed_content_demo][settings][language][language_alterable]' => TRUE
+      'settings[node][paragraphed_content_demo][settings][language][language_alterable]' => TRUE,
     ];
     $this->drupalGet('admin/config/regional/content-language');
     $this->submitForm($edit, 'Save configuration');
@@ -107,10 +107,10 @@ class ParagraphsTranslationTest extends ParagraphsTestBase {
 
     // Check if the publish/unpublish option works.
     $this->drupalGet('admin/structure/paragraphs_type/text_image/form-display');
-    $edit = array(
+    $edit = [
       'fields[status][type]' => 'boolean_checkbox',
       'fields[status][region]' => 'content',
-    );
+    ];
     // Use the stable widget.
     $form_display = EntityFormDisplay::load('node.paragraphed_content_demo.default')
       ->setComponent('field_paragraphs_demo', [
@@ -139,7 +139,7 @@ class ParagraphsTranslationTest extends ParagraphsTestBase {
     $this->submitForm([], 'field_paragraphs_demo_1_subform_field_paragraphs_demo_text_add_more');
     $edit = [
       'field_paragraphs_demo[0][subform][status][value]' => FALSE,
-      'field_paragraphs_demo[1][subform][field_paragraphs_demo][0][subform][field_text_demo][0][value]' => 'Dummy text'
+      'field_paragraphs_demo[1][subform][field_paragraphs_demo][0][subform][field_text_demo][0][value]' => 'Dummy text',
     ];
     $this->submitForm($edit, 'Save');
     $this->assertSession()->pageTextNotContains('Example published and unpublished');
@@ -166,10 +166,10 @@ class ParagraphsTranslationTest extends ParagraphsTestBase {
     // Add paragraphed content.
     $this->drupalGet('node/add/paragraphed_content_demo');
     $this->submitForm([], 'Add text_image');
-    $edit = array(
+    $edit = [
       'title[0][value]' => 'Title in english',
       'field_paragraphs_demo[0][subform][field_text_demo][0][value]' => 'Text in english',
-    );
+    ];
     // The button to remove a paragraph is present.
     $this->assertSession()->responseContains('Remove');
     $this->submitForm($edit, 'Save');
@@ -188,12 +188,12 @@ class ParagraphsTranslationTest extends ParagraphsTestBase {
     // Make sure that the original paragraph text is displayed.
     $this->assertSession()->pageTextContains('Text in english');
 
-    $edit = array(
+    $edit = [
       'title[0][value]' => 'Title in french',
       'field_paragraphs_demo[0][subform][field_text_demo][0][value]' => 'Text in french',
       'revision' => TRUE,
       'revision_log[0][value]' => 'french 1',
-    );
+    ];
     $this->submitForm($edit, 'Save (this translation)');
     $this->assertSession()->pageTextContains('paragraphed_content_demo Title in french has been updated.');
 
@@ -213,12 +213,12 @@ class ParagraphsTranslationTest extends ParagraphsTestBase {
     $this->clickLink('Edit');
     $this->assertSession()->pageTextContains('Title in french');
     $this->assertSession()->pageTextContains('Text in french');
-    $edit = array(
+    $edit = [
       'title[0][value]' => 'Title Change in french',
       'field_paragraphs_demo[0][subform][field_text_demo][0][value]' => 'New text in french',
       'revision' => TRUE,
       'revision_log[0][value]' => 'french 2',
-    );
+    ];
     $this->submitForm($edit, 'Save (this translation)');
     $this->assertSession()->pageTextContains('Title Change in french');
     $this->assertSession()->pageTextContains('New text in french');
@@ -244,9 +244,9 @@ class ParagraphsTranslationTest extends ParagraphsTestBase {
     $this->assertSession()->responseNotContains('The content has either been modified by another user, or you have already submitted modifications');
     $this->assertSession()->pageTextContains('Text in french');
 
-    //Add paragraphed content with untranslatable language
+    // Add paragraphed content with untranslatable language.
     $this->drupalGet('node/add/paragraphed_content_demo');
-    $edit = array('langcode[0][value]' => LanguageInterface::LANGCODE_NOT_SPECIFIED);
+    $edit = ['langcode[0][value]' => LanguageInterface::LANGCODE_NOT_SPECIFIED];
     $this->submitForm($edit, 'Add text_image');
     $this->assertSession()->statusCodeEquals(200);
 
@@ -458,7 +458,7 @@ class ParagraphsTranslationTest extends ParagraphsTestBase {
     $this->addParagraphsType('node_reference');
     static::fieldUIAddNewField('admin/structure/paragraphs_type/node_reference', 'entity_reference', 'Entity reference', 'entity_reference', [
       'settings[target_type]' => 'node',
-      'cardinality' => '-1'
+      'cardinality' => '-1',
     ], [
       'settings[handler_settings][target_bundles][paragraphed_content_demo]' => TRUE,
     ]);
@@ -493,7 +493,6 @@ class ParagraphsTranslationTest extends ParagraphsTestBase {
    */
   public function testParagraphTranslationMultilingual() {
     // Case 1: original node langcode in EN, translate in FR, change to DE.
-
     // Add 'Images' paragraph and check the paragraphs buttons are displayed.
     // Use the stable widget.
     $form_display = EntityFormDisplay::load('node.paragraphed_content_demo.default')
@@ -604,7 +603,6 @@ class ParagraphsTranslationTest extends ParagraphsTestBase {
 
     // Case 2: original node langcode in DE, change site langcode to DE, change
     // node langcode to EN.
-
     // Change the site langcode to french.
     $this->drupalGet('admin/config/regional/language');
     $this->submitForm([
@@ -656,7 +654,7 @@ class ParagraphsTranslationTest extends ParagraphsTestBase {
     ];
     $this->submitForm($edit, 'field_paragraphs_demo_images_add_more');
     $this->assertParagraphsLangcode($node->id(), 'de');
-      $this->assertParagraphsButtons(3);
+    $this->assertParagraphsButtons(3);
     // Upload a new image, check the paragraphs langcode are still 'de' and the
     // paragraphs buttons are displayed.
     $images = $this->getTestFiles('image')[4];
@@ -746,7 +744,6 @@ class ParagraphsTranslationTest extends ParagraphsTestBase {
 
     // Case 2: Check the paragraphs buttons after changing the NODE language
     // (original node langcode in ENGLISH, default site langcode in english).
-
     // Create another node.
     $this->drupalGet('node/add/paragraphed_content_demo');
     // Check that the node langcode is 'english' and add a 'Nested Paragraph'.
@@ -807,7 +804,6 @@ class ParagraphsTranslationTest extends ParagraphsTestBase {
     $this->assertParagraphsLangcode($node2->id());
 
     // Case 3: Check the paragraphs buttons after changing the SITE language.
-
     // Change the site langcode to german.
     $edit = [
       'site_default_language' => 'de',
@@ -959,4 +955,5 @@ class ParagraphsTranslationTest extends ParagraphsTestBase {
       }
     }
   }
+
 }

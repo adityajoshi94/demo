@@ -1,27 +1,9 @@
 <?php
 
-/**
- * Copyright 2018 Google Inc.
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * version 2 as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- * MA 02110-1301, USA.
- */
-
 namespace Drupal\apigee_edge;
 
-use Apigee\Edge\Exception\ApiRequestException;
 use Apigee\Edge\Exception\ApigeeOnGcpOauth2AuthenticationException;
+use Apigee\Edge\Exception\ApiRequestException;
 use Apigee\Edge\Exception\OauthAuthenticationException;
 use Apigee\Edge\HttpClient\Plugin\Authentication\Oauth;
 use Drupal\apigee_edge\Exception\AuthenticationKeyException;
@@ -542,7 +524,7 @@ final class KeyEntityFormEnhancer {
     // authentication).
     else {
       // Invalid credentials.
-      // TODO Remove the second condition which is a workaround for a
+      // @todo Remove the second condition which is a workaround for a
       // regression bug in the Apigee Edge for Public Cloud 19.03.01 release. If
       // valid organization name and username provided with an invalid password
       // the MGMT server returns HTTP 500 with an error instead of HTTP 401.

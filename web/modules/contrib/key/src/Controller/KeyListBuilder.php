@@ -3,9 +3,9 @@
 namespace Drupal\key\Controller;
 
 use Drupal\Core\Config\Entity\ConfigEntityListBuilder;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
-use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -75,7 +75,7 @@ class KeyListBuilder extends ConfigEntityListBuilder {
    * {@inheritdoc}
    */
   public function buildRow(EntityInterface $entity) {
-    /* @var $key \Drupal\key\Entity\Key */
+    /** @var \Drupal\key\Entity\Key $key */
     $key = $entity;
 
     $row['label'] = $key->label();
@@ -95,7 +95,7 @@ class KeyListBuilder extends ConfigEntityListBuilder {
    * {@inheritdoc}
    */
   public function getOperations(EntityInterface $entity) {
-    /* @var $key \Drupal\key\Entity\Key */
+    /** @var \Drupal\key\Entity\Key $key */
     $key = $entity;
 
     $operations = parent::getOperations($key);
@@ -154,7 +154,7 @@ class KeyListBuilder extends ConfigEntityListBuilder {
       }
     }
 
-    return isset($this->overrides[$key_id]) ? $this->overrides[$key_id] : [];
+    return $this->overrides[$key_id] ?? [];
   }
 
 }

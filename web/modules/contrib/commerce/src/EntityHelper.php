@@ -2,6 +2,9 @@
 
 namespace Drupal\commerce;
 
+/**
+ *
+ */
 class EntityHelper {
 
   /**

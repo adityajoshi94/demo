@@ -1,37 +1,12 @@
 <?php
 
-/**
- * @file
- * Copyright 2022 Google Inc.
- *
- * This program is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License version 2 as published by the
- * Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
- * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
- * License for more details.
- *
- * You should have received a copy of the GNU General Public License along
- * with this program; if not, write to the Free Software Foundation, Inc., 51
- * Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- */
-
-/**
- * Controller for GraphQL Mock server.
- */
-
 namespace Drupal\apigee_graphql_doc\Controller;
 
-use Drupal\Core\Controller\ControllerBase;
 use Drupal\Component\Serialization\Json;
+use Drupal\Core\Controller\ControllerBase;
 use Drupal\file\Entity\File;
 use Drupal\node\NodeInterface;
 use GraphQL\GraphQL;
-use GraphQL\Type\Definition\ObjectType;
-use GraphQL\Type\Definition\Type;
-use GraphQL\Type\Schema;
 use GraphQL\Utils\BuildSchema;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -55,7 +30,7 @@ class ApigeeGraphqlServerController extends ControllerBase {
       $field_graphql_spec = $node->get('field_graphql_spec');
 
       if ($field_graphql_spec && $field_graphql_spec->target_id) {
-        /* @var \Drupal\file\Entity\File $file */
+        /** @var \Drupal\file\Entity\File $file */
         $file = File::load($field_graphql_spec->target_id);
 
         if ($file) {

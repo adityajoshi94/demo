@@ -7,7 +7,6 @@ use Drupal\KernelTests\KernelTestBase;
 use Drupal\node\Entity\Node;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\Tests\paragraphs\FunctionalJavascript\ParagraphsTestBaseTrait;
-use Drupal\Tests\paragraphs\Traits\ParagraphsLastEntityQueryTrait;
 
 /**
  * Tests some methods from the Paragraph entity.

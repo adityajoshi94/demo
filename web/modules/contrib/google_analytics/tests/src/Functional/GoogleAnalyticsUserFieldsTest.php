@@ -2,8 +2,8 @@
 
 namespace Drupal\Tests\google_analytics\Functional;
 
-use Drupal\Tests\BrowserTestBase;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\Tests\BrowserTestBase;
 
 /**
  * Test user fields functionality of Google Analytics module.

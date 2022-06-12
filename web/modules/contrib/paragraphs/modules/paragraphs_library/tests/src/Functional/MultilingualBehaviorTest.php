@@ -208,7 +208,7 @@ class MultilingualBehaviorTest extends ParagraphsTestBase {
       'create paragraphed_test content',
       'edit behavior plugin settings',
       'administer paragraphs library',
-      'administer workflows'
+      'administer workflows',
     ]);
 
     $this->drupalGet('admin/config/workflow/workflows/manage/' . $this->workflow->id() . '/type/paragraphs_library_item');
@@ -226,7 +226,7 @@ class MultilingualBehaviorTest extends ParagraphsTestBase {
     $edit = [
       'title[0][value]' => 'En label Test node nested',
       'field_paragraphs[0][subform][field_err_field][0][subform][field_paragraphs_text][0][value]' => 'En label Example text for test in nested paragraph',
-      'moderation_state[0][state]' => 'published'
+      'moderation_state[0][state]' => 'published',
     ];
     $this->submitForm($edit, 'Save');
 
@@ -269,7 +269,7 @@ class MultilingualBehaviorTest extends ParagraphsTestBase {
     $this->submitForm([], 'paragraphs_0_subform_field_err_field_test_content_add_more');
     $edit = [
       'label[0][value]' => 'En label Test nested paragraph',
-      'paragraphs[0][subform][field_err_field][0][subform][field_paragraphs_text][0][value]' => 'En label Example text for test.'
+      'paragraphs[0][subform][field_err_field][0][subform][field_paragraphs_text][0][value]' => 'En label Example text for test.',
     ];
     $this->submitForm($edit, 'Save');
     $this->assertSession()->pageTextContains('Paragraph En label Test nested paragraph has been created.');
@@ -326,7 +326,7 @@ class MultilingualBehaviorTest extends ParagraphsTestBase {
     $this->submitForm([], 'paragraphs_0_subform_field_err_field_test_content_add_more');
     $edit = [
       'label[0][value]' => 'En label Test nested paragraph',
-      'paragraphs[0][subform][field_err_field][0][subform][field_paragraphs_text][0][value]' => 'En label Example text for test.'
+      'paragraphs[0][subform][field_err_field][0][subform][field_paragraphs_text][0][value]' => 'En label Example text for test.',
     ];
     $this->submitForm($edit, 'Save');
     $this->assertSession()->pageTextContains('Paragraph En label Test nested paragraph has been created.');
@@ -380,4 +380,5 @@ class MultilingualBehaviorTest extends ParagraphsTestBase {
     $this->drupalGet('admin/structure/paragraphs_type/' . $paragraphs_type);
     $this->submitForm($edit, 'Save');
   }
+
 }

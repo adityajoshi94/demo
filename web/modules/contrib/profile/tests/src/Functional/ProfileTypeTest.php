@@ -2,8 +2,8 @@
 
 namespace Drupal\Tests\profile\Functional;
 
-use Drupal\profile\Entity\ProfileType;
 use Drupal\profile\Entity\Profile;
+use Drupal\profile\Entity\ProfileType;
 
 /**
  * Tests the profile type UI.

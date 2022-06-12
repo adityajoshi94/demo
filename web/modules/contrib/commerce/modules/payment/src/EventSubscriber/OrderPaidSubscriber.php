@@ -6,6 +6,9 @@ use Drupal\commerce_order\Event\OrderEvent;
 use Drupal\commerce_payment\Plugin\Commerce\PaymentGateway\OffsitePaymentGatewayInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
+/**
+ *
+ */
 class OrderPaidSubscriber implements EventSubscriberInterface {
 
   /**

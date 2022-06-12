@@ -3,9 +3,9 @@
 namespace Drupal\Tests\key\Unit\Entity;
 
 use Drupal\key\Entity\Key;
+use Drupal\key\Plugin\KeyInput\NoneKeyInput;
 use Drupal\key\Plugin\KeyProvider\ConfigKeyProvider;
 use Drupal\key\Plugin\KeyType\AuthenticationKeyType;
-use Drupal\key\Plugin\KeyInput\NoneKeyInput;
 use Drupal\Tests\key\Unit\KeyTestBase;
 
 /**

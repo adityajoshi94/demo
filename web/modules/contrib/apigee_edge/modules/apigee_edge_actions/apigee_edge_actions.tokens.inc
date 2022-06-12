@@ -79,7 +79,7 @@ function apigee_edge_actions_tokens($type, $tokens, array $data, array $options,
   $replacements = [];
 
   if ($type == 'entity' && !empty($data['entity_type']) && !empty($data['entity']) && !empty($data['token_type'])) {
-    /* @var \Drupal\Core\Entity\ContentEntityInterface $entity */
+    /** @var \Drupal\Core\Entity\ContentEntityInterface $entity */
     $entity = $data['entity'];
 
     if ($entity instanceof EdgeEntityInterface) {

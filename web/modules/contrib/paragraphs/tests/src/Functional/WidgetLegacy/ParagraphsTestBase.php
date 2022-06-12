@@ -7,7 +7,6 @@ use Drupal\Tests\BrowserTestBase;
 use Drupal\Tests\field_ui\Traits\FieldUiTestTrait;
 use Drupal\Tests\paragraphs\FunctionalJavascript\ParagraphsTestBaseTrait;
 use Drupal\Tests\paragraphs\Traits\ParagraphsCoreVersionUiTestTrait;
-use Drupal\user\Entity\Role;
 
 /**
  * Base class for tests.
@@ -79,7 +78,7 @@ abstract class ParagraphsTestBase extends BrowserTestBase {
    * @return object
    *   Newly created and logged in user object.
    */
-  function loginAsAdmin($additional_permissions = [], $reset_permissions = FALSE) {
+  public function loginAsAdmin($additional_permissions = [], $reset_permissions = FALSE) {
     $permissions = $this->admin_permissions;
 
     if ($reset_permissions) {
@@ -108,7 +107,7 @@ abstract class ParagraphsTestBase extends BrowserTestBase {
     $form_display = EntityFormDisplay::load('node.' . $content_type . '.default')
       ->setComponent($paragraphs_field, [
         'type' => 'entity_reference_paragraphs',
-        'settings' => ['add_mode' => $mode]
+        'settings' => ['add_mode' => $mode],
       ]);
     $form_display->save();
   }

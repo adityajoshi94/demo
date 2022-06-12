@@ -70,17 +70,17 @@
   position: relative;
   -webkit-box-flex: 0;
   -webkit-flex: 0 0 100%;
-      -ms-flex: 0 0 100%;
-          flex: 0 0 100%;
+  -ms-flex: 0 0 100%;
+  flex: 0 0 100%;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
   -webkit-flex-flow: row wrap;
-      -ms-flex-flow: row wrap;
-          flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
   -webkit-box-align: center;
   -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   min-height: var(--dnd-item-min-height);
   margin: 5px 5px 10px 0;
   padding: 0 0 0 var(--dnd-icon-size);
@@ -157,8 +157,8 @@
 .paragraphs-dragdrop__item .paragraphs-dragdrop-wrapper {
   -webkit-box-flex: 1;
   -webkit-flex: 1 0 calc(100% - var(--dnd-icon-size));
-      -ms-flex: 1 0 calc(100% - var(--dnd-icon-size));
-          flex: 1 0 calc(100% - var(--dnd-icon-size));
+  -ms-flex: 1 0 calc(100% - var(--dnd-icon-size));
+  flex: 1 0 calc(100% - var(--dnd-icon-size));
   width: calc(100% - var(--dnd-icon-size));
 }
 
@@ -169,8 +169,8 @@
   display: flex;
   -webkit-box-align: center;
   -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   height: 1.538em;
   margin: 5px 0;
   line-height: 1.538em;
@@ -187,15 +187,15 @@
   left: 0;
   -webkit-box-flex: 0;
   -webkit-flex: 0 0 var(--dnd-icon-size);
-      -ms-flex: 0 0 var(--dnd-icon-size);
-          flex: 0 0 var(--dnd-icon-size);
+  -ms-flex: 0 0 var(--dnd-icon-size);
+  flex: 0 0 var(--dnd-icon-size);
   -webkit-align-self: stretch;
-      -ms-flex-item-align: stretch;
-          align-self: stretch;
+  -ms-flex-item-align: stretch;
+  align-self: stretch;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   width: var(--dnd-icon-size);
   height: 100%;
   background: transparent;
@@ -207,8 +207,8 @@
   right: 0;
   left: auto;
   -webkit-align-self: flex-end;
-      -ms-flex-item-align: end;
-          align-self: flex-end;
+  -ms-flex-item-align: end;
+  align-self: flex-end;
 }
 
 .sortable-chosen > .paragraphs-dragdrop__handle {

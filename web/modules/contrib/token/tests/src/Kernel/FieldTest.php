@@ -2,21 +2,21 @@
 
 namespace Drupal\Tests\token\Kernel;
 
+use Drupal\Component\Utility\Html;
 use Drupal\Component\Utility\Unicode;
 use Drupal\contact\Entity\ContactForm;
+use Drupal\contact\Entity\Message;
 use Drupal\Core\Entity\Entity\EntityViewMode;
+use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Render\Markup;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItem;
 use Drupal\datetime_range\Plugin\Field\FieldType\DateRangeItem;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\filter\Entity\FilterFormat;
+use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
-use Drupal\contact\Entity\Message;
-use Drupal\Component\Utility\Html;
-use Drupal\Core\Field\FieldStorageDefinitionInterface;
-use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\Tests\taxonomy\Traits\TaxonomyTestTrait;
 
 /**
@@ -115,7 +115,7 @@ class FieldTest extends KernelTestBase {
         'allowed_values' => [
           'key1' => 'value1',
           'key2' => 'value2',
-        ]
+        ],
       ],
     ]);
     $field_storage->save();
@@ -407,7 +407,7 @@ class FieldTest extends KernelTestBase {
       'type' => 'text_trimmed',
       'settings' => [
         'trim_length' => 50,
-      ]
+      ],
     ]);
     $entity_display->save();
 
@@ -460,7 +460,7 @@ class FieldTest extends KernelTestBase {
     $this->assertNull($tokenService->getTokenInfo('node', 'uid'));
   }
 
-  /*
+  /**
    * Tests chaining entity reference tokens.
    */
   public function testEntityReferenceTokens() {
@@ -470,7 +470,7 @@ class FieldTest extends KernelTestBase {
       'test_field' => [
         'value' => 'foo',
         'format' => $this->testFormat->id(),
-      ]
+      ],
     ]);
     $reference->save();
     $term_reference_field_value = $this->randomString();
@@ -714,8 +714,8 @@ class FieldTest extends KernelTestBase {
 
     /** @var \Drupal\node\NodeInterface $node */
     $node = Node::create([
-        'title' => 'Node for daterange field',
-        'type' => 'article',
+      'title' => 'Node for daterange field',
+      'type' => 'article',
     ]);
 
     $node->get('field_daterange')->value = '2013-12-22T00:00:00';
@@ -766,4 +766,5 @@ class FieldTest extends KernelTestBase {
       'field_timestamp:1:date' => $node->get('field_timestamp')->get(1)->value,
     ]);
   }
+
 }

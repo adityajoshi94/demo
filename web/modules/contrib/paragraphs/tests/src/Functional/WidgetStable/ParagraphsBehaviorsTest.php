@@ -345,4 +345,5 @@ class ParagraphsBehaviorsTest extends ParagraphsTestBase {
     $this->assertSession()->fieldValueEquals('field_paragraphs[0][behavior_plugins][test_text_color][text_color]', 'red');
 
   }
+
 }

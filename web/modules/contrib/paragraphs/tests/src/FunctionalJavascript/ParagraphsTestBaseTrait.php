@@ -24,7 +24,6 @@ trait ParagraphsTestBaseTrait {
    */
   protected $workflow;
 
-
   /**
    * Adds a content type with a Paragraphs field.
    *
@@ -201,7 +200,7 @@ trait ParagraphsTestBaseTrait {
    *   (optional) Machine name of the content entity type that the bundle
    *   belongs to. Defaults to "node".
    */
-    protected function setParagraphsWidgetSettings($bundle, $paragraphs_field, array $settings, $field_widget = NULL, $entity_type = 'node') {
+  protected function setParagraphsWidgetSettings($bundle, $paragraphs_field, array $settings, $field_widget = NULL, $entity_type = 'node') {
     /** @var \Drupal\Core\Entity\Display\EntityFormDisplayInterface $default_form_display */
     $default_form_display = \Drupal::entityTypeManager()
       ->getStorage('entity_form_display')

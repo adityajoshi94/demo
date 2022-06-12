@@ -8,6 +8,9 @@ use Drupal\commerce_cart\Event\CartOrderItemRemoveEvent;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
+/**
+ *
+ */
 class CartEventSubscriber implements EventSubscriberInterface {
 
   /**

@@ -14,7 +14,9 @@ use Drupal\Core\TypedData\ListDataDefinitionInterface;
 use Drupal\Core\TypedData\ListInterface;
 use Drupal\Core\TypedData\TypedDataManagerInterface;
 
-
+/**
+ *
+ */
 class TypedDataResolver {
 
   /**
@@ -163,7 +165,7 @@ class TypedDataResolver {
       return $contexts[$token];
     }
     else {
-      list($base, $property_path) = explode(':', $token, 2);
+      [$base, $property_path] = explode(':', $token, 2);
       // A base must always be set. This method recursively calls itself
       // setting bases for this reason.
       if (!empty($contexts[$base])) {

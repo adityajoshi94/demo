@@ -1,36 +1,18 @@
 <?php
 
-/**
- * Copyright 2020 Google Inc.
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * version 2 as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- * MA 02110-1301, USA.
- */
-
 namespace Drupal\apigee_edge_actions\EventSubscriber;
 
-use Drupal\apigee_edge_actions\Event\EdgeEntityEventEdge;
 use Drupal\apigee_edge\Entity\AppInterface;
 use Drupal\apigee_edge\Event\AppCredentialAddApiProductEvent;
 use Drupal\apigee_edge\Event\AppCredentialDeleteApiProductEvent;
+use Drupal\apigee_edge_actions\Event\EdgeEntityEventEdge;
 use Drupal\Component\Plugin\Exception\PluginException;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Logger\LoggerChannelInterface;
 use Drupal\Core\Session\AccountInterface;
-use Symfony\Contracts\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Contracts\EventDispatcher\Event;
 
 /**
  * Events for an API Product being added to an app already exist.
@@ -177,17 +159,17 @@ class AppCredentialEventSubscriber implements EventSubscriberInterface {
    *   The app with the provided name or null.
    */
   protected function getAppByName(string $name, string $owner_id, string $app_type): ?AppInterface {
-    /* @var \Drupal\apigee_edge\Entity\AppInterface $appClass */
+    /** @var \Drupal\apigee_edge\Entity\AppInterface $appClass */
     $appClass = $this->entityTypeManger->getStorage("{$app_type}_app")->getEntityType()->getClass();
 
     try {
       if ($app_type == 'developer') {
-        /* @var \Drupal\apigee_edge\Entity\Controller\DeveloperAppControllerFactoryInterface $controller */
+        /** @var \Drupal\apigee_edge\Entity\Controller\DeveloperAppControllerFactoryInterface $controller */
         $controller = \Drupal::service('apigee_edge.controller.developer_app_controller_factory');
         $edge_app = $controller->developerAppController($owner_id)->load($name);
       }
       else {
-        /* @var \Drupal\apigee_edge_teams\Entity\Controller\TeamAppControllerFactory $controller */
+        /** @var \Drupal\apigee_edge_teams\Entity\Controller\TeamAppControllerFactory $controller */
         $controller = \Drupal::service('apigee_edge_teams.controller.team_app_controller_factory');
         $edge_app = $controller->teamAppController($owner_id)->load($name);
       }

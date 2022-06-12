@@ -86,7 +86,7 @@ class ParagraphsTypesTest extends ParagraphsTestBase {
     // Create a paragraph type with label and id more than 32 characters.
     $edit = [
       'label' => 'Test',
-      'id' => 'test_name_with_more_than_32_characters'
+      'id' => 'test_name_with_more_than_32_characters',
     ];
     $this->submitForm($edit, 'Save and manage fields');
     $this->assertSession()->pageTextContains('Machine-readable name cannot be longer than 32 characters but is currently 38 characters long.');
@@ -94,4 +94,5 @@ class ParagraphsTypesTest extends ParagraphsTestBase {
     $this->submitForm($edit, 'Save and manage fields');
     $this->assertSession()->pageTextContains('Saved the Test Paragraphs type.');
   }
+
 }

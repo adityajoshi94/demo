@@ -2,10 +2,10 @@
 
 namespace Drupal\paragraphs\Plugin\EntityReferenceSelection;
 
-use Drupal\Core\Entity\Plugin\EntityReferenceSelection\DefaultSelection;
-use Drupal\Core\Url;
-use Drupal\Core\Form\FormStateInterface;
 use Drupal\Component\Utility\NestedArray;
+use Drupal\Core\Entity\Plugin\EntityReferenceSelection\DefaultSelection;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
 
 /**
  * Default plugin implementation of the Entity Reference Selection plugin.
@@ -19,16 +19,16 @@ use Drupal\Component\Utility\NestedArray;
  * )
  */
 class ParagraphSelection extends DefaultSelection {
+
   /**
    * @inheritDoc
    */
   public function defaultConfiguration() {
-    return parent::defaultConfiguration() +  [
+    return parent::defaultConfiguration() + [
       'negate' => 0,
       'target_bundles_drag_drop' => [],
     ];
   }
-
 
   /**
    * {@inheritdoc}
@@ -37,19 +37,19 @@ class ParagraphSelection extends DefaultSelection {
     $entity_type_id = $this->configuration['target_type'];
     $bundles = $this->entityTypeBundleInfo->getBundleInfo($entity_type_id);
 
-    $bundle_options = array();
-    $bundle_options_simple = array();
+    $bundle_options = [];
+    $bundle_options_simple = [];
 
     // Default weight for new items.
     $weight = count($bundles) + 1;
 
     foreach ($bundles as $bundle_name => $bundle_info) {
       $bundle_options_simple[$bundle_name] = $bundle_info['label'];
-      $bundle_options[$bundle_name] = array(
+      $bundle_options[$bundle_name] = [
         'label' => $bundle_info['label'],
         'enabled' => $this->configuration['target_bundles_drag_drop'][$bundle_name]['enabled'] ?? FALSE,
         'weight' => $this->configuration['target_bundles_drag_drop'][$bundle_name]['weight'] ?? $weight,
-      );
+      ];
       $weight++;
     }
 
@@ -65,12 +65,12 @@ class ParagraphSelection extends DefaultSelection {
     ];
 
     // Kept for compatibility with other entity reference widgets.
-    $form['target_bundles'] = array(
+    $form['target_bundles'] = [
       '#type' => 'checkboxes',
       '#options' => $bundle_options_simple,
       '#default_value' => $this->configuration['target_bundles'] ?? [],
       '#access' => FALSE,
-    );
+    ];
 
     if ($bundle_options) {
       $form['target_bundles_drag_drop'] = [
@@ -101,29 +101,29 @@ class ParagraphSelection extends DefaultSelection {
     // Default weight for new items.
     $weight = count($bundles) + 1;
     foreach ($bundle_options as $bundle_name => $bundle_info) {
-      $form['target_bundles_drag_drop'][$bundle_name] = array(
-        '#attributes' => array(
-          'class' => array('draggable'),
-        ),
-      );
+      $form['target_bundles_drag_drop'][$bundle_name] = [
+        '#attributes' => [
+          'class' => ['draggable'],
+        ],
+      ];
 
-      $form['target_bundles_drag_drop'][$bundle_name]['enabled'] = array(
+      $form['target_bundles_drag_drop'][$bundle_name]['enabled'] = [
         '#type' => 'checkbox',
         '#title' => $bundle_info['label'],
         '#title_display' => 'after',
         '#default_value' => $bundle_info['enabled'],
-      );
+      ];
 
-      $form['target_bundles_drag_drop'][$bundle_name]['weight'] = array(
+      $form['target_bundles_drag_drop'][$bundle_name]['weight'] = [
         '#type' => 'weight',
         '#default_value' => (int) $bundle_info['weight'],
         '#delta' => $weight_delta,
-        '#title' => $this->t('Weight for type @type', array('@type' => $bundle_info['label'])),
+        '#title' => $this->t('Weight for type @type', ['@type' => $bundle_info['label']]),
         '#title_display' => 'invisible',
-        '#attributes' => array(
-          'class' => array('bundle-weight', 'bundle-weight-' . $bundle_name),
-        ),
-      );
+        '#attributes' => [
+          'class' => ['bundle-weight', 'bundle-weight-' . $bundle_name],
+        ],
+      ];
       $weight++;
     }
 
@@ -141,13 +141,13 @@ class ParagraphSelection extends DefaultSelection {
    * Validate helper to have support for other entity reference widgets.
    *
    * @param $element
-   * @param FormStateInterface $form_state
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
    * @param $form
    */
   public static function targetTypeValidate($element, FormStateInterface $form_state, $form) {
     $values = &$form_state->getValues();
     $element_values = NestedArray::getValue($values, $element['#parents']);
-    $bundle_options = array();
+    $bundle_options = [];
 
     if ($element_values) {
       $enabled = 0;
@@ -165,7 +165,7 @@ class ParagraphSelection extends DefaultSelection {
     }
 
     // New value parents.
-    $parents = array_merge(array_slice($element['#parents'], 0, -1), array('target_bundles'));
+    $parents = array_merge(array_slice($element['#parents'], 0, -1), ['target_bundles']);
     NestedArray::setValue($values, $parents, $bundle_options);
   }
 
@@ -207,7 +207,7 @@ class ParagraphSelection extends DefaultSelection {
       foreach ($bundles as $machine_name => $bundle) {
         $return_bundles[$machine_name] = [
           'label' => $bundle['label'],
-          'weight' => isset($drag_drop_settings[$machine_name]['weight']) ? $drag_drop_settings[$machine_name]['weight'] : $weight,
+          'weight' => $drag_drop_settings[$machine_name]['weight'] ?? $weight,
         ];
         $weight++;
       }

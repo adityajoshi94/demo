@@ -13,11 +13,11 @@ use Drupal\Core\Entity\TranslatableRevisionableStorageInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Routing\RouteMatchInterface;
-use Drupal\entity_reference_revisions\Plugin\Field\FieldType\EntityReferenceRevisionsItem;
-use Drupal\field\Entity\FieldStorageConfig;
-use Drupal\field\Entity\FieldConfig;
-use Drupal\field\FieldStorageConfigInterface;
 use Drupal\Core\Url;
+use Drupal\entity_reference_revisions\Plugin\Field\FieldType\EntityReferenceRevisionsItem;
+use Drupal\field\Entity\FieldConfig;
+use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\field\FieldStorageConfigInterface;
 
 /**
  * Implements hook_help().
@@ -294,7 +294,7 @@ function entity_reference_revisions_entity_revision_create(ContentEntityInterfac
  */
 function _entity_reference_revisions_orphan_purger_batch_dispatcher() {
   $args = func_get_args();
-  list($service, $method) = explode(':', array_shift($args));
+  [$service, $method] = explode(':', array_shift($args));
   // The second argument (context) is passed by reference.
   $values = $args[1];
   $args[1] = &$values;

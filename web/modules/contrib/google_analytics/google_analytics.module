@@ -13,15 +13,14 @@
 use Drupal\Component\Serialization\Json;
 use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Cache\Cache;
+use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Site\Settings;
 use Drupal\Core\Url;
-use Drupal\node\NodeInterface;
-use Drupal\user\Entity\User;
-use GuzzleHttp\Exception\RequestException;
 use Drupal\google_analytics\Component\Render\GoogleAnalyticsJavaScriptSnippet;
-use Drupal\Core\File\FileSystemInterface;
+use Drupal\node\NodeInterface;
+use GuzzleHttp\Exception\RequestException;
 
 /**
  * Advertise the supported google analytics api details.
@@ -65,7 +64,7 @@ function google_analytics_page_attachments(array &$page) {
   $base_path = base_path();
 
   // Add module cache tags.
-  $page['#cache']['tags'] = Cache::mergeTags(isset($page['#cache']['tags']) ? $page['#cache']['tags'] : [], $config->getCacheTags());
+  $page['#cache']['tags'] = Cache::mergeTags($page['#cache']['tags'] ?? [], $config->getCacheTags());
 
   // Get page http status code for visibility filtering.
   $status = NULL;
@@ -144,7 +143,7 @@ function google_analytics_page_attachments(array &$page) {
         // Track only the selected message types.
         if (in_array($type, $message_types)) {
           foreach ($messages as $message) {
-            // @todo: Track as exceptions?
+            // @todo Track as exceptions?
             $event = [];
             $event['event_category'] = t('Messages');
             $event['event_label'] = strip_tags((string) $message);
@@ -334,7 +333,7 @@ function google_analytics_page_attachments(array &$page) {
 
     if ($config->get('track.adsense')) {
       // Custom tracking. Prepend before all other JavaScript.
-      // @TODO: https://support.google.com/adsense/answer/98142
+      // @todo https://support.google.com/adsense/answer/98142
       // sounds like it could be appended to $script.
       $script = $googleanalytics_adsense_script . $script;
     }
@@ -441,7 +440,7 @@ function google_analytics_form_user_form_alter(&$form, FormStateInterface $form_
       '#type' => 'checkbox',
       '#title' => t('Enable user tracking'),
       '#description' => $description,
-      '#default_value' => isset($account_data_google_analytics['user_account_users']) ? $account_data_google_analytics['user_account_users'] : ($visibility_user_account_mode == 1),
+      '#default_value' => $account_data_google_analytics['user_account_users'] ?? ($visibility_user_account_mode == 1),
     ];
 
     // hook_user_update() is missing in D8, add custom submit handler.

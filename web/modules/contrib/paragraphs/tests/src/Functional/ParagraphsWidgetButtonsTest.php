@@ -2,9 +2,9 @@
 
 namespace Drupal\Tests\paragraphs\Functional;
 
-use Drupal\Tests\paragraphs\Functional\WidgetStable\ParagraphsTestBase;
-use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\node\Entity\Node;
+use Drupal\paragraphs\Entity\Paragraph;
+use Drupal\Tests\paragraphs\Functional\WidgetStable\ParagraphsTestBase;
 
 /**
  * Tests paragraphs stable widget buttons.
@@ -386,7 +386,7 @@ class ParagraphsWidgetButtonsTest extends ParagraphsTestBase {
     // Check if the closed mode threshold summary is not visible.
     $this->assertSession()->pageTextNotContains('Closed mode threshold: 1');
 
-    // Create a text paragraph
+    // Create a text paragraph.
     $text_paragraph_1 = Paragraph::create([
       'type' => 'text_paragraph',
       'field_text' => [
@@ -525,14 +525,17 @@ class ParagraphsWidgetButtonsTest extends ParagraphsTestBase {
         $this->assertSession()->buttonNotExists($button_prefix . '_edit');
         $this->assertSession()->buttonExists($button_prefix . '_collapse');
         break;
+
       case 'closed':
         $this->assertSession()->buttonExists($button_prefix . '_edit');
         $this->assertSession()->buttonNotExists($button_prefix . '_collapse');
         break;
+
       case 'removed':
         $this->assertSession()->buttonNotExists($button_prefix . '_edit');
         $this->assertSession()->buttonNotExists($button_prefix . '_collapse');
         break;
+
       default:
         throw new \InvalidArgumentException('This function does not support "' . $mode . '" as an argument for "$mode" parameter');
     }

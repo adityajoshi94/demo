@@ -14,11 +14,11 @@ trait TokenTestTrait {
 
   use PathAliasTestTrait;
 
-  function assertToken($type, array $data, $token, $expected, array $options = []) {
+  public function assertToken($type, array $data, $token, $expected, array $options = []) {
     return $this->assertTokens($type, $data, [$token => $expected], $options);
   }
 
-  function assertTokens($type, array $data, array $tokens, array $options = []) {
+  public function assertTokens($type, array $data, array $tokens, array $options = []) {
     $input = $this->mapTokenNames($type, array_keys($tokens));
     $bubbleable_metadata = new BubbleableMetadata();
     $replacements = \Drupal::token()->generate($type, $input, $data, $options, $bubbleable_metadata);
@@ -41,7 +41,7 @@ trait TokenTestTrait {
     return $replacements;
   }
 
-  function mapTokenNames($type, array $tokens = []) {
+  public function mapTokenNames($type, array $tokens = []) {
     $return = [];
     foreach ($tokens as $token) {
       $return[$token] = "[$type:$token]";
@@ -49,7 +49,7 @@ trait TokenTestTrait {
     return $return;
   }
 
-  function assertNoTokens($type, array $data, array $tokens, array $options = []) {
+  public function assertNoTokens($type, array $data, array $tokens, array $options = []) {
     $input = $this->mapTokenNames($type, $tokens);
     $bubbleable_metadata = new BubbleableMetadata();
     $replacements = \Drupal::token()->generate($type, $input, $data, $options, $bubbleable_metadata);
@@ -59,11 +59,11 @@ trait TokenTestTrait {
     }
   }
 
-  function saveAlias($source, $alias, $language = Language::LANGCODE_NOT_SPECIFIED) {
+  public function saveAlias($source, $alias, $language = Language::LANGCODE_NOT_SPECIFIED) {
     return $this->createPathAlias($source, $alias, $language);
   }
 
-  function saveEntityAlias($entity_type, EntityInterface $entity, $alias, $language = Language::LANGCODE_NOT_SPECIFIED) {
+  public function saveEntityAlias($entity_type, EntityInterface $entity, $alias, $language = Language::LANGCODE_NOT_SPECIFIED) {
     $uri = $entity->toUrl()->toArray();
     return $this->saveAlias($uri['path'], $alias, $language);
   }
@@ -71,7 +71,7 @@ trait TokenTestTrait {
   /**
    * Make a page request and test for token generation.
    */
-  function assertPageTokens($url, array $tokens, array $data = [], array $options = []) {
+  public function assertPageTokens($url, array $tokens, array $data = [], array $options = []) {
     if (empty($tokens)) {
       return TRUE;
     }

@@ -69,7 +69,7 @@ class Paragraphs extends Text implements ConfigurableTargetInterface {
       '#type' => 'select',
       '#title' => $this->t('Paragraphs type'),
       '#required' => TRUE,
-      '#options' => array_map(function(EntityInterface $paragraphs_type) {
+      '#options' => array_map(function (EntityInterface $paragraphs_type) {
         return $paragraphs_type->label();
       }, $this->paragraphsTypeStorage->loadMultiple()),
       '#default_value' => $this->configuration['paragraphs_type'],

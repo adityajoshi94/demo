@@ -2,8 +2,8 @@
 
 namespace Drupal\entity_reference_revisions\Plugin\DataType;
 
-use Drupal\Core\TypedData\ComplexDataInterface;
 use Drupal\Core\Entity\Plugin\DataType\EntityAdapter;
+use Drupal\Core\TypedData\ComplexDataInterface;
 
 /**
  * Defines the "entity" data type.

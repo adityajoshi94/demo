@@ -2,11 +2,11 @@
 
 /**
  * @file
- * Contains paragraphs_demo.module
+ * Contains paragraphs_demo.module.
  */
 
-use Drupal\Core\Url;
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Url;
 
 /**
  * Implements hook_help().
@@ -24,6 +24,7 @@ function paragraphs_demo_help($route_name, RouteMatchInterface $route_match) {
       $output .= '<dt>' . t('Deleting demo Paragraphs types') . '</dt>';
       $output .= '<dd>' . t('The provided <em>demo Paragraph types</em> stay available even when the Paragraphs Demo module is uninstalled. They can be deleted individually on the <a href=":paragraphs">Paragraphs types page</a>.', [':paragraphs' => Url::fromRoute('entity.paragraphs_type.collection')->toString()]) . '</dd>';
       return $output;
+
     break;
   }
 }

@@ -9,7 +9,7 @@ namespace Drupal\Tests\token\Kernel;
  */
 class ArrayTest extends KernelTestBase {
 
-  function testArrayTokens() {
+  public function testArrayTokens() {
     // Test a simple array.
     $array = [0 => 'a', 1 => 'b', 2 => 'c', 4 => 'd'];
     $tokens = [
@@ -31,7 +31,7 @@ class ArrayTest extends KernelTestBase {
     $this->assertTokens('array', ['array' => $array], $tokens);
 
     // Test a mixed simple and render array.
-    // 2 => c, 0 => a, 4 => d, 1 => b
+    // 2 => c, 0 => a, 4 => d, 1 => b.
     $array = [
       '#property' => 'value',
       0 => 'a',

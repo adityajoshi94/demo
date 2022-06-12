@@ -2,8 +2,8 @@
 
 namespace Drupal\key\Plugin;
 
-use Drupal\Core\Plugin\PluginBase;
 use Drupal\Component\Utility\NestedArray;
+use Drupal\Core\Plugin\PluginBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**

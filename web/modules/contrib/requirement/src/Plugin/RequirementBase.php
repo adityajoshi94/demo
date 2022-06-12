@@ -1,22 +1,5 @@
 <?php
 
-/**
- * Copyright 2019 Google LLC
- *
- * This program is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License version 2 as published by the
- * Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
- * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
- * License for more details.
- *
- * You should have received a copy of the GNU General Public License along
- * with this program; if not, write to the Free Software Foundation, Inc., 51
- * Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- */
-
 namespace Drupal\requirement\Plugin;
 
 use Drupal\Core\Form\FormStateInterface;
@@ -24,7 +7,6 @@ use Drupal\Core\Link;
 use Drupal\Core\Logger\LoggerChannelTrait;
 use Drupal\Core\Messenger\MessengerTrait;
 use Drupal\Core\Plugin\PluginBase;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Defines a base class for requirement plugins.
@@ -56,7 +38,7 @@ abstract class RequirementBase extends PluginBase implements RequirementInterfac
     if (empty($this->requirement_group) && !empty($this->pluginDefinition['group'])) {
       $groups = $this->getRequirementGroupManager()->listRequirementGroups();
       $group_id = $this->pluginDefinition['group'];
-      $this->requirement_group = isset($groups[$group_id]) ? $groups[$group_id] : NULL;
+      $this->requirement_group = $groups[$group_id] ?? NULL;
     }
 
     return $this->requirement_group;
@@ -149,7 +131,7 @@ abstract class RequirementBase extends PluginBase implements RequirementInterfac
    * {@inheritdoc}
    */
   public function isResolvable(): bool {
-    // TODO: Implement a dependency tree so we can avoid circular dependencies.
+    // @todo Implement a dependency tree so we can avoid circular dependencies.
     foreach ($this->getDependencies() as $dependency) {
       if (!$this->getRequirementManager()->createInstance($dependency)->isCompleted()) {
         return FALSE;

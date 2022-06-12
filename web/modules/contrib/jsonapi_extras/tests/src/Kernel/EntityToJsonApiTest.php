@@ -203,7 +203,7 @@ class EntityToJsonApiTest extends JsonapiKernelTestBase {
     array_walk(
       $entities,
       function ($data) {
-        list($entity, $include_fields, $expected_includes) = $data;
+        [$entity, $include_fields, $expected_includes] = $data;
         $this->assertEntity($entity, $include_fields, $expected_includes);
       }
     );

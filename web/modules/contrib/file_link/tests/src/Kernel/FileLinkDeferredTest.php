@@ -3,8 +3,6 @@
 namespace Drupal\Tests\file_link\Kernel;
 
 use Drupal\Core\Site\Settings;
-use Drupal\Core\StringTranslation\TranslatableMarkup;
-use Drupal\Core\Url;
 use Drupal\entity_test\Entity\EntityTest;
 use Drupal\file_link\Plugin\Field\FieldType\FileLinkItem;
 use Drupal\file_link_test\HttpMiddleware;

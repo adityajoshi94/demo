@@ -4,7 +4,6 @@ namespace Drupal\Tests\entity_reference_revisions\Kernel\Plugin\Derivative;
 
 use Drupal\entity_reference_revisions\Plugin\migrate\destination\EntityReferenceRevisions;
 use Drupal\KernelTests\KernelTestBase;
-use Drupal\migrate\Plugin\MigrateDestinationPluginManager;
 
 /**
  * Tests the migration deriver.
@@ -33,13 +32,11 @@ class EntityReferenceRevisionsDeriverTest extends KernelTestBase {
    * @covers ::getDerivativeDefinitions
    */
   public function testDestinationDeriver() {
-    /** @var MigrateDestinationPluginManager $migrationDestinationManager */
+    /** @var \Drupal\migrate\Plugin\MigrateDestinationPluginManager $migrationDestinationManager */
     $migrationDestinationManager = \Drupal::service('plugin.manager.migrate.destination');
 
     $destination = $migrationDestinationManager->getDefinition('entity_reference_revisions:entity_test_composite');
     $this->assertEquals(EntityReferenceRevisions::class, $destination['class']);
   }
-
-
 
 }

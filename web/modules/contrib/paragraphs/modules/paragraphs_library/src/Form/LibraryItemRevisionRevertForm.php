@@ -12,6 +12,9 @@ use Drupal\Core\Url;
 use Drupal\paragraphs_library\LibraryItemInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+/**
+ *
+ */
 class LibraryItemRevisionRevertForm extends ConfirmFormBase {
 
   /**
@@ -92,7 +95,7 @@ class LibraryItemRevisionRevertForm extends ConfirmFormBase {
    */
   public function getQuestion() {
     return $this->t('Are you sure you want to revert revision from %revision-date?', [
-      '%revision-date' => $this->dateFormatter->format($this->revision->getChangedTime())
+      '%revision-date' => $this->dateFormatter->format($this->revision->getChangedTime()),
     ]);
   }
 
@@ -103,7 +106,7 @@ class LibraryItemRevisionRevertForm extends ConfirmFormBase {
     $original_revision_timestamp = $this->revision->getChangedTime();
     $this->revision = $this->prepareRevertedRevision($this->revision);
     $this->revision->revision_log = $this->t('Copy of the revision from %date.', [
-      '%date' => $this->dateFormatter->format($original_revision_timestamp)
+      '%date' => $this->dateFormatter->format($original_revision_timestamp),
     ]);
     $this->revision->setChangedTime($this->time->getRequestTime());
     $this->revision->save();
@@ -114,7 +117,7 @@ class LibraryItemRevisionRevertForm extends ConfirmFormBase {
     ]));
 
     $form_state->setRedirect('entity.paragraphs_library_item.version_history', [
-      'paragraphs_library_item' => $this->revision->id()
+      'paragraphs_library_item' => $this->revision->id(),
     ]);
   }
 
@@ -148,7 +151,7 @@ class LibraryItemRevisionRevertForm extends ConfirmFormBase {
    */
   public function getCancelUrl() {
     return new Url('entity.paragraphs_library_item.version_history', [
-      'paragraphs_library_item' => $this->revision->id()
+      'paragraphs_library_item' => $this->revision->id(),
     ]);
   }
 
@@ -158,4 +161,5 @@ class LibraryItemRevisionRevertForm extends ConfirmFormBase {
   public function getConfirmText() {
     return $this->t('Revert');
   }
+
 }

@@ -55,7 +55,7 @@ function smtp_update_8004() {
  */
 function smtp_install() {
   $messenger = \Drupal::messenger();
-  // @var \Drupal\Core\Routing\RouteBuilderInterface $routeBuilder $route_builder.
+  /** @var \Drupal\Core\Routing\RouteBuilderInterface $routeBuilder $route_builder. */
   $route_builder = \Drupal::service('router.builder');
 
   // Makes the 'smtp.config' route available here, see hook_install doc.

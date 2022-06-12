@@ -11,6 +11,9 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\StringTranslation\TranslationManager;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
+/**
+ *
+ */
 class MailHandler implements MailHandlerInterface {
 
   use StringTranslationTrait;

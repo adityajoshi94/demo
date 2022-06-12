@@ -123,7 +123,7 @@ class ProfileFormWidget extends WidgetBase implements ContainerFactoryPluginInte
   public function settingsSummary() {
     $form_modes = $this->entityDisplayRepository->getFormModeOptions($this->getFieldSetting('target_type'));
     $form_mode = $this->getSetting('form_mode');
-    $form_mode = isset($form_modes[$form_mode]) ? $form_modes[$form_mode] : $form_mode;
+    $form_mode = $form_modes[$form_mode] ?? $form_mode;
     $summary = [];
     $summary[] = $this->t('Form mode: @mode', ['@mode' => $form_mode]);
 

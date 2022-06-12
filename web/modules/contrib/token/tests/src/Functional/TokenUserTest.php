@@ -128,4 +128,5 @@ class TokenUserTest extends TokenTestBase {
     $this->assertSession()->linkExists('Browse available tokens.');
     $this->assertSession()->linkByHrefExists('token/tree');
   }
+
 }

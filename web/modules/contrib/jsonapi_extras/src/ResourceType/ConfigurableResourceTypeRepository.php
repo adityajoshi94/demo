@@ -3,12 +3,12 @@
 namespace Drupal\jsonapi_extras\ResourceType;
 
 use Drupal\Component\Plugin\Exception\PluginException;
-use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
+use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\jsonapi\ResourceType\ResourceTypeRepository;
 use Drupal\jsonapi_extras\Plugin\ResourceFieldEnhancerManager;
-use Drupal\Core\Config\ConfigFactoryInterface;
 
 /**
  * Provides a repository of JSON:API configurable resource types.
@@ -175,8 +175,7 @@ class ConfigurableResourceTypeRepository extends ResourceTypeRepository {
     );
     try {
       $resource_configs = $this->getResourceConfigs();
-      return isset($resource_configs[$resource_config_id]) ?
-        $resource_configs[$resource_config_id] :
+      return $resource_configs[$resource_config_id] ??
         $null_resource;
     }
     catch (PluginException $e) {
@@ -196,7 +195,7 @@ class ConfigurableResourceTypeRepository extends ResourceTypeRepository {
     if (!$this->resourceConfigs) {
       $resource_config_ids = [];
       foreach ($this->getEntityTypeBundleTuples() as $tuple) {
-        list($entity_type_id, $bundle) = $tuple;
+        [$entity_type_id, $bundle] = $tuple;
         $resource_config_ids[] = static::buildResourceConfigId(
           $entity_type_id,
           $bundle
@@ -248,7 +247,7 @@ class ConfigurableResourceTypeRepository extends ResourceTypeRepository {
     }
 
     if (strpos($type_name, '--') !== FALSE) {
-      list($entity_type_id, $bundle) = explode('--', $type_name);
+      [$entity_type_id, $bundle] = explode('--', $type_name);
       return static::lookupResourceType($resource_types, $entity_type_id, $bundle);
     }
 

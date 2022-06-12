@@ -13,7 +13,7 @@ use Drush\Utils\StringUtils;
 function drush_key_list() {
   $result = [];
 
-  /* @var $key Drupal\key\Entity\Key */
+  /** @var Drupal\key\Entity\Key $key */
   $keys = \Drupal::service('key.repository')->getKeys();
 
   // Filter by key type, if specified.

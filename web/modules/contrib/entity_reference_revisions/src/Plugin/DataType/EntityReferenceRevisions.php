@@ -36,14 +36,14 @@ class EntityReferenceRevisions extends EntityReference {
   /**
    * The entity revision ID.
    *
-   * @var integer|string
+   * @var int|string
    */
   protected $revision_id;
 
   /**
    * The entity ID.
    *
-   * @var integer|string
+   * @var int|string
    */
   protected $id;
 
@@ -125,4 +125,5 @@ class EntityReferenceRevisions extends EntityReference {
       $this->parent->onChange($this->name);
     }
   }
+
 }

@@ -5,6 +5,9 @@ namespace Drupal\commerce_tax;
 use Drupal\commerce_order\Entity\OrderItemInterface;
 use Drupal\commerce_store\Entity\StoreInterface;
 
+/**
+ *
+ */
 interface StoreTaxInterface {
 
   /**

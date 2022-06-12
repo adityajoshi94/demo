@@ -4,6 +4,9 @@ namespace Drupal\commerce_order;
 
 use Drupal\commerce_order\Entity\OrderInterface;
 
+/**
+ *
+ */
 class OrderTotalSummary implements OrderTotalSummaryInterface {
 
   /**

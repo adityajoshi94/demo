@@ -8,7 +8,9 @@ use Drupal\Core\Plugin\Discovery\ContainerDeriverInterface;
 use Drupal\Core\TypedData\DataDefinitionInterface;
 use Drupal\field\FieldConfigInterface;
 
-
+/**
+ *
+ */
 class TypedDataRelationshipDeriver extends TypedDataPropertyDeriverBase implements ContainerDeriverInterface {
 
   /**
@@ -58,7 +60,7 @@ class TypedDataRelationshipDeriver extends TypedDataPropertyDeriverBase implemen
       // Update label.
       /** @var \Drupal\Core\StringTranslation\TranslatableMarkup $label */
       $label = $derivative['label'];
-      list(,, $argument_name) = explode(':', $data_type_id);
+      [,, $argument_name] = explode(':', $data_type_id);
       $arguments = $label->getArguments();
       $arguments['@' . $argument_name] = $data_type_definition['label'];
       $string_args = $arguments;

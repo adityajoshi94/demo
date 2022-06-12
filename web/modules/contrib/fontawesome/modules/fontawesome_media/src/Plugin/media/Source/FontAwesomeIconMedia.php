@@ -2,9 +2,9 @@
 
 namespace Drupal\fontawesome_media\Plugin\media\Source;
 
+use Drupal\fontawesome\Plugin\Field\FieldType\FontAwesomeIcon;
 use Drupal\media\MediaInterface;
 use Drupal\media\MediaSourceBase;
-use Drupal\fontawesome\Plugin\Field\FieldType\FontAwesomeIcon;
 
 /**
  * Media source wrapping around a Font Awesome icon field.

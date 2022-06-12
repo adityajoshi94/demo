@@ -7,6 +7,9 @@ use Drupal\commerce_order\Event\OrderEvent;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
+/**
+ *
+ */
 class CheckoutEventSubscriber implements EventSubscriberInterface {
 
   /**

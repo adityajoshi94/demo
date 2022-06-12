@@ -19,7 +19,6 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
  * If a field disallows certain Paragraphs types, this validates that those
  * restrictions are not being circumvented by putting a Paragraphs library item
  * of a disallowed Paragraphs types into a child field.
- *
  */
 class ParagraphsLibraryItemHasAllowedParagraphsTypeConstraintValidator extends ConstraintValidator implements ContainerInjectionInterface {
 
@@ -122,7 +121,7 @@ class ParagraphsLibraryItemHasAllowedParagraphsTypeConstraintValidator extends C
    * Returns paragraph type of the library item.
    *
    * @param string $entity_reference_item
-   *  Entity reference item.
+   *   Entity reference item.
    *
    * @return string
    *   Paragraphs type.

@@ -35,7 +35,7 @@ class EntityReferenceRevisionsCompositeTranslationTest extends EntityKernelTestB
     'entity_reference_revisions',
     'entity_composite_relationship_test',
     'language',
-    'content_translation'
+    'content_translation',
   ];
 
   /**
@@ -49,7 +49,6 @@ class EntityReferenceRevisionsCompositeTranslationTest extends EntityKernelTestB
    * The entity type manager.
    *
    * @var \Drupal\Core\Entity\EntityTypeManagerInterface
-   *
    */
   protected $entityTypeManager;
 
@@ -75,7 +74,7 @@ class EntityReferenceRevisionsCompositeTranslationTest extends EntityKernelTestB
       'type' => 'entity_reference_revisions',
       'cardinality' => FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED,
       'settings' => [
-        'target_type' => 'entity_test_composite'
+        'target_type' => 'entity_test_composite',
       ],
     ]);
     $field_storage->save();
@@ -107,7 +106,7 @@ class EntityReferenceRevisionsCompositeTranslationTest extends EntityKernelTestB
       'type' => 'entity_reference_revisions',
       'cardinality' => FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED,
       'settings' => [
-        'target_type' => 'entity_test_composite'
+        'target_type' => 'entity_test_composite',
       ],
     ]);
     $field_storage->save();

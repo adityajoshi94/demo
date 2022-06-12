@@ -20,7 +20,6 @@
 namespace Drupal\apigee_m10n_teams\Plugin\AddCreditEntityType;
 
 use Drupal\apigee_edge_teams\TeamMembershipManagerInterface;
-use Drupal\apigee_m10n_add_credit\Annotation\AddCreditEntityType;
 use Drupal\apigee_m10n_add_credit\Plugin\AddCreditEntityTypeBase;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Access\AccessResultInterface;

@@ -4,8 +4,8 @@ namespace Drupal\ctools\Wizard;
 
 use Drupal\Core\Form\FormBuilderInterface;
 use Drupal\Core\Form\FormState;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Drupal\Core\Render\RendererInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  * The wizard factory.
@@ -93,7 +93,7 @@ class WizardFactory implements WizardFactoryInterface {
         $arguments[] = $parameter->getDefaultValue();
       }
     }
-    /** @var $wizard \Drupal\ctools\Wizard\FormWizardInterface */
+    /** @var \Drupal\ctools\Wizard\FormWizardInterface $wizard */
     $wizard = $reflection->newInstanceArgs($arguments);
     return $wizard;
   }

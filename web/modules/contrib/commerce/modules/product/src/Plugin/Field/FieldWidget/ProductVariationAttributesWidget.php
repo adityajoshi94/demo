@@ -174,7 +174,7 @@ class ProductVariationAttributesWidget extends ProductVariationWidgetBase implem
     $variations = $this->variationStorage->loadEnabled($product);
 
     foreach ($values as &$value) {
-      $attribute_values = isset($value['attributes']) ? $value['attributes'] : [];
+      $attribute_values = $value['attributes'] ?? [];
       $selected_variation = $this->variationAttributeMapper->selectVariation($variations, $attribute_values);
       if ($selected_variation) {
         $value['variation'] = $selected_variation->id();

@@ -1,6 +1,7 @@
 <?php
 
 namespace Drupal\entity_reference_revisions;
+
 use Drupal\Core\Entity\EntityStorageInterface;
 
 /**
@@ -36,4 +37,5 @@ trait EntityNeedsSaveTrait {
     parent::postSave($storage, $update);
     $this->setNeedsSave(FALSE);
   }
+
 }

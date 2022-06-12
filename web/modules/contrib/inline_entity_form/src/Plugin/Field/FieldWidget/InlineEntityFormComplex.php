@@ -251,7 +251,7 @@ class InlineEntityFormComplex extends InlineEntityFormBase implements ContainerF
     $cardinality_reached = ($cardinality > 0 && $entities_count == $cardinality);
 
     // Build the "Multiple value" widget.
-    // TODO - does this belong in #element_validate?
+    // @todo does this belong in #element_validate?
     $element['#element_validate'][] = [get_class($this), 'updateRowWeights'];
     // Add the required element marker & validation.
     if ($element['#required']) {
@@ -617,7 +617,7 @@ class InlineEntityFormComplex extends InlineEntityFormBase implements ContainerF
       }
       elseif ($widget_state['form'] == 'ief_add_existing') {
         $parent = NestedArray::getValue($form, [$field_name, 'widget', 'form']);
-        $element = isset($parent['entity_id']) ? $parent['entity_id'] : [];
+        $element = $parent['entity_id'] ?? [];
         if (!empty($element['#value'])) {
           $options = [
             'target_type' => $element['#target_type'],
@@ -858,7 +858,6 @@ class InlineEntityFormComplex extends InlineEntityFormBase implements ContainerF
     $form_state->set(['inline_entity_form', $ief_id, 'entities', $delta, 'form'], NULL);
   }
 
-
   /**
    * Remove form submit callback.
    *
@@ -905,7 +904,7 @@ class InlineEntityFormComplex extends InlineEntityFormBase implements ContainerF
    * @return string
    *   Bundle machine name.
    *
-   * @TODO - Figure out if can be simplified.
+   * @todo Figure out if can be simplified.
    */
   protected function determineBundle(FormStateInterface $form_state) {
     $ief_settings = $form_state->get(['inline_entity_form', $this->getIefId()]);
@@ -981,7 +980,7 @@ class InlineEntityFormComplex extends InlineEntityFormBase implements ContainerF
       ['\Drupal\inline_entity_form\ElementSubmit', 'trigger'],
       ['\Drupal\inline_entity_form\Plugin\Field\FieldWidget\InlineEntityFormComplex', 'closeForm'],
     ];
-    $element['#ief_submit_trigger']  = TRUE;
+    $element['#ief_submit_trigger'] = TRUE;
   }
 
   /**

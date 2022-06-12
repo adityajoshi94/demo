@@ -3,16 +3,16 @@
 namespace Drupal\jsonapi_extras\Form;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Entity\EntityFieldManager;
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\jsonapi_extras\ResourceType\ConfigurableResourceTypeRepository;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Entity\EntityTypeInterface;
-use Drupal\Core\Entity\EntityFieldManager;
 use Drupal\jsonapi_extras\Entity\JsonapiResourceConfig;
 use Drupal\jsonapi_extras\Plugin\ResourceFieldEnhancerManager;
-use Drupal\Core\Entity\FieldableEntityInterface;
+use Drupal\jsonapi_extras\ResourceType\ConfigurableResourceTypeRepository;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Configure JSON:API bulk operations.
@@ -103,12 +103,12 @@ class JsonapiExtrasBulkOpsForm extends FormBase {
     $form['disable'] = [
       '#type'   => 'submit',
       '#value'  => $this->t('Disable all resources'),
-      '#submit' => ['::disableResourcesSubmitForm']
+      '#submit' => ['::disableResourcesSubmitForm'],
     ];
     $form['enable'] = [
       '#type'   => 'submit',
       '#value'  => $this->t('Enable all resources'),
-      '#submit' => ['::enableResourcesSubmitForm']
+      '#submit' => ['::enableResourcesSubmitForm'],
     ];
     return $form;
   }

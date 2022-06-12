@@ -3,5 +3,3 @@ Patches applied to this directory:
 
 Do not import existing entities
 Source: https://www.drupal.org/files/issues/2020-11-06/default_content-existing-entities-2698425-1-x.patch
-
-

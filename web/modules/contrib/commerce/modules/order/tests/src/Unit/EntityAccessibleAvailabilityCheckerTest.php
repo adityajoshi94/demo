@@ -3,10 +3,10 @@
 namespace Drupal\Tests\commerce_order\Unit;
 
 use Drupal\commerce\Context;
+use Drupal\commerce\PurchasableEntityInterface;
 use Drupal\commerce_order\AvailabilityResult;
 use Drupal\commerce_order\Entity\OrderItemInterface;
 use Drupal\commerce_order\EntityAccessibleAvailabilityChecker;
-use Drupal\commerce\PurchasableEntityInterface;
 use Drupal\commerce_product\Entity\ProductVariationInterface;
 use Drupal\commerce_store\Entity\StoreInterface;
 use Drupal\Core\Session\AccountInterface;

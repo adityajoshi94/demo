@@ -2,9 +2,9 @@
 
 namespace Drupal\Tests\token\Kernel;
 
+use Drupal\Core\Url;
 use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
-use Drupal\Core\Url;
 
 /**
  * Test the node and content type tokens.
@@ -43,12 +43,12 @@ class NodeTest extends KernelTestBase {
     $node_type->save();
   }
 
-  function testNodeTokens() {
+  public function testNodeTokens() {
     $page = Node::create([
       'type' => 'page',
       'title' => 'Source Title',
       'revision_log' => $this->randomMachineName(),
-      'path' => ['alias' => '/content/source-node']
+      'path' => ['alias' => '/content/source-node'],
     ]);
     $page->save();
     $tokens = [
@@ -68,7 +68,7 @@ class NodeTest extends KernelTestBase {
       'type' => 'page',
       'type-name' => 'Basic page',
       'url:alias' => '/content/source-node',
-      'language:name' => 'English'
+      'language:name' => 'English',
     ];
     $this->assertTokens('node', ['node' => $page], $tokens);
 
@@ -94,7 +94,7 @@ class NodeTest extends KernelTestBase {
       'type' => 'article',
       'type-name' => 'Article',
       'url:alias' => "/node/{$article->id()}",
-      'language:name' => 'English'
+      'language:name' => 'English',
     ];
     $this->assertTokens('node', ['node' => $article], $tokens);
   }

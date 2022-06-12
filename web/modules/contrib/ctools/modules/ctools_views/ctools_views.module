@@ -5,8 +5,8 @@
  * Allows core Views to have greater control over Blocks.
  */
 
-use Drupal\views\Plugin\views\display\Block as CoreBlock;
 use Drupal\ctools_views\Plugin\Display\Block;
+use Drupal\views\Plugin\views\display\Block as CoreBlock;
 
 /**
  * Implements hook_views_plugins_display_alter().

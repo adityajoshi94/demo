@@ -8,6 +8,9 @@ use Drupal\commerce_promotion\Entity\CouponInterface;
 use Drupal\commerce_promotion\Entity\PromotionInterface;
 use Drupal\Core\Database\Connection;
 
+/**
+ *
+ */
 class PromotionUsage implements PromotionUsageInterface {
 
   /**

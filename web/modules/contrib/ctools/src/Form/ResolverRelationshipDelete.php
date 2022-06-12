@@ -5,11 +5,13 @@ namespace Drupal\ctools\Form;
 use Drupal\Core\Form\ConfirmFormBase;
 use Drupal\Core\Form\ConfirmFormHelper;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\ctools\TypedDataResolver;
 use Drupal\Core\TempStore\SharedTempStoreFactory;
+use Drupal\ctools\TypedDataResolver;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-
+/**
+ *
+ */
 abstract class ResolverRelationshipDelete extends ConfirmFormBase {
 
   /**

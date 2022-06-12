@@ -28,7 +28,7 @@ class ParagraphsLegacyContentModerationTranslationsTest extends ParagraphsTestBa
     'block',
     'link',
     'content_moderation',
-    'content_translation'
+    'content_translation',
   ];
 
   /**
@@ -316,7 +316,7 @@ class ParagraphsLegacyContentModerationTranslationsTest extends ParagraphsTestBa
       ])
       ->save();
 
-    // @TODO when https://www.drupal.org/project/paragraphs/issues/3004099 gets
+    // @todo when https://www.drupal.org/project/paragraphs/issues/3004099 gets
     // committed, update the following two scenarios.
     // When an EN node is published, we add a draft translation and we edit the
     // original EN adding a new Paragraph and keeping it published, the new
@@ -448,4 +448,5 @@ class ParagraphsLegacyContentModerationTranslationsTest extends ParagraphsTestBa
     $assert_session->pageTextContains('DE Second level first text');
     $assert_session->pageTextContains('DE Second level second text');
   }
+
 }

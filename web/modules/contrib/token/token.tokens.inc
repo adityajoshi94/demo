@@ -5,18 +5,19 @@
  * Token callbacks for the token module.
  */
 
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Entity\ContentEntityTypeInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Entity\TypedData\EntityDataDefinitionInterface;
+use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Render\BubbleableMetadata;
-use Drupal\Core\Render\Element;
-use Drupal\Component\Utility\Crypt;
-use Drupal\Component\Utility\Html;
 use Drupal\Core\TypedData\DataReferenceDefinitionInterface;
 use Drupal\Core\Url;
 use Drupal\field\FieldStorageConfigInterface;
+use Drupal\image\Entity\ImageStyle;
 use Drupal\menu_link_content\MenuLinkContentInterface;
 use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
@@ -24,10 +25,6 @@ use Drupal\node\NodeInterface;
 use Drupal\system\Entity\Menu;
 use Drupal\user\UserInterface;
 use Symfony\Cmf\Component\Routing\RouteObjectInterface;
-use Drupal\Core\TypedData\PrimitiveInterface;
-use Drupal\Core\Field\FieldStorageDefinitionInterface;
-use Drupal\Core\Entity\ContentEntityTypeInterface;
-use Drupal\image\Entity\ImageStyle;
 
 /**
  * Implements hook_token_info_alter().
@@ -117,7 +114,7 @@ function token_token_info_alter(&$info) {
   // @todo Remove when http://drupal.org/node/1173706 is fixed.
   $date_format_types = \Drupal::entityTypeManager()->getStorage('date_format')->loadMultiple();
   foreach ($date_format_types as $date_format_type => $date_format_type_info) {
-    /* @var \Drupal\system\Entity\DateFormat $date_format_type_info */
+    /** @var \Drupal\system\Entity\DateFormat $date_format_type_info */
     if (!isset($info['tokens']['date'][$date_format_type])) {
       $info['tokens']['date'][$date_format_type] = [
         'name' => Html::escape($date_format_type_info->label()),
@@ -505,7 +502,7 @@ function token_tokens($type, array $tokens, array $data, array $options, Bubblea
 
   // Comment tokens.
   if ($type == 'comment' && !empty($data['comment'])) {
-    /* @var \Drupal\comment\CommentInterface $comment */
+    /** @var \Drupal\comment\CommentInterface $comment */
     $comment = $data['comment'];
 
     // Chained token relationships.
@@ -517,7 +514,7 @@ function token_tokens($type, array $tokens, array $data, array $options, Bubblea
 
   // Node tokens.
   if ($type == 'node' && !empty($data['node'])) {
-    /* @var \Drupal\node\NodeInterface $node */
+    /** @var \Drupal\node\NodeInterface $node */
     $node = $data['node'];
 
     foreach ($tokens as $name => $original) {
@@ -547,7 +544,7 @@ function token_tokens($type, array $tokens, array $data, array $options, Bubblea
 
   // Content type tokens.
   if ($type == 'content-type' && !empty($data['node_type'])) {
-    /* @var \Drupal\node\NodeTypeInterface $node_type */
+    /** @var \Drupal\node\NodeTypeInterface $node_type */
     $node_type = $data['node_type'];
 
     foreach ($tokens as $name => $original) {
@@ -583,7 +580,7 @@ function token_tokens($type, array $tokens, array $data, array $options, Bubblea
 
   // Taxonomy term tokens.
   if ($type == 'term' && !empty($data['term'])) {
-    /* @var \Drupal\taxonomy\TermInterface $term */
+    /** @var \Drupal\taxonomy\TermInterface $term */
     $term = $data['term'];
 
     /** @var \Drupal\taxonomy\TermStorageInterface $term_storage */
@@ -677,7 +674,7 @@ function token_tokens($type, array $tokens, array $data, array $options, Bubblea
 
   // User tokens.
   if ($type == 'user' && !empty($data['user'])) {
-    /* @var \Drupal\user\UserInterface $account */
+    /** @var \Drupal\user\UserInterface $account */
     $account = $data['user'];
 
     foreach ($tokens as $name => $original) {
@@ -807,12 +804,15 @@ function token_tokens($type, array $tokens, array $data, array $options, Bubblea
           case 'name':
             $replacements[$original] = $language->getName();
             break;
+
           case 'langcode':
             $replacements[$original] = $langcode;
             break;
+
           case 'direction':
             $replacements[$original] = $language->getDirection();
             break;
+
           case 'domain':
             if (!isset($language_url_domains)) {
               $language_url_domains = \Drupal::config('language.negotiation')->get('url.domains');
@@ -821,6 +821,7 @@ function token_tokens($type, array $tokens, array $data, array $options, Bubblea
               $replacements[$original] = $language_url_domains[$langcode];
             }
             break;
+
           case 'prefix':
             if (!isset($language_url_prefixes)) {
               $language_url_prefixes = \Drupal::config('language.negotiation')->get('url.prefixes');
@@ -933,7 +934,7 @@ function token_tokens($type, array $tokens, array $data, array $options, Bubblea
           // Instantiation would fail again on malformed urls.
         }
       }
-      // Add cache contexts to ensure this token functions on a per-path basis
+      // Add cache contexts to ensure this token functions on a per-path basis.
       $bubbleable_metadata->addCacheContexts(['url.path']);
       $replacements += \Drupal::token()->generate('url', $url_tokens, ['url' => $url], $options, $bubbleable_metadata);
     }
@@ -1011,7 +1012,7 @@ function token_tokens($type, array $tokens, array $data, array $options, Bubblea
 
   // Entity tokens.
   if (!empty($data[$type]) && $entity_type = \Drupal::service('token.entity_mapper')->getEntityTypeForTokenType($type)) {
-    /* @var \Drupal\Core\Entity\EntityInterface $entity */
+    /** @var \Drupal\Core\Entity\EntityInterface $entity */
     $entity = $data[$type];
 
     foreach ($tokens as $name => $original) {
@@ -1063,7 +1064,7 @@ function token_tokens($type, array $tokens, array $data, array $options, Bubblea
   if ($type == 'array' && !empty($data['array']) && is_array($data['array'])) {
     $array = $data['array'];
 
-    $sort = isset($options['array sort']) ? $options['array sort'] : TRUE;
+    $sort = $options['array sort'] ?? TRUE;
     $keys = token_element_children($array, $sort);
 
     /** @var \Drupal\Core\Render\RendererInterface $renderer */
@@ -1412,7 +1413,7 @@ function menu_ui_tokens($type, $tokens, array $data, array $options, BubbleableM
           break;
 
         case 'edit-url':
-          $result =  $link->getEditRoute()->setOptions($url_options)->toString(TRUE);
+          $result = $link->getEditRoute()->setOptions($url_options)->toString(TRUE);
           $bubbleable_metadata->addCacheableDependency($result);
           $replacements[$original] = $result->getGeneratedUrl();
           break;
@@ -1677,10 +1678,10 @@ function _token_field_label($entity_type, $field_name) {
 function field_tokens($type, $tokens, array $data, array $options, BubbleableMetadata $bubbleable_metadata) {
   $replacements = [];
 
-  $langcode = isset($options['langcode']) ? $options['langcode'] : NULL;
+  $langcode = $options['langcode'] ?? NULL;
   // Entity tokens.
   if ($type == 'entity' && !empty($data['entity_type']) && !empty($data['entity']) && !empty($data['token_type'])) {
-    /* @var \Drupal\Core\Entity\ContentEntityInterface $entity */
+    /** @var \Drupal\Core\Entity\ContentEntityInterface $entity */
     $entity = $data['entity'];
     if (!($entity instanceof ContentEntityInterface)) {
       return $replacements;
@@ -1702,7 +1703,7 @@ function field_tokens($type, $tokens, array $data, array $options, BubbleableMet
       // For [entity:field_name:0], [entity:field_name:0:value] and
       // [entity:field_name:value] tokens.
       else {
-        list($field_name, $delta) = explode(':', $name, 2);
+        [$field_name, $delta] = explode(':', $name, 2);
         if (!is_numeric($delta)) {
           unset($delta);
         }
@@ -1838,7 +1839,7 @@ function field_tokens($type, $tokens, array $data, array $options, BubbleableMet
         // [node:field_name:delta:image_style:property] tokens. If the token is
         // of the form [node:field_name:image_style], provide the URL as a
         // replacement.
-        $property_name = isset($parts[1]) ? $parts[1] : 'url';
+        $property_name = $parts[1] ?? 'url';
         $entity = $field_item->entity;
         if (!empty($field_item->entity)) {
           $original_uri = $entity->getFileUri();

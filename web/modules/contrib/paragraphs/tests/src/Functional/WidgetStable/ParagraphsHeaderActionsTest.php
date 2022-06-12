@@ -3,7 +3,6 @@
 namespace Drupal\Tests\paragraphs\Functional\WidgetStable;
 
 use Drupal\language\Entity\ConfigurableLanguage;
-use Symfony\Component\CssSelector\CssSelectorConverter;
 
 /**
  * Tests collapse all button.
@@ -17,9 +16,9 @@ class ParagraphsHeaderActionsTest extends ParagraphsTestBase {
    *
    * @var array
    */
-  protected static $modules = array(
+  protected static $modules = [
     'content_translation',
-  );
+  ];
 
   /**
    * Tests header actions.
@@ -311,7 +310,7 @@ class ParagraphsHeaderActionsTest extends ParagraphsTestBase {
   /**
    * Tests drag and drop button visibility while translating.
    */
-  function testHeaderActionsWhileTranslating() {
+  public function testHeaderActionsWhileTranslating() {
     // Display drag and drop in tests.
     $this->addParagraphedContentType('paragraphed_test');
     \Drupal::state()->set('paragraphs_test_dragdrop_force_show', TRUE);

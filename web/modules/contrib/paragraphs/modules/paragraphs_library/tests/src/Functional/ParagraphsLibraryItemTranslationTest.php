@@ -2,11 +2,10 @@
 
 namespace Drupal\Tests\paragraphs_library\Functional;
 
-use Drupal\block\Entity\Block;
-use Drupal\Tests\field_ui\Traits\FieldUiTestTrait;
 use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\paragraphs\Entity\ParagraphsType;
 use Drupal\Tests\BrowserTestBase;
+use Drupal\Tests\field_ui\Traits\FieldUiTestTrait;
 use Drupal\Tests\paragraphs\FunctionalJavascript\LoginAdminTrait;
 use Drupal\Tests\paragraphs\FunctionalJavascript\ParagraphsTestBaseTrait;
 use Drupal\Tests\paragraphs\Traits\ParagraphsCoreVersionUiTestTrait;
@@ -70,7 +69,7 @@ class ParagraphsLibraryItemTranslationTest extends BrowserTestBase {
       'administer languages',
       'create paragraphed_test content',
       'edit any paragraphed_test content',
-      'administer paragraphs library'
+      'administer paragraphs library',
     ]);
 
     // Add a Paragraph type with a text field.
@@ -90,7 +89,7 @@ class ParagraphsLibraryItemTranslationTest extends BrowserTestBase {
       'settings[paragraph][text][translatable]' => TRUE,
       'settings[paragraph][text][fields][field_text]' => TRUE,
       'settings[paragraphs_library_item][paragraphs_library_item][translatable]' => TRUE,
-      'settings[node][paragraphed_test][settings][language][language_alterable]' => TRUE
+      'settings[node][paragraphed_test][settings][language][language_alterable]' => TRUE,
     ];
     $this->drupalGet('admin/config/regional/content-language');
     $this->submitForm($edit, 'Save configuration');

@@ -2,9 +2,9 @@
 
 namespace Drupal\commerce_product\Element;
 
+use Drupal\Component\Utility\Html as HtmlUtility;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element\Radios;
-use Drupal\Component\Utility\Html as HtmlUtility;
 
 /**
  * Provides a form input element for rendering attributes as radio buttons.
@@ -56,11 +56,11 @@ class CommerceProductRenderedAttribute extends Radios {
           '#type' => 'radio',
           '#title' => $renderer->render($rendered_attribute),
           '#return_value' => $key,
-          '#default_value' => isset($element['#default_value']) ? $element['#default_value'] : FALSE,
+          '#default_value' => $element['#default_value'] ?? FALSE,
           '#attributes' => $attributes,
           '#parents' => $element['#parents'],
           '#id' => HtmlUtility::getUniqueId('edit-' . implode('-', $parents_for_id)),
-          '#ajax' => isset($element['#ajax']) ? $element['#ajax'] : NULL,
+          '#ajax' => $element['#ajax'] ?? NULL,
           // Errors should only be shown on the parent radios element.
           '#error_no_message' => TRUE,
           '#weight' => $weight,

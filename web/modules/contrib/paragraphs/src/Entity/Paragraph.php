@@ -4,20 +4,20 @@ namespace Drupal\paragraphs\Entity;
 
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Component\Utility\Unicode;
+use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityPublishedTrait;
 use Drupal\Core\Entity\EntityStorageInterface;
-use Drupal\Core\Field\BaseFieldDefinition;
-use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Field\ChangedFieldItemList;
 use Drupal\Core\Field\EntityReferenceFieldItemListInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\TypedData\TranslatableInterface;
-use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\entity_reference_revisions\EntityNeedsSaveTrait;
+use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\field\FieldConfigInterface;
 use Drupal\paragraphs\ParagraphInterface;
 use Drupal\user\EntityOwnerInterface;
@@ -378,10 +378,10 @@ class Paragraph extends ContentEntityBase implements ParagraphInterface {
       ->setDescription(t('The time that the Paragraph was created.'))
       ->setRevisionable(TRUE)
       ->setTranslatable(TRUE)
-      ->setDisplayOptions('form', array(
+      ->setDisplayOptions('form', [
         'region' => 'hidden',
         'weight' => 0,
-      ))
+      ])
       ->setDisplayConfigurable('form', TRUE);
 
     $fields['parent_id'] = BaseFieldDefinition::create('string')
@@ -414,22 +414,22 @@ class Paragraph extends ContentEntityBase implements ParagraphInterface {
   }
 
   /**
-  * {@inheritdoc}
-  */
- public function createDuplicate() {
-   $duplicate = parent::createDuplicate();
-   // Loop over entity fields and duplicate nested paragraphs.
-   foreach ($duplicate->getFields() as $fieldItemList) {
-     if ($fieldItemList instanceof EntityReferenceFieldItemListInterface && $fieldItemList->getSetting('target_type') === $this->getEntityTypeId()) {
-       foreach ($fieldItemList as $delta => $item) {
-         if ($item->entity) {
-           $fieldItemList[$delta] = $item->entity->createDuplicate();
-         }
-       }
-     }
-   }
-   return $duplicate;
- }
+   * {@inheritdoc}
+   */
+  public function createDuplicate() {
+    $duplicate = parent::createDuplicate();
+    // Loop over entity fields and duplicate nested paragraphs.
+    foreach ($duplicate->getFields() as $fieldItemList) {
+      if ($fieldItemList instanceof EntityReferenceFieldItemListInterface && $fieldItemList->getSetting('target_type') === $this->getEntityTypeId()) {
+        foreach ($fieldItemList as $delta => $item) {
+          if ($item->entity) {
+            $fieldItemList[$delta] = $item->entity->createDuplicate();
+          }
+        }
+      }
+    }
+    return $duplicate;
+  }
 
   /**
    * {@inheritdoc}
@@ -439,7 +439,7 @@ class Paragraph extends ContentEntityBase implements ParagraphInterface {
     $summary = [
       '#theme' => 'paragraphs_summary',
       '#summary' => $summary_items,
-      '#expanded' => isset($options['expanded']) ? $options['expanded'] : FALSE,
+      '#expanded' => $options['expanded'] ?? FALSE,
     ];
 
     return \Drupal::service('renderer')->renderPlain($summary);
@@ -450,8 +450,8 @@ class Paragraph extends ContentEntityBase implements ParagraphInterface {
    */
   public function getSummaryItems(array $options = []) {
     $summary = ['content' => [], 'behaviors' => []];
-    $show_behavior_summary = isset($options['show_behavior_summary']) ? $options['show_behavior_summary'] : TRUE;
-    $depth_limit = isset($options['depth_limit']) ? $options['depth_limit'] : 1;
+    $show_behavior_summary = $options['show_behavior_summary'] ?? TRUE;
+    $depth_limit = $options['depth_limit'] ?? 1;
 
     // Add content summary items.
     $this->summaryCount = 0;
@@ -485,7 +485,7 @@ class Paragraph extends ContentEntityBase implements ParagraphInterface {
         // Decrease the depth, since we are entering a nested paragraph.
         $nested_summary = $this->getNestedSummary($field_name, [
           'show_behavior_summary' => FALSE,
-          'depth_limit' => $depth_limit - 1
+          'depth_limit' => $depth_limit - 1,
         ]);
         $summary['content'] = array_merge($summary['content'], $nested_summary);
       }
@@ -547,13 +547,13 @@ class Paragraph extends ContentEntityBase implements ParagraphInterface {
    * {@inheritdoc}
    */
   public function getIcons(array $options = []) {
-    $show_behavior_info = isset($options['show_behavior_icon']) ? $options['show_behavior_icon'] : TRUE;
+    $show_behavior_info = $options['show_behavior_icon'] ?? TRUE;
     $icons = [];
 
     // For now we depend here on the fact that summaryCount is already
     // initialized. That means that getSummary() should be called before
     // getIcons().
-    // @todo - should we fix this dependency somehow?
+    // @todo should we fix this dependency somehow?
     if ($this->summaryCount) {
       $icons['count'] = [
         '#markup' => $this->summaryCount,
@@ -583,7 +583,7 @@ class Paragraph extends ContentEntityBase implements ParagraphInterface {
   protected function getFieldsToSkipFromChangedCheck() {
     // A list of revision fields which should be skipped from the comparision.
     $fields = [
-      $this->getEntityType()->getKey('revision')
+      $this->getEntityType()->getKey('revision'),
     ];
 
     return $fields;

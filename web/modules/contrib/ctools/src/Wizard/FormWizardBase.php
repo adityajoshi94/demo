@@ -10,10 +10,10 @@ use Drupal\Core\Form\FormBuilderInterface;
 use Drupal\Core\Form\FormInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\TempStore\SharedTempStoreFactory;
 use Drupal\Core\Url;
 use Drupal\ctools\Ajax\OpenModalWizardCommand;
 use Drupal\ctools\Event\WizardEvent;
-use Drupal\Core\TempStore\SharedTempStoreFactory;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -234,7 +234,7 @@ abstract class FormWizardBase extends FormBase implements FormWizardInterface {
       $cached_values = $this->getTempstore()->get($this->getMachineName());
     }
     $operation = $this->getOperation($cached_values);
-    /* @var $operation \Drupal\Core\Form\FormInterface */
+    /** @var \Drupal\Core\Form\FormInterface $operation */
     $operation = $this->classResolver->getInstanceFromDefinition($operation['form']);
     return $operation->getFormId();
   }
@@ -247,7 +247,7 @@ abstract class FormWizardBase extends FormBase implements FormWizardInterface {
     // Get the current form operation.
     $operation = $this->getOperation($cached_values);
     $form = $this->customizeForm($form, $form_state);
-    /* @var $formClass \Drupal\Core\Form\FormInterface */
+    /** @var \Drupal\Core\Form\FormInterface $formClass */
     $formClass = $this->classResolver->getInstanceFromDefinition($operation['form']);
     // Pass include any custom values for this operation.
     if (!empty($operation['values'])) {
@@ -438,7 +438,9 @@ abstract class FormWizardBase extends FormBase implements FormWizardInterface {
     return $actions;
   }
 
-
+  /**
+   *
+   */
   public function ajaxSubmit(array $form, FormStateInterface $form_state) {
     $cached_values = $form_state->getTemporaryValue('wizard');
     $response = new AjaxResponse();
@@ -447,7 +449,9 @@ abstract class FormWizardBase extends FormBase implements FormWizardInterface {
     return $response;
   }
 
-
+  /**
+   *
+   */
   public function ajaxPrevious(array $form, FormStateInterface $form_state) {
     $cached_values = $form_state->getTemporaryValue('wizard');
     $response = new AjaxResponse();
@@ -456,14 +460,18 @@ abstract class FormWizardBase extends FormBase implements FormWizardInterface {
     return $response;
   }
 
-
+  /**
+   *
+   */
   public function ajaxFinish(array $form, FormStateInterface $form_state) {
     $response = new AjaxResponse();
     $response->addCommand(new CloseModalDialogCommand());
     return $response;
   }
 
-
+  /**
+   *
+   */
   public function getRouteName() {
     return $this->routeMatch->getRouteName();
   }

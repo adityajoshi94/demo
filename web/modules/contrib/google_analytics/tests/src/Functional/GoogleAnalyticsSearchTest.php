@@ -15,7 +15,7 @@ use Drupal\Tests\BrowserTestBase;
 class GoogleAnalyticsSearchTest extends BrowserTestBase {
 
   use StringTranslationTrait;
-  
+
   /**
    * Modules to enable.
    *
@@ -108,6 +108,7 @@ class GoogleAnalyticsSearchTest extends BrowserTestBase {
    *
    * @return \Drupal\node\NodeInterface
    *   The created node.
+   *
    * @internal
    */
   protected function createNodeAndIndex($test_string) {

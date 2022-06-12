@@ -34,4 +34,5 @@ class TestDummyBehavior extends ParagraphsBehaviorBase {
     // Used to test that returning NULL does not return an error.
     return NULL;
   }
+
 }

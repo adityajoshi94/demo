@@ -99,7 +99,7 @@ class Token extends TokenBase implements TokenInterface {
       $this->getInfo();
     }
 
-    return isset($this->tokenInfo['tokens'][$token_type][$token]) ? $this->tokenInfo['tokens'][$token_type][$token] : NULL;
+    return $this->tokenInfo['tokens'][$token_type][$token] ?? NULL;
   }
 
   /**
@@ -110,7 +110,7 @@ class Token extends TokenBase implements TokenInterface {
       $this->getInfo();
     }
 
-    return isset($this->tokenInfo['types'][$token_type]) ? $this->tokenInfo['types'][$token_type] : NULL;
+    return $this->tokenInfo['types'][$token_type] ?? NULL;
   }
 
   /**
@@ -134,7 +134,7 @@ class Token extends TokenBase implements TokenInterface {
   /**
    * {@inheritdoc}
    */
-  function getInvalidTokens($type, $tokens) {
+  public function getInvalidTokens($type, $tokens) {
     $token_info = $this->getInfo();
     $invalid_tokens = [];
 

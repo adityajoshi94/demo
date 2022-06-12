@@ -4,10 +4,10 @@ namespace Drupal\Tests\token\Functional;
 
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
-use Drupal\node\Entity\NodeType;
-use Drupal\node\Entity\Node;
 use Drupal\file\Entity\File;
 use Drupal\image\Entity\ImageStyle;
+use Drupal\node\Entity\Node;
+use Drupal\node\Entity\NodeType;
 
 /**
  * Tests field ui.
@@ -194,7 +194,7 @@ class TokenFieldUiTest extends TokenTestBase {
     unlink('public://styles/large/public/example2-test.gif');
 
     $tokens = [
-      // field_image
+      // field_image.
       'field_image:thumbnail:mimetype' => 'image/png',
       'field_image:medium:mimetype' => 'image/png',
       'field_image:large:mimetype' => 'image/png',
@@ -216,7 +216,7 @@ class TokenFieldUiTest extends TokenTestBase {
       'field_image:thumbnail' => $style_thumbnail->buildUrl('public://example1.png'),
       'field_image:medium' => $style_medium->buildUrl('public://example1.png'),
       'field_image:large' => $style_large->buildUrl('public://example1.png'),
-      // field_image_2
+      // field_image_2.
       'field_image_2:thumbnail:mimetype' => 'image/gif',
       'field_image_2:medium:mimetype' => 'image/gif',
       'field_image_2:large:mimetype' => 'image/gif',

@@ -5,8 +5,8 @@ namespace Drupal\Tests\ctools\Unit;
 use Drupal\Component\Uuid\UuidInterface;
 use Drupal\Core\Block\BlockManager;
 use Drupal\Core\Condition\ConditionManager;
-use Drupal\Core\Plugin\Context\ContextHandlerInterface;
 use Drupal\Core\Form\FormState;
+use Drupal\Core\Plugin\Context\ContextHandlerInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Utility\Token;
 use Drupal\ctools\Plugin\DisplayVariant\BlockDisplayVariant;
@@ -44,7 +44,6 @@ class BlockDisplayVariantTest extends UnitTestCase {
       public function build() {
         return [];
       }
-
 
       public function getRegionNames() {
         return [

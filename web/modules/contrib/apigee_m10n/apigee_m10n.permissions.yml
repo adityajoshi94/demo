@@ -51,4 +51,3 @@ purchase rate_plan:
 
 purchase rate_plan as anyone:
   title: 'Purchase a rate plan as any developer'
-

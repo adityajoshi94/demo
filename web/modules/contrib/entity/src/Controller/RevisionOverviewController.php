@@ -8,9 +8,9 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\RevisionLogInterface;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
-use Drupal\Core\Entity\RevisionLogInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -109,7 +109,7 @@ class RevisionOverviewController extends ControllerBase {
       $date = $this->dateFormatter->format($revision->getRevisionCreationTime(), 'short');
       $link = $revision->toLink($date, 'revision');
 
-      // @todo: Simplify this when https://www.drupal.org/node/2334319 lands.
+      // @todo Simplify this when https://www.drupal.org/node/2334319 lands.
       $username = [
         '#theme' => 'username',
         '#account' => $revision->getRevisionUser(),

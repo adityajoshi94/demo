@@ -4,6 +4,9 @@ namespace Drupal\commerce_promotion;
 
 use Drupal\Core\Database\Connection;
 
+/**
+ *
+ */
 class CouponCodeGenerator implements CouponCodeGeneratorInterface {
 
   /**

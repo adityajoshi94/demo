@@ -7,7 +7,6 @@ namespace Drupal\Tests\paragraphs\Functional\WidgetStable;
  *
  * @group paragraphs
  */
-
 class ParagraphsReplicateEnableTest extends ParagraphsDuplicateFeatureTest {
 
   protected static $modules = [

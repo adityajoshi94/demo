@@ -24,6 +24,9 @@ class TokenDevelController extends ControllerBase {
    */
   protected $entityMapper;
 
+  /**
+   *
+   */
   public function __construct(TreeBuilderInterface $tree_builder, TokenEntityMapperInterface $entity_mapper) {
     $this->treeBuilder = $tree_builder;
     $this->entityMapper = $entity_mapper;
@@ -43,10 +46,10 @@ class TokenDevelController extends ControllerBase {
    * Prints the loaded structure of the current entity.
    *
    * @param \Drupal\Core\Routing\RouteMatchInterface $route_match
-   *    A RouteMatch object.
+   *   A RouteMatch object.
    *
    * @return array
-   *    Array of page elements to render.
+   *   Array of page elements to render.
    */
   public function entityTokens(RouteMatchInterface $route_match) {
     $output = [];
@@ -88,12 +91,11 @@ class TokenDevelController extends ControllerBase {
         'tokens' => $this->treeBuilder->buildTree($token_type, $options),
       ],
     ];
-//    foreach ($tree as $token => $token_info) {
-//      if (!isset($token_info['value']) && !empty($token_info['parent']) && !isset($tree[$token_info['parent']]['value'])) {
-//        continue;
-//      }
-//    }
-
+    // Foreach ($tree as $token => $token_info) {
+    //      if (!isset($token_info['value']) && !empty($token_info['parent']) && !isset($tree[$token_info['parent']]['value'])) {
+    //        continue;
+    //      }
+    //    }.
     $build['tokens'] = [
       '#type' => 'token_tree_table',
       '#show_restricted' => FALSE,
@@ -106,4 +108,5 @@ class TokenDevelController extends ControllerBase {
 
     return $build;
   }
+
 }

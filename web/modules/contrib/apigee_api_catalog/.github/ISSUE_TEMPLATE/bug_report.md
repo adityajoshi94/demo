@@ -31,4 +31,3 @@ Add any other context about the problem here.
 This can be the version you can see on admin/modules in Drupal or 
 the output of this command: `composer show`.  Add Drupal core and
 other version information if needed.
-

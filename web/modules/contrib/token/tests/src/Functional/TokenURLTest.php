@@ -26,7 +26,7 @@ class TokenURLTest extends TokenTestBase {
     $this->saveAlias('/node/1', '/first-node');
   }
 
-  function testURLTokens() {
+  public function testURLTokens() {
     $url = new Url('entity.node.canonical', ['node' => 1]);
     $tokens = [
       'absolute' => $url->setAbsolute()->toString(),
@@ -48,4 +48,5 @@ class TokenURLTest extends TokenTestBase {
     ];
     $this->assertTokens('url', ['url' => new Url('entity.node.canonical', ['node' => 1])], $tokens);
   }
+
 }

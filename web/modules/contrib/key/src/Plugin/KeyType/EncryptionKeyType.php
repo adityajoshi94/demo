@@ -3,8 +3,8 @@
 namespace Drupal\key\Plugin\KeyType;
 
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\key\Plugin\KeyTypeBase;
 use Drupal\key\Plugin\KeyPluginFormInterface;
+use Drupal\key\Plugin\KeyTypeBase;
 
 /**
  * Defines a generic key type for encryption.

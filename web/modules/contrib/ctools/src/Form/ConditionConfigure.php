@@ -10,9 +10,9 @@ use Drupal\Core\Ajax\RedirectCommand;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContextAwarePluginInterface;
-use Drupal\ctools\ConstraintConditionInterface;
 use Drupal\Core\TempStore\SharedTempStoreFactory;
 use Drupal\Core\Url;
+use Drupal\ctools\ConstraintConditionInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -47,7 +47,9 @@ abstract class ConditionConfigure extends FormBase {
     return new static($container->get('tempstore.shared'), $container->get('plugin.manager.condition'));
   }
 
-
+  /**
+   *
+   */
   public function __construct(SharedTempStoreFactory $tempstore, PluginManagerInterface $manager) {
     $this->tempstore = $tempstore;
     $this->manager = $manager;
@@ -76,7 +78,7 @@ abstract class ConditionConfigure extends FormBase {
       $instance = $this->manager->createInstance($condition, []);
     }
     $form_state->setTemporaryValue('gathered_contexts', $this->getContexts($cached_values));
-    /** @var $instance \Drupal\Core\Condition\ConditionInterface */
+    /** @var \Drupal\Core\Condition\ConditionInterface $instance */
     $form = $instance->buildConfigurationForm($form, $form_state);
     if (isset($id)) {
       // Conditionally set this form element so that we can update or add.
@@ -104,17 +106,17 @@ abstract class ConditionConfigure extends FormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $cached_values = $this->tempstore->get($this->tempstore_id)->get($this->machine_name);
-    /** @var $instance \Drupal\Core\Condition\ConditionInterface */
+    /** @var \Drupal\Core\Condition\ConditionInterface $instance */
     $instance = $form_state->getValue('instance');
     $instance->submitConfigurationForm($form, $form_state);
     $conditions = $this->getConditions($cached_values);
     if ($instance instanceof ContextAwarePluginInterface) {
-      /** @var  $instance \Drupal\Core\Plugin\ContextAwarePluginInterface */
+      /** @var  \Drupal\Core\Plugin\ContextAwarePluginInterface $instance */
       $context_mapping = $form_state->hasValue('context_mapping') ? $form_state->getValue('context_mapping') : [];
       $instance->setContextMapping($context_mapping);
     }
     if ($instance instanceof ConstraintConditionInterface) {
-      /** @var  $instance \Drupal\ctools\ConstraintConditionInterface */
+      /** @var  \Drupal\ctools\ConstraintConditionInterface $instance */
       $instance->applyConstraints($this->getContexts($cached_values));
     }
     if ($form_state->hasValue('id')) {
@@ -125,15 +127,17 @@ abstract class ConditionConfigure extends FormBase {
     }
     $cached_values = $this->setConditions($cached_values, $conditions);
     $this->tempstore->get($this->tempstore_id)->set($this->machine_name, $cached_values);
-    list($route_name, $route_parameters) = $this->getParentRouteInfo($cached_values);
+    [$route_name, $route_parameters] = $this->getParentRouteInfo($cached_values);
     $form_state->setRedirect($route_name, $route_parameters);
   }
 
-
+  /**
+   *
+   */
   public function ajaxSave(array &$form, FormStateInterface $form_state) {
     $response = new AjaxResponse();
     $cached_values = $this->tempstore->get($this->tempstore_id)->get($this->machine_name);
-    list($route_name, $route_parameters) = $this->getParentRouteInfo($cached_values);
+    [$route_name, $route_parameters] = $this->getParentRouteInfo($cached_values);
     $url = Url::fromRoute($route_name, $route_parameters);
     $response->addCommand(new RedirectCommand($url->toString()));
     $response->addCommand(new CloseModalDialogCommand());

@@ -10,6 +10,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Defines a key provider that stores in memory.
+ *
  * @KeyProvider(
  *   id = "key_test_state",
  *   label = @Translation("State ☠️"),

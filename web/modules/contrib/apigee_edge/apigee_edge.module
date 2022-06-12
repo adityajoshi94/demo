@@ -40,6 +40,7 @@ use Drupal\apigee_edge\Plugin\Field\FieldType\ApigeeEdgeDeveloperIdFieldItem;
 use Drupal\apigee_edge\Plugin\Validation\Constraint\DeveloperEmailUniqueValidator;
 use Drupal\Component\Render\PlainTextOutput;
 use Drupal\Component\Utility\Crypt;
+use Drupal\Component\Utility\Html;
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Breadcrumb\Breadcrumb;
@@ -59,7 +60,6 @@ use Drupal\Core\TempStore\TempStoreException;
 use Drupal\Core\Url;
 use Drupal\Core\Utility\Error;
 use Drupal\user\UserInterface;
-use Drupal\Component\Utility\Html;
 
 define('APIGEE_EDGE_USER_REGISTRATION_SOURCE', 'apigee_edge_user_registration_source');
 
@@ -407,7 +407,7 @@ function apigee_edge_entity_view(array &$build, EntityInterface $entity, EntityV
           '#type' => 'app_credential',
           '#credential' => $credential,
           '#app_name' => $entity->getName(),
-          '#team_app_name' => isset($team_app_name) ? $team_app_name : '',
+          '#team_app_name' => $team_app_name ?? '',
           '#app' => $entity,
           '#attributes' => [
             'class' => 'items--inline',
@@ -431,7 +431,7 @@ function apigee_edge_entity_view(array &$build, EntityInterface $entity, EntityV
     }
 
     // Add link to add keys.
-    if($entity->access('add_api_key') && $entity->hasLinkTemplate('add-api-key-form')) {
+    if ($entity->access('add_api_key') && $entity->hasLinkTemplate('add-api-key-form')) {
       $build['add_keys'] = Link::fromTextAndUrl(t('Add key'), $entity->toUrl('add-api-key-form', [
         'attributes' => [
           'data-dialog-type' => 'modal',
@@ -447,8 +447,8 @@ function apigee_edge_entity_view(array &$build, EntityInterface $entity, EntityV
           ],
         ],
       ]))->toRenderable();
-     
-     $build['#attached']['library'][] = 'core/drupal.dialog.ajax';
+
+      $build['#attached']['library'][] = 'core/drupal.dialog.ajax';
     }
   }
 
@@ -689,7 +689,7 @@ function _apigee_edge_send_developer_email_verification_email(AccountInterface $
       $site_mail = ini_get('sendmail_from');
     }
     $mail = \Drupal::service('plugin.manager.mail')->mail('apigee_edge', 'developer_email_verification', $account->getEmail(), $langcode, $params, $site_mail);
-    // TODO Should we notify admins about this?
+    // @todo Should we notify admins about this?
   }
   return empty($mail) ? NULL : $mail['result'];
 }
@@ -978,7 +978,7 @@ function apigee_edge_form_user_register_form_developer_email_validate(array $for
 function _apigee_edge_existing_developer_email_verification_link(UserInterface $account, array $options = []) {
   $languageManager = \Drupal::languageManager();
   $timestamp = \Drupal::time()->getRequestTime();
-  $langcode = isset($options['langcode']) ? $options['langcode'] : $account->getPreferredLangcode();
+  $langcode = $options['langcode'] ?? $account->getPreferredLangcode();
   $url_options = ['absolute' => TRUE, 'language' => $languageManager->getLanguage($langcode)];
   $url_options['query'][\Drupal::config('apigee_edge.developer_settings')->get('verification_token')] = apigee_edge_existing_developer_registration_hash($account, $timestamp);
   $url_options['query']['timestamp'] = $timestamp;
@@ -1014,7 +1014,7 @@ function _apigee_edge_existing_developer_email_verification_link(UserInterface $
 function apigee_edge_existing_developer_registration_hash(UserInterface $account, string $timestamp) {
   $data = $account->getEmail();
   $data .= $timestamp;
-  // TODO Should we increase entropy by generating a random value for an email
+  // @todo Should we increase entropy by generating a random value for an email
   // address and temporary storing it with State API?
   return Crypt::hmacBase64($data, Settings::getHashSalt());
 }
@@ -1182,7 +1182,7 @@ function template_preprocess_app_credential(array &$variables) {
     ];
     $value = array_key_exists($property, $normalized) ? $normalized[$property] : NULL;
     if ($def['value_type'] == 'date') {
-      // TODO Should we make format configurable?
+      // @todo Should we make format configurable?
       /** @var \DateTimeInterface $value */
       if ($value !== -1) {
         $time_diff = \Drupal::time()->getRequestTime() - intval($value / 1000);
@@ -1273,7 +1273,7 @@ function template_preprocess_app_credential(array &$variables) {
 /**
  * Implements hook_user_presave().
  *
- * TODO Take (configurable?) actions if a user could not be saved in Drupal but
+ * @todo Take (configurable?) actions if a user could not be saved in Drupal but
  * it has been in Apigee Edge.
  */
 function apigee_edge_user_presave(UserInterface $account) {
@@ -1827,7 +1827,7 @@ function apigee_edge_app_listing_page_title(): TranslatableMarkup {
 function apigee_edge_preprocess_fieldset(&$variables) {
 
   // @todo This is a temporary fix for core issue #3174459.
-  if ($variables['required'] == true) {
+  if ($variables['required'] == TRUE) {
     if ($variables['attributes']['required']) {
       unset($variables['attributes']['required']);
     }

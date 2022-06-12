@@ -13,8 +13,8 @@ use Drupal\Core\Session\AccountProxy;
 use Drupal\Core\StringTranslation\TranslationInterface;
 use Drupal\smtp\Plugin\Mail\SMTPMailSystem;
 use Drupal\Tests\UnitTestCase;
-use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception as PHPMailerException;
+use PHPMailer\PHPMailer\PHPMailer;
 use Prophecy\Argument;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 

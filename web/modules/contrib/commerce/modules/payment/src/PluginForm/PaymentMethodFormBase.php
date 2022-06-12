@@ -10,6 +10,9 @@ use Drupal\Core\Form\FormStateInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+/**
+ *
+ */
 class PaymentMethodFormBase extends PaymentGatewayFormBase implements ContainerInjectionInterface {
 
   /**

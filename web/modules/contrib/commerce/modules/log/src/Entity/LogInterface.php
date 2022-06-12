@@ -4,6 +4,9 @@ namespace Drupal\commerce_log\Entity;
 
 use Drupal\Core\Entity\ContentEntityInterface;
 
+/**
+ *
+ */
 interface LogInterface extends ContentEntityInterface {
 
   /**

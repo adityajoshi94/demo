@@ -2,12 +2,12 @@
 
 namespace Drupal\Tests\default_content\Kernel;
 
-use Drupal\Tests\field\Traits\EntityReferenceTestTrait;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\taxonomy\Entity\Vocabulary;
+use Drupal\Tests\field\Traits\EntityReferenceTestTrait;
 use Drupal\user\Entity\User;
 
 /**

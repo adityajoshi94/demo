@@ -6,9 +6,9 @@ use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\KernelTests\KernelTestBase;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\paragraphs\Entity\ParagraphsType;
-use Drupal\KernelTests\KernelTestBase;
 use Drupal\Tests\field\Traits\EntityReferenceTestTrait;
 use Drupal\Tests\user\Traits\UserCreationTrait;
 
@@ -49,7 +49,7 @@ class ParagraphsCollapsedSummaryTest extends KernelTestBase {
     \Drupal::moduleHandler()->loadInclude('paragraphs', 'install');
 
     // Create a text paragraph type with test_text_color plugin enabled.
-    $paragraph_type = ParagraphsType::create(array(
+    $paragraph_type = ParagraphsType::create([
       'label' => 'text_paragraph',
       'id' => 'text_paragraph',
       'behavior_plugins' => [
@@ -57,7 +57,7 @@ class ParagraphsCollapsedSummaryTest extends KernelTestBase {
           'enabled' => TRUE,
         ],
       ],
-    ));
+    ]);
     $paragraph_type->save();
     $this->addParagraphsField('text_paragraph', 'text', 'string');
     EntityFormDisplay::create([
@@ -204,7 +204,7 @@ class ParagraphsCollapsedSummaryTest extends KernelTestBase {
       'entity_type' => 'paragraph',
       'type' => $field_type,
       'cardinality' => '-1',
-      'settings' => $field_edit
+      'settings' => $field_edit,
     ]);
     $field_storage->save();
     $field = FieldConfig::create([

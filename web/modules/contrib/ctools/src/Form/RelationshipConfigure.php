@@ -7,12 +7,14 @@ use Drupal\Core\Ajax\CloseModalDialogCommand;
 use Drupal\Core\Ajax\RedirectCommand;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\ctools\TypedDataResolver;
 use Drupal\Core\TempStore\SharedTempStoreFactory;
 use Drupal\Core\Url;
+use Drupal\ctools\TypedDataResolver;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-
+/**
+ *
+ */
 abstract class RelationshipConfigure extends FormBase {
 
   /**
@@ -42,7 +44,9 @@ abstract class RelationshipConfigure extends FormBase {
     return new static($container->get('tempstore.shared'), $container->get('ctools.typed_data.resolver'));
   }
 
-
+  /**
+   *
+   */
   public function __construct(SharedTempStoreFactory $tempstore, TypedDataResolver $resolver) {
     $this->tempstore = $tempstore;
     $this->resolver = $resolver;
@@ -100,7 +104,7 @@ abstract class RelationshipConfigure extends FormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $cached_values = $this->tempstore->get($this->tempstore_id)->get($this->machine_name);
-    list($route_name, $route_options) = $this->getParentRouteInfo($cached_values);
+    [$route_name, $route_options] = $this->getParentRouteInfo($cached_values);
     $form_state->setRedirect($route_name, $route_options);
   }
 
@@ -112,7 +116,7 @@ abstract class RelationshipConfigure extends FormBase {
    */
   public function ajaxSave(array &$form, FormStateInterface $form_state) {
     $cached_values = $this->tempstore->get($this->tempstore_id)->get($this->machine_name);
-    list($route_name, $route_parameters) = $this->getParentRouteInfo($cached_values);
+    [$route_name, $route_parameters] = $this->getParentRouteInfo($cached_values);
     $response = new AjaxResponse();
     $url = Url::fromRoute($route_name, $route_parameters);
     $response->addCommand(new RedirectCommand($url->toString()));

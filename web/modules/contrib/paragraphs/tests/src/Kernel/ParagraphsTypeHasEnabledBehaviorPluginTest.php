@@ -28,14 +28,14 @@ class ParagraphsTypeHasEnabledBehaviorPluginTest extends KernelTestBase {
   /**
    * ParagraphsType entity build in setUp()
    *
-   * @var ParagraphsType
+   * @var \Drupal\paragraphs\Entity\ParagraphsType
    */
   protected $paragraphsType;
 
   /**
    * {@inheritdoc}
    */
-  protected function setUp(): void{
+  protected function setUp(): void {
     parent::setUp();
     $this->installEntitySchema('user');
     $this->installEntitySchema('paragraph');

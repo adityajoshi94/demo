@@ -4,6 +4,9 @@ namespace Drupal\commerce_order\Mail;
 
 use Drupal\commerce_order\Entity\OrderInterface;
 
+/**
+ *
+ */
 interface OrderReceiptMailInterface {
 
   /**

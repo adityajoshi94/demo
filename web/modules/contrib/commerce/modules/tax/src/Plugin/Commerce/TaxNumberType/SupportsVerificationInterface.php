@@ -2,6 +2,9 @@
 
 namespace Drupal\commerce_tax\Plugin\Commerce\TaxNumberType;
 
+/**
+ *
+ */
 interface SupportsVerificationInterface {
 
   /**

@@ -4,12 +4,10 @@ namespace Drupal\Tests\pathauto\FunctionalJavascript;
 
 use Drupal\Core\Language\Language;
 use Drupal\Core\Language\LanguageInterface;
+use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\pathauto\PathautoState;
-use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 use Drupal\Tests\pathauto\Functional\PathautoTestHelperTrait;
-use Drupal\Component\Render\FormattableMarkup;
-
 
 /**
  * Test pathauto functionality with localization and translation.
@@ -59,7 +57,8 @@ class PathautoLocaleTest extends WebDriverTestBase {
       'path' => [[
         'alias' => '/english-node',
         'pathauto' => FALSE,
-      ]],
+      ],
+      ],
     ];
     $node = $this->drupalCreateNode($node);
     $english_alias = $this->loadPathAliasByConditions(['alias' => '/english-node', 'langcode' => 'en']);
@@ -105,7 +104,7 @@ class PathautoLocaleTest extends WebDriverTestBase {
       'access content overview',
       'administer languages',
       'translate any entity',
-      'administer content translation'
+      'administer content translation',
 
     ];
     $admin_user = $this->drupalCreateUser($permissions);

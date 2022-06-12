@@ -106,10 +106,17 @@
       "drupal/core": "-p2"
     }
   },
+  "hooks": {
+    "post-install-cmd": "cghooks add --ignore-lock",
+    "post-update-cmd": "cghooks update",
+    "pre-commit": "vendor/bin/phpcs",
+    "pre-push": "vendor/bin/phpcs"
+  },
   "scripts": {
     "quick-start": [
       "composer install",
       "php web/core/scripts/drupal quick-start apigee_devportal_kickstart"
-    ]
+    ],
+    "phpcs": "phpcs"
   }
 }

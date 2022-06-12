@@ -27,14 +27,14 @@ class EntityReferenceRevisionsCompositeTranslatableFieldTest extends EntityKerne
    *
    * @var array
    */
-  public static $modules = array(
+  public static $modules = [
     'node',
     'field',
     'entity_reference_revisions',
     'entity_composite_relationship_test',
     'language',
-    'content_translation'
-  );
+    'content_translation',
+  ];
 
   /**
    * The current database connection.
@@ -47,7 +47,6 @@ class EntityReferenceRevisionsCompositeTranslatableFieldTest extends EntityKerne
    * The entity type manager.
    *
    * @var \Drupal\Core\Entity\EntityTypeManagerInterface
-   *
    */
   protected $entityTypeManager;
 
@@ -67,20 +66,20 @@ class EntityReferenceRevisionsCompositeTranslatableFieldTest extends EntityKerne
     NodeType::create(['type' => 'article', 'name' => 'Article'])->save();
 
     // Create the reference to the composite entity test.
-    $field_storage = FieldStorageConfig::create(array(
+    $field_storage = FieldStorageConfig::create([
       'field_name' => 'composite_reference',
       'entity_type' => 'node',
       'type' => 'entity_reference_revisions',
-      'settings' => array(
-        'target_type' => 'entity_test_composite'
-      ),
-    ));
+      'settings' => [
+        'target_type' => 'entity_test_composite',
+      ],
+    ]);
     $field_storage->save();
-    $field = FieldConfig::create(array(
+    $field = FieldConfig::create([
       'field_storage' => $field_storage,
       'bundle' => 'article',
       'translatable' => TRUE,
-    ));
+    ]);
     $field->save();
 
     // Inject database connection and entity type manager for the tests.

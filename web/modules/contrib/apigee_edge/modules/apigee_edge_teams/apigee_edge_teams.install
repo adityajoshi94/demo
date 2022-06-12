@@ -38,7 +38,7 @@ function apigee_edge_teams_requirements($phase) {
       /** @var \Drupal\apigee_edge\SDKConnectorInterface $sdk_connector */
       $sdk_connector = \Drupal::service('apigee_edge.sdk_connector');
       $org_controller = \Drupal::service('apigee_edge.controller.organization');
-      /* @var \Apigee\Edge\Api\Management\Entity\Organization $organization */
+      /** @var \Apigee\Edge\Api\Management\Entity\Organization $organization */
       $organization = $org_controller->load($sdk_connector->getOrganization());
       if ($organization && !OrganizationFeatures::isCompaniesFeatureAvailable($organization)) {
         $url = [
@@ -74,7 +74,6 @@ function apigee_edge_teams_install() {
     user_role_grant_permissions(RoleInterface::AUTHENTICATED_ID, $authenticated_user_permissions);
   }
 }
-
 
 /**
  * Assign "add_api_key", "revoke_api_key" and "edit_api_products" permissions to team administrators.
@@ -176,5 +175,3 @@ function apigee_edge_teams_update_8705() {
     $view->save();
   }
 }
-
-

@@ -18,9 +18,8 @@ class ParagraphsAlterByTypeTest extends ParagraphsTestBase {
     'paragraphs_test',
   ];
 
-
   /**
-   * Test widget alter based on paragraph type
+   * Test widget alter based on paragraph type.
    */
   public function testAlterBasedOnType() {
     $this->addParagraphedContentType('paragraphed_test', 'field_paragraphs', 'entity_reference_paragraphs');
@@ -38,4 +37,5 @@ class ParagraphsAlterByTypeTest extends ParagraphsTestBase {
     $this->drupalGet('node/add/paragraphed_test');
     $this->assertSession()->pageTextContains('Altered title');
   }
+
 }

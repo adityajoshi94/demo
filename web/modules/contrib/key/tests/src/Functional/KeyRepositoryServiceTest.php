@@ -2,8 +2,8 @@
 
 namespace Drupal\Tests\key\Functional;
 
-use Drupal\Tests\BrowserTestBase;
 use Drupal\Key\KeyInterface;
+use Drupal\Tests\BrowserTestBase;
 
 /**
  * Tests the key.repository service.

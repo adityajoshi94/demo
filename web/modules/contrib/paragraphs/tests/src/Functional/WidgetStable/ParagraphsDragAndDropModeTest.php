@@ -19,7 +19,7 @@ class ParagraphsDragAndDropModeTest extends ParagraphsTestBase {
   protected static $modules = [
     'node',
     'paragraphs',
-    'field'
+    'field',
   ];
 
   /**
@@ -54,7 +54,7 @@ class ParagraphsDragAndDropModeTest extends ParagraphsTestBase {
 
     $admin = $this->drupalCreateUser([
       'create paragraphed_test content',
-      'edit any paragraphed_test content'
+      'edit any paragraphed_test content',
     ]);
     $this->drupalLogin($admin);
 
@@ -161,7 +161,7 @@ class ParagraphsDragAndDropModeTest extends ParagraphsTestBase {
 
     // If the library does not exist, test that the button is not visible
     // without forcing it. This can not be tested if the library exists.
-    // @todo: Implement a library alter in a test module to do this?
+    // @todo Implement a library alter in a test module to do this?
     $library_discovery = \Drupal::service('library.discovery');
     $library = $library_discovery->getLibraryByName('paragraphs', 'paragraphs-dragdrop');
     if (!$library) {
@@ -384,7 +384,7 @@ class ParagraphsDragAndDropModeTest extends ParagraphsTestBase {
     $this->assertEquals($text_paragraph_3->get('parent_type')->value, 'paragraph');
 
     // Assert the new parent of the container.
-    $paragraph_3 =Paragraph::load($paragraph_3->id());
+    $paragraph_3 = Paragraph::load($paragraph_3->id());
     $this->assertEquals($paragraph_3->get('parent_id')->value, $paragraph_4->id());
     $this->assertEquals($paragraph_3->get('parent_type')->value, 'paragraph');
   }
@@ -454,7 +454,7 @@ class ParagraphsDragAndDropModeTest extends ParagraphsTestBase {
 
     // Make sure that the second paragraph field is still displayed normally by
     // checking that it displays the edit button, as it is closed by default.
-    // @todo: Introduce a global drag and drop mode?
+    // @todo Introduce a global drag and drop mode?
     $this->assertSession()->buttonExists('field_paragraphs_second_0_subform_paragraphs_container_paragraphs_0_edit');
 
     // Change the path of the text paragraph to the empty container as its

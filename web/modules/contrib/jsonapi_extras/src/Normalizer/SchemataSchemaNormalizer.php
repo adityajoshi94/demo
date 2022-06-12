@@ -3,8 +3,8 @@
 namespace Drupal\jsonapi_extras\Normalizer;
 
 use Drupal\Component\Utility\NestedArray;
-use Drupal\schemata_json_schema\Normalizer\jsonapi\SchemataSchemaNormalizer as SchemataJsonSchemaSchemataSchemaNormalizer;
 use Drupal\jsonapi\ResourceType\ResourceTypeRepository;
+use Drupal\schemata_json_schema\Normalizer\jsonapi\SchemataSchemaNormalizer as SchemataJsonSchemaSchemataSchemaNormalizer;
 
 /**
  * Applies JSONAPI Extras attribute overrides to entity schemas.

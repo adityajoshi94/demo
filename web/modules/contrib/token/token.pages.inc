@@ -4,6 +4,7 @@
  * @file
  * User page callbacks for the token module.
  */
+
 use Drupal\Component\Serialization\Json;
 use Drupal\Component\Utility\DiffArray;
 use Drupal\Core\Link;

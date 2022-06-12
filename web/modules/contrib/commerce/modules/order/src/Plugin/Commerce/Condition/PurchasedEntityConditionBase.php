@@ -11,6 +11,9 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+/**
+ *
+ */
 abstract class PurchasedEntityConditionBase extends ConditionBase implements PurchasableEntityConditionInterface, ContainerFactoryPluginInterface {
 
   /**

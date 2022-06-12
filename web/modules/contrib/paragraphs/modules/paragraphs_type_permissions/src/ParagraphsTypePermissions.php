@@ -18,12 +18,12 @@ class ParagraphsTypePermissions {
    * @return array
    */
   public function globalPermissions() {
-    return array(
-      'bypass paragraphs type content access' => array(
+    return [
+      'bypass paragraphs type content access' => [
         'title' => $this->t('Bypass Paragraphs type content access control'),
         'description' => $this->t('Is able to administer content for all Paragraph types'),
-      ),
-    );
+      ],
+    ];
   }
 
   /**
@@ -32,7 +32,7 @@ class ParagraphsTypePermissions {
    * @return array
    */
   public function paragraphTypePermissions() {
-    $perms = array();
+    $perms = [];
 
     // Generate paragraph permissions for all Paragraphs types.
     foreach (ParagraphsType::loadMultiple() as $type) {
@@ -53,26 +53,26 @@ class ParagraphsTypePermissions {
    */
   protected function buildPermissions(ParagraphsType $type) {
     $type_id = $type->id();
-    $type_params = array('%type_name' => $type->label());
+    $type_params = ['%type_name' => $type->label()];
 
-    return array(
-      'view paragraph content ' .$type_id => array(
+    return [
+      'view paragraph content ' . $type_id => [
         'title' => $this->t('%type_name: View content', $type_params),
         'description' => $this->t('Is able to view Paragraphs content of type %type_name', $type_params),
-      ),
-      'create paragraph content ' . $type_id => array(
+      ],
+      'create paragraph content ' . $type_id => [
         'title' => $this->t('%type_name: Create content', $type_params),
         'description' => $this->t('Is able to create Paragraphs content of type %type_name', $type_params),
-      ),
-      'update paragraph content ' . $type_id => array(
+      ],
+      'update paragraph content ' . $type_id => [
         'title' => $this->t('%type_name: Edit content', $type_params),
         'description' => $this->t('Is able to update Paragraphs content of type %type_name', $type_params),
-      ),
-      'delete paragraph content ' . $type_id => array(
+      ],
+      'delete paragraph content ' . $type_id => [
         'title' => $this->t('%type_name: Delete content', $type_params),
         'description' => $this->t('Is able to delete Paragraphs content of type %type_name', $type_params),
-      ),
-    );
+      ],
+    ];
   }
 
 }

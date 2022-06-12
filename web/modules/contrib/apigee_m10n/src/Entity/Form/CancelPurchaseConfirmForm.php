@@ -19,13 +19,13 @@
 
 namespace Drupal\apigee_m10n\Entity\Form;
 
-use Drupal\Core\Entity\EntityConfirmFormBase;
-use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Routing\RouteMatchInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\apigee_m10n\ApigeeSdkControllerFactory;
 use Drupal\Core\Cache\Cache;
+use Drupal\Core\Entity\EntityConfirmFormBase;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Messenger\MessengerInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Cancel entity form for `purchased_plan` entities.
@@ -160,7 +160,7 @@ class CancelPurchaseConfirmForm extends EntityConfirmFormBase {
         $form_state->setRedirect('entity.purchased_plan.developer_collection', ['user' => $this->entity->getOwnerId()]);
       }
     }
-    // TODO: Check to see if `EntityStorageException` is the only type of error
+    // @todo Check to see if `EntityStorageException` is the only type of error
     // to we need to catch here.
     catch (\Exception $e) {
       $this->messenger->addError('Error while cancelling plan: ' . $e->getMessage());

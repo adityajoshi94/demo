@@ -10,6 +10,9 @@ use Drupal\Core\Plugin\Discovery\ContainerDeriverInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+/**
+ *
+ */
 class PurchasedEntityConditionDeriver extends DeriverBase implements ContainerDeriverInterface {
 
   /**

@@ -118,4 +118,5 @@ trait TokenTreeTestTrait {
     $xpath .= '/td[contains(@class, "token-key") and text() = "' . $token . '"]';
     return $xpath;
   }
+
 }

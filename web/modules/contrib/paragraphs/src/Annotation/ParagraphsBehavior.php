@@ -11,7 +11,6 @@ use Drupal\Component\Annotation\Plugin;
  * entity.
  *
  * @Annotation
- *
  */
 class ParagraphsBehavior extends Plugin {
 

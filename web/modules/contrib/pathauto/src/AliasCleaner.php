@@ -233,7 +233,7 @@ class AliasCleaner implements AliasCleanerInterface {
 
     // Replace or drop punctuation based on user settings.
     $output = strtr($output, $this->cleanStringCache['punctuation']);
-    
+
     // Optionally transliterate.
     if ($this->cleanStringCache['transliterate']) {
       // If the reduce strings to letters and numbers is enabled, don't bother
@@ -245,7 +245,6 @@ class AliasCleaner implements AliasCleanerInterface {
       // convert special characters to punctuation.
       $output = strtr($output, $this->cleanStringCache['punctuation']);
     }
-
 
     // Reduce strings to letters and numbers.
     if ($this->cleanStringCache['reduce_ascii']) {

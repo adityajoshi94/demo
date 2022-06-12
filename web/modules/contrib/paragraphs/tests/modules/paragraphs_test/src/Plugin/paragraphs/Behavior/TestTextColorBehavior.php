@@ -100,8 +100,9 @@ class TestTextColorBehavior extends ParagraphsBehaviorBase {
     return [
       [
         'label' => $this->t('Text color'),
-        'value' => $text_color
-      ]
+        'value' => $text_color,
+      ],
     ];
   }
+
 }

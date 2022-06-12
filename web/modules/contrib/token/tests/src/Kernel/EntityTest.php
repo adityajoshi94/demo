@@ -41,7 +41,7 @@ class EntityTest extends KernelTestBase {
     $this->vocab = $vocabulary;
   }
 
-  function testEntityMapping() {
+  public function testEntityMapping() {
     /** @var \Drupal\token\TokenEntityMapperInterface $mapper */
     $mapper = \Drupal::service('token.entity_mapper');
     $this->assertSame('node', $mapper->getEntityTypeForTokenType('node'));
@@ -64,7 +64,7 @@ class EntityTest extends KernelTestBase {
     $this->assertSame($term->label() . $vocabulary->label(), \Drupal::token()->replace('[term:name][term:vocabulary:name]', ['taxonomy_term' => $term]));
   }
 
-  function addTerm(VocabularyInterface $vocabulary, array $term = []) {
+  public function addTerm(VocabularyInterface $vocabulary, array $term = []) {
     $term += [
       'name' => mb_strtolower($this->randomMachineName(5)),
       'vid' => $vocabulary->id(),
@@ -77,7 +77,7 @@ class EntityTest extends KernelTestBase {
   /**
    * Test the [entity:original:*] tokens.
    */
-  function testEntityOriginal() {
+  public function testEntityOriginal() {
     $node = Node::create(['type' => 'page', 'title' => 'Original title']);
     $node->save();
 

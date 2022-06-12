@@ -216,7 +216,7 @@ function template_preprocess_bef_links(array &$variables) {
     $urlOptions = $url->getOptions();
 
     if (isset($element['#multiple']) && $element['#multiple']) {
-      $newQuery = isset($existing_query[$name]) ? $existing_query[$name] : [];
+      $newQuery = $existing_query[$name] ?? [];
       if (in_array($optionValue, $selectedValues)) {
         // Allow users to toggle an option using the same link.
         $newQuery = array_filter($newQuery, function ($value) use ($selectedValues) {

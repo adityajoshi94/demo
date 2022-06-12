@@ -6,12 +6,14 @@ use Drupal\Component\Plugin\PluginManagerInterface;
 use Drupal\Core\Form\ConfirmFormBase;
 use Drupal\Core\Form\ConfirmFormHelper;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\TempStore\SharedTempStoreFactory;
 use Drupal\Core\Url;
 use Drupal\ctools\ConstraintConditionInterface;
-use Drupal\Core\TempStore\SharedTempStoreFactory;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-
+/**
+ *
+ */
 abstract class ConditionDelete extends ConfirmFormBase {
 
   /**
@@ -46,7 +48,9 @@ abstract class ConditionDelete extends ConfirmFormBase {
     return new static($container->get('tempstore.shared'), $container->get('plugin.manager.condition'));
   }
 
-
+  /**
+   *
+   */
   public function __construct(SharedTempStoreFactory $tempstore, PluginManagerInterface $manager) {
     $this->tempstore = $tempstore;
     $this->manager = $manager;
@@ -89,7 +93,7 @@ abstract class ConditionDelete extends ConfirmFormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $cached_values = $this->tempstore->get($this->tempstore_id)->get($this->machine_name);
     $conditions = $this->getConditions($cached_values);
-    /** @var  $instance \Drupal\ctools\ConstraintConditionInterface */
+    /** @var  \Drupal\ctools\ConstraintConditionInterface $instance */
     $instance = $this->manager->createInstance($conditions[$this->id]['id'], $conditions[$this->id]);
     if ($instance instanceof ConstraintConditionInterface) {
       $instance->removeConstraints($this->getContexts($cached_values));
@@ -97,11 +101,13 @@ abstract class ConditionDelete extends ConfirmFormBase {
     unset($conditions[$this->id]);
     $cached_values = $this->setConditions($cached_values, $conditions);
     $this->tempstore->get($this->tempstore_id)->set($this->machine_name, $cached_values);
-    list($route_name, $route_parameters) = $this->getParentRouteInfo($cached_values);
+    [$route_name, $route_parameters] = $this->getParentRouteInfo($cached_values);
     $form_state->setRedirect($route_name, $route_parameters);
   }
 
-
+  /**
+   *
+   */
   public function getQuestion($id = NULL, $cached_values = NULL) {
     $condition = $this->getConditions($cached_values)[$id];
     return $this->t('Are you sure you want to delete the @label condition?', [
@@ -150,7 +156,7 @@ abstract class ConditionDelete extends ConfirmFormBase {
    */
   public function getCancelUrl() {
     $cached_values = $this->tempstore->get($this->tempstore_id)->get($this->machine_name);
-    list($route_name, $route_parameters) = $this->getParentRouteInfo($cached_values);
+    [$route_name, $route_parameters] = $this->getParentRouteInfo($cached_values);
     return new Url($route_name, $route_parameters);
   }
 

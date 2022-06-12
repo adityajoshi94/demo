@@ -3,12 +3,11 @@
 namespace Drupal\entity_reference_revisions;
 
 use Drupal\Core\Entity\FieldableEntityInterface;
-use Drupal\Core\Field\FieldItemListInterface;
-use Drupal\Core\Field\FieldItemListTranslationChangesInterface;
-use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\EntityReferenceFieldItemList;
 use Drupal\Core\Field\EntityReferenceFieldItemListInterface;
+use Drupal\Core\Field\FieldDefinitionInterface;
+use Drupal\Core\Field\FieldItemListInterface;
+use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Defines a item list class for entity reference fields.
@@ -20,12 +19,12 @@ class EntityReferenceRevisionsFieldItemList extends EntityReferenceFieldItemList
    */
   public function referencedEntities() {
     if (empty($this->list)) {
-      return array();
+      return [];
     }
 
     // Collect the IDs of existing entities to load, and directly grab the
     // "autocreate" entities that are already populated in $item->entity.
-    $target_entities = $ids = array();
+    $target_entities = $ids = [];
     foreach ($this->list as $delta => $item) {
       if ($item->hasNewEntity()) {
         $target_entities[$delta] = $item->entity;
@@ -59,7 +58,7 @@ class EntityReferenceRevisionsFieldItemList extends EntityReferenceFieldItemList
 
     if ($default_value) {
       // Convert UUIDs to numeric IDs.
-      $uuids = array();
+      $uuids = [];
       foreach ($default_value as $delta => $properties) {
         if (isset($properties['target_uuid'])) {
           $uuids[$delta] = $properties['target_uuid'];
@@ -74,7 +73,7 @@ class EntityReferenceRevisionsFieldItemList extends EntityReferenceFieldItemList
           ->getStorage($target_type)
           ->loadMultiple($entity_ids);
 
-        $entity_uuids = array();
+        $entity_uuids = [];
         foreach ($entities as $id => $entity) {
           $entity_uuids[$entity->uuid()] = $id;
         }
@@ -103,23 +102,23 @@ class EntityReferenceRevisionsFieldItemList extends EntityReferenceFieldItemList
     $default_value = parent::defaultValuesFormSubmit($element, $form, $form_state);
 
     // Convert numeric IDs to UUIDs to ensure config deployability.
-    $ids = array();
+    $ids = [];
     foreach ($default_value as $delta => $properties) {
       $ids[] = $properties['target_revision_id'];
     }
 
-    $entities = array();
-    foreach($ids as $id) {
+    $entities = [];
+    foreach ($ids as $id) {
       $entities[$id] = \Drupal::entityTypeManager()
         ->getStorage($this->getSetting('target_type'))
         ->loadRevision($id);
     }
 
     foreach ($default_value as $delta => $properties) {
-      $default_value[$delta] = array(
+      $default_value[$delta] = [
         'target_uuid' => $entities[$properties['target_revision_id']]->uuid(),
         'target_revision_id' => $properties['target_revision_id'],
-      );
+      ];
     }
     return $default_value;
   }

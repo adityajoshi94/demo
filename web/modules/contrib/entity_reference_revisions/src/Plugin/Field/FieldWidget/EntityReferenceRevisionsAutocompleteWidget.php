@@ -25,7 +25,7 @@ class EntityReferenceRevisionsAutocompleteWidget extends EntityReferenceAutocomp
   public function massageFormValues(array $values, array $form, FormStateInterface $form_state) {
     $entity_type = $this->fieldDefinition->getFieldStorageDefinition()->getSetting('target_type');
     foreach ($values as $key => $value) {
-      if($value['target_id']) {
+      if ($value['target_id']) {
         $entity = \Drupal::entityTypeManager()->getStorage($entity_type)->load($value['target_id']);
         // Add the current revision ID.
         $values[$key]['target_revision_id'] = $entity->getRevisionId();

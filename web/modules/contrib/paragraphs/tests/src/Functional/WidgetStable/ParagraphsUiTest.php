@@ -14,15 +14,15 @@ class ParagraphsUiTest extends ParagraphsTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $modules = array(
+  protected static $modules = [
     'content_translation',
     'image',
     'field',
     'field_ui',
     'block',
     'language',
-    'node'
-  );
+    'node',
+  ];
 
   /**
    * {@inheritdoc}
@@ -60,7 +60,7 @@ class ParagraphsUiTest extends ParagraphsTestBase {
       'settings[paragraph][images][fields][field_images_demo]' => TRUE,
       'settings[paragraph][text_image][fields][field_image_demo]' => TRUE,
       'settings[paragraph][text_image][fields][field_text_demo]' => TRUE,
-      'settings[node][paragraphed_content_demo][settings][language][language_alterable]' => TRUE
+      'settings[node][paragraphed_content_demo][settings][language][language_alterable]' => TRUE,
     ];
     $this->drupalGet('admin/config/regional/content-language');
     $this->submitForm($edit, 'Save configuration');

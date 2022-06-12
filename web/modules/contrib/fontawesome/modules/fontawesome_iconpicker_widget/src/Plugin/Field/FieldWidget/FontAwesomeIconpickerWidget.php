@@ -8,10 +8,10 @@ use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\fontawesome\FontAwesomeManagerInterface;
 use Drupal\fontawesome\Plugin\Field\FieldWidget\FontAwesomeIconWidget;
 use Drupal\fontawesome_iconpicker_widget\IconManagerServiceInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\fontawesome\FontAwesomeManagerInterface;
 
 /**
  * Fontawesome Iconpicker Widget.

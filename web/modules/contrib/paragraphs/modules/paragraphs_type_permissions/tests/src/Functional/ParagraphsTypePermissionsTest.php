@@ -21,7 +21,7 @@ class ParagraphsTypePermissionsTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $modules = array(
+  protected static $modules = [
     'content_translation',
     'image',
     'field',
@@ -30,7 +30,7 @@ class ParagraphsTypePermissionsTest extends BrowserTestBase {
     'language',
     'node',
     'paragraphs_type_permissions',
-  );
+  ];
 
   /**
    * {@inheritdoc}
@@ -46,7 +46,7 @@ class ParagraphsTypePermissionsTest extends BrowserTestBase {
     ConfigurableLanguage::create(['id' => 'de', 'label' => '1German'])->save();
     ConfigurableLanguage::create(['id' => 'fr', 'label' => '2French'])->save();
     $this->addParagraphedContentType('paragraphed_content_demo', 'field_paragraphs_demo');
-    $admin_user = $this->drupalCreateUser(array(
+    $admin_user = $this->drupalCreateUser([
       'administer site configuration',
       'administer content translation',
       'administer languages',
@@ -56,7 +56,7 @@ class ParagraphsTypePermissionsTest extends BrowserTestBase {
       'administer node form display',
       'administer paragraph fields',
       'administer paragraph form display',
-    ));
+    ]);
     $this->drupalLogin($admin_user);
     $this->addParagraphsType('nested_paragraph');
     $this->addParagraphsField('nested_paragraph', 'field_paragraphs_demo', 'paragraph');
@@ -81,7 +81,7 @@ class ParagraphsTypePermissionsTest extends BrowserTestBase {
       'settings[paragraph][images][fields][field_images_demo]' => TRUE,
       'settings[paragraph][text_image][fields][field_image_demo]' => TRUE,
       'settings[paragraph][text_image][fields][field_text_demo]' => TRUE,
-      'settings[node][paragraphed_content_demo][settings][language][language_alterable]' => TRUE
+      'settings[node][paragraphed_content_demo][settings][language][language_alterable]' => TRUE,
     ];
     $this->drupalGet('admin/config/regional/content-language');
     $this->submitForm($edit, 'Save configuration');
@@ -112,7 +112,7 @@ class ParagraphsTypePermissionsTest extends BrowserTestBase {
     // Create an authenticated user without special permissions for test.
     $authenticated_user = $this->drupalCreateUser();
     // Create an admin user for test.
-    $admin_user = $this->drupalCreateUser(array(
+    $admin_user = $this->drupalCreateUser([
       'administer site configuration',
       'administer content types',
       'administer node fields',
@@ -123,7 +123,7 @@ class ParagraphsTypePermissionsTest extends BrowserTestBase {
       'edit any paragraphed_content_demo content',
       'bypass paragraphs type content access',
       'administer node form display',
-    ));
+    ]);
     $this->drupalLogin($admin_user);
 
     // Enable the publish/unpublish checkbox fields.
@@ -135,8 +135,8 @@ class ParagraphsTypePermissionsTest extends BrowserTestBase {
     foreach ($paragraph_types as $paragraph_type) {
       $form_display = \Drupal::service('entity_display.repository')->getFormDisplay('paragraph', $paragraph_type);
       $form_display->setComponent('status', [
-          'type' => 'boolean_checkbox'
-        ])
+        'type' => 'boolean_checkbox',
+      ])
         ->save();
     }
 
@@ -190,7 +190,7 @@ class ParagraphsTypePermissionsTest extends BrowserTestBase {
     $this->assertSession()->pageTextNotContains('Paragraph type Image + Text');
     $this->assertSession()->pageTextNotContains('Paragraph type Text');
 
-    // Login as admin
+    // Login as admin.
     $this->drupalLogout();
     $this->drupalLogin($admin_user);
 

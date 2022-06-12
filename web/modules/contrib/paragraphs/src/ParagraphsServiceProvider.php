@@ -18,7 +18,7 @@ class ParagraphsServiceProvider extends ServiceProviderBase {
   public function register(ContainerBuilder $container) {
     $modules = $container->getParameter('container.modules');
     // Check for installed Replicate module.
-    if (isset($modules['replicate']) ) {
+    if (isset($modules['replicate'])) {
       // Add a Replicate field event subscriber.
       $service_definition = new Definition(
         'Drupal\paragraphs\EventSubscriber\ReplicateFieldSubscriber',
@@ -29,7 +29,7 @@ class ParagraphsServiceProvider extends ServiceProviderBase {
       $container->setDefinition('replicate.event_subscriber.paragraphs', $service_definition);
     }
     // Check for installed Migrate module.
-    if (isset($modules['migrate']) ) {
+    if (isset($modules['migrate'])) {
       // Add a Migration plugins alterer service.
       $service_definition = new Definition('Drupal\paragraphs\MigrationPluginsAlterer');
       $service_definition->addArgument(new Reference('logger.factory'));
@@ -37,4 +37,5 @@ class ParagraphsServiceProvider extends ServiceProviderBase {
       $container->setDefinition('paragraphs.migration_plugins_alterer', $service_definition);
     }
   }
+
 }

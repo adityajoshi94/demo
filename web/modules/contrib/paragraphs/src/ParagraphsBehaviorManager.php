@@ -34,7 +34,7 @@ class ParagraphsBehaviorManager extends DefaultPluginManager {
    * {@inheritdoc}
    */
   public function getDefinitions() {
-    $definitions =  parent::getDefinitions();
+    $definitions = parent::getDefinitions();
     uasort($definitions, 'Drupal\Component\Utility\SortArray::sortByWeightElement');
     return $definitions;
   }

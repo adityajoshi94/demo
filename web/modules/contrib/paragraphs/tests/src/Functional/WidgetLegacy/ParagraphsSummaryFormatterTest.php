@@ -34,7 +34,7 @@ class ParagraphsSummaryFormatterTest extends ParagraphsTestBase {
     static::fieldUIAddNewField('admin/structure/paragraphs_type/' . $paragraph_type, 'text', 'Text', 'text_long', [], []);
     static::fieldUIAddNewField('admin/structure/paragraphs_type/' . $title_paragraphs_type, 'title', 'Title', 'string', [], []);
 
-    // Add a user Paragraph Type
+    // Add a user Paragraph Type.
     $paragraph_type = 'user_paragraph';
     $this->addParagraphsType($paragraph_type);
     static::fieldUIAddNewField('admin/structure/paragraphs_type/' . $paragraph_type, 'user', 'User', 'entity_reference', ['settings[target_type]' => 'user'], []);

@@ -123,16 +123,24 @@
     border-radius: 4px;
     text-indent: -9999em;
   }
-  .button.paragraphs-icon-button-collapse, .button.paragraphs-icon-button-collapse:active, .button.paragraphs-icon-button-collapse:hover, .button.paragraphs-icon-button-collapse:focus {
+  .button.paragraphs-icon-button-collapse,
+  .button.paragraphs-icon-button-collapse:active,
+  .button.paragraphs-icon-button-collapse:hover,
+  .button.paragraphs-icon-button-collapse:focus {
     background-image: url("../icons/icon-collapse.svg");
   }
-  .button.paragraphs-icon-button-collapse:disabled, .button.paragraphs-icon-button-collapse:disabled:active {
+  .button.paragraphs-icon-button-collapse:disabled,
+  .button.paragraphs-icon-button-collapse:disabled:active {
     background-image: url("../icons/icon-collapse-disabled.svg");
   }
-  .button.paragraphs-icon-button-edit, .button.paragraphs-icon-button-edit:active, .button.paragraphs-icon-button-edit:hover, .button.paragraphs-icon-button-edit:focus {
+  .button.paragraphs-icon-button-edit,
+  .button.paragraphs-icon-button-edit:active,
+  .button.paragraphs-icon-button-edit:hover,
+  .button.paragraphs-icon-button-edit:focus {
     background-image: url("../icons/icon-edit.svg");
   }
-  .button.paragraphs-icon-button-edit:disabled, .button.paragraphs-icon-button-edit:disabled:active {
+  .button.paragraphs-icon-button-edit:disabled,
+  .button.paragraphs-icon-button-edit:disabled:active {
     background-image: url("../icons/icon-edit-disabled.svg");
   }
 }
@@ -171,8 +179,8 @@
 .js .field--widget-paragraphs .form-actions {
   -webkit-box-align: center;
   -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .js .field--widget-paragraphs .form-actions .dropbutton-multiple {
@@ -234,7 +242,7 @@
 
 .js .field--widget-paragraphs .draggable .tabledrag-handle:hover .handle {
   -webkit-transform: scale(1.25);
-          transform: scale(1.25);
+  transform: scale(1.25);
 }
 
 .js .field--widget-paragraphs .tabledrag-changed {
@@ -256,20 +264,20 @@
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 100px auto 1fr auto;
-      grid-template-columns: 100px auto 1fr auto;
+  grid-template-columns: 100px auto 1fr auto;
   -ms-grid-rows: auto auto;
-      grid-template-rows: auto auto;
+  grid-template-rows: auto auto;
   grid-gap: 0 5px;
   -webkit-box-align: baseline;
   -webkit-align-items: baseline;
-      -ms-flex-align: baseline;
-          align-items: baseline;
+  -ms-flex-align: baseline;
+  align-items: baseline;
 }
 
 @media (min-width: 992px) {
   .js .paragraph-top {
     -ms-grid-columns: 150px auto 1fr auto;
-        grid-template-columns: 150px auto 1fr auto;
+    grid-template-columns: 150px auto 1fr auto;
   }
 }
 
@@ -361,8 +369,8 @@ tr:hover .paragraphs-description::after {
   display: -ms-flexbox;
   display: flex;
   -webkit-flex-basis: 100px;
-      -ms-flex-preferred-size: 100px;
-          flex-basis: 100px;
+  -ms-flex-preferred-size: 100px;
+  flex-basis: 100px;
   min-width: 100px;
 }
 

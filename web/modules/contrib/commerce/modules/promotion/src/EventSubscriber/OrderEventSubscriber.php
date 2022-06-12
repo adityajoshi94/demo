@@ -4,9 +4,12 @@ namespace Drupal\commerce_promotion\EventSubscriber;
 
 use Drupal\commerce_promotion\PromotionUsageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Drupal\state_machine\Event\WorkflowTransitionEvent;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
+/**
+ *
+ */
 class OrderEventSubscriber implements EventSubscriberInterface {
 
   /**

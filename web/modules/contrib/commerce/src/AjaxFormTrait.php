@@ -4,10 +4,13 @@ namespace Drupal\commerce;
 
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Ajax\AjaxResponse;
-use Drupal\Core\Ajax\ReplaceCommand;
 use Drupal\Core\Ajax\PrependCommand;
+use Drupal\Core\Ajax\ReplaceCommand;
 use Drupal\Core\Form\FormStateInterface;
 
+/**
+ *
+ */
 trait AjaxFormTrait {
 
   /**

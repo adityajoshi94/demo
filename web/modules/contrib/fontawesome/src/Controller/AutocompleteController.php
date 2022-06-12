@@ -2,14 +2,14 @@
 
 namespace Drupal\fontawesome\Controller;
 
-use Drupal\Core\Controller\ControllerBase;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
-use Drupal\Component\Utility\Tags;
 use Drupal\Component\Render\FormattableMarkup;
+use Drupal\Component\Utility\Tags;
+use Drupal\Core\Config\ConfigFactory;
+use Drupal\Core\Controller\ControllerBase;
 use Drupal\fontawesome\FontAwesomeManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\Config\ConfigFactory;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Defines a route controller for entity autocomplete form elements.

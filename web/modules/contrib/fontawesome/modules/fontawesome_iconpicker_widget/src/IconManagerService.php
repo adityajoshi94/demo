@@ -147,7 +147,7 @@ class IconManagerService implements IconManagerServiceInterface {
    *   The base name for the icon.
    */
   public function getIconBaseNameFromClass($class) {
-    list($prefix, $base) = explode('fa-', $class);
+    [$prefix, $base] = explode('fa-', $class);
     return $base;
   }
 
@@ -161,7 +161,7 @@ class IconManagerService implements IconManagerServiceInterface {
    *   The icon prefix.
    */
   public function getIconPrefixFromClass($class) {
-    list($prefix, $base) = explode('fa-', $class);
+    [$prefix, $base] = explode('fa-', $class);
     return trim($prefix);
   }
 

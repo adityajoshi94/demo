@@ -1,23 +1,5 @@
 <?php
 
-/**
- * Copyright 2020 Google Inc.
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * version 2 as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- * MA 02110-1301, USA.
- */
-
 namespace Drupal\apigee_edge\Form;
 
 use Drupal\apigee_edge\Entity\ListBuilder\EdgeEntityListBuilder;
@@ -171,7 +153,7 @@ class EdgeEntityDisplaySettingsForm extends ConfigFormBase implements BaseFormId
     ];
 
     $display_modes = [
-      'default' => $this->t('Default')
+      'default' => $this->t('Default'),
     ];
     foreach ($this->entityDisplayRepository->getViewModes($entity_type->id()) as $name => $view_mode) {
       $display_modes[$name] = $view_mode['label'];
@@ -194,13 +176,13 @@ class EdgeEntityDisplaySettingsForm extends ConfigFormBase implements BaseFormId
           [
             '#markup' => $this->t('<a href=":uri">Click here</a> to configure the display.', [
               ':uri' => Url::fromRoute("entity.entity_view_display.{$entity_type->id()}.default")->toString(),
-            ])
+            ]),
           ],
           [
             '#markup' => $this->t('<a href=":uri">Click here</a> to add a new display mode.', [
               ':uri' => Url::fromRoute('entity.entity_view_mode.collection')->toString(),
-            ])
-          ]
+            ]),
+          ],
         ],
       ];
     }

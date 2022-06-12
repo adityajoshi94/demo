@@ -17,9 +17,9 @@ class ParagraphsConfigTest extends ParagraphsTestBase {
    *
    * @var array
    */
-  protected static $modules = array(
+  protected static $modules = [
     'content_translation',
-  );
+  ];
 
   /**
    * Tests adding paragraphs with no translation enabled.
@@ -33,7 +33,6 @@ class ParagraphsConfigTest extends ParagraphsTestBase {
     ]);
 
     // Add a paragraphed content type.
-
     $this->addParagraphedContentType('paragraphed_test');
     $this->addParagraphsType('paragraph_type_test');
     $this->addParagraphsType('text');
@@ -185,7 +184,7 @@ class ParagraphsConfigTest extends ParagraphsTestBase {
     $this->assertSession()->buttonExists('Add paragraph_type_test');
     $this->assertSession()->responseNotContains('Add text');
     $edit = [
-      'title[0][value]' => 'Testing included types'
+      'title[0][value]' => 'Testing included types',
     ];
     $this->submitForm($edit, 'Save');
     $this->assertSession()->pageTextContains('paragraphed_test Testing included types has been created.');
@@ -204,7 +203,7 @@ class ParagraphsConfigTest extends ParagraphsTestBase {
     $this->assertNotNull($button_paragraphed_type_test);
     $this->assertNotNull($button_text);
     $edit = [
-      'title[0][value]' => 'Testing all excluded types'
+      'title[0][value]' => 'Testing all excluded types',
     ];
     $this->submitForm($edit, 'Save');
     $this->assertSession()->pageTextContains('paragraphed_test Testing all excluded types has been created.');
@@ -232,7 +231,7 @@ class ParagraphsConfigTest extends ParagraphsTestBase {
     $this->assertSession()->buttonExists('Add paragraph_type_test');
     $this->assertSession()->responseNotContains('Add text');
     $edit = [
-      'title[0][value]' => 'Testing excluded types'
+      'title[0][value]' => 'Testing excluded types',
     ];
     $this->submitForm($edit, 'Save');
     $this->assertSession()->pageTextContains('paragraphed_test Testing excluded types has been created.');
@@ -248,9 +247,10 @@ class ParagraphsConfigTest extends ParagraphsTestBase {
     $this->drupalGet('node/add/paragraphed_test');
     $this->assertSession()->pageTextContains('You are not allowed to add any of the Paragraph types.');
     $edit = [
-      'title[0][value]' => 'Testing all excluded types'
+      'title[0][value]' => 'Testing all excluded types',
     ];
     $this->submitForm($edit, 'Save');
     $this->assertSession()->pageTextContains('paragraphed_test Testing all excluded types has been created.');
   }
+
 }

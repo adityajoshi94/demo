@@ -5,10 +5,10 @@
  * Drupal integration with Font Awesome, the iconic font for use with Bootstrap.
  */
 
-use Drupal\Core\Routing\RouteMatchInterface;
-use Drupal\Core\Link;
-use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Link;
+use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\TypedData\Plugin\DataType\ItemList;
 
 /**
@@ -126,7 +126,7 @@ function _fontawesome_modify_library(array &$libraries, $librarySuffix, $type, $
   elseif ($type == 'webfonts') {
     $librarySettings = array_shift($libraries[$libraryName]['css']['theme']);
     $librarySettings['type'] = 'external';
-    // TODO: add integrity and crossorigin to CSS.
+    // @todo add integrity and crossorigin to CSS.
     // See https://www.drupal.org/project/drupal/issues/2716115.
     $libraries[$libraryName]['css']['theme'] = [
       $cdnLocation => $librarySettings,
@@ -145,7 +145,7 @@ function _fontawesome_modify_library(array &$libraries, $librarySuffix, $type, $
  */
 function _fontawesome_unparse_url(array $parsed) {
   $get = function ($key) use ($parsed) {
-    return isset($parsed[$key]) ? $parsed[$key] : '';
+    return $parsed[$key] ?? '';
   };
 
   $pass = $get('pass');
@@ -382,7 +382,7 @@ function fontawesome_preprocess_icon_sprite(&$variables) {
       unset($variables['attributes']['class'][$key]);
     }
 
-    // TODO: need to add the correct class depending on icon type.
+    // @todo need to add the correct class depending on icon type.
     // Add the necessary FA identifier class.
     $variables['attributes']['class'][] = 'fas';
 
@@ -394,7 +394,7 @@ function fontawesome_preprocess_icon_sprite(&$variables) {
 /**
  * Implements hook_icon_bundles().
  *
- * TODO: this is waiting on an 8.x release of Icon API.
+ * @todo this is waiting on an 8.x release of Icon API.
  */
 function fontawesome_icon_bundles() {
   $bundles['fontawesome'] = [

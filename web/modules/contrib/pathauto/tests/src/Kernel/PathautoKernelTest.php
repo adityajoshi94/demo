@@ -2,23 +2,22 @@
 
 namespace Drupal\Tests\pathauto\Kernel;
 
+use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Language\Language;
 use Drupal\Core\Language\LanguageInterface;
-use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\KernelTests\KernelTestBase;
+use Drupal\language\Entity\ConfigurableLanguage;
+use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
 use Drupal\pathauto\PathautoGeneratorInterface;
 use Drupal\pathauto\PathautoState;
-use Drupal\Tests\pathauto\Functional\PathautoTestHelperTrait;
-use Drupal\KernelTests\KernelTestBase;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\taxonomy\Entity\Vocabulary;
-use Drupal\node\Entity\Node;
+use Drupal\Tests\pathauto\Functional\PathautoTestHelperTrait;
 use Drupal\user\Entity\User;
-use Drupal\Component\Render\FormattableMarkup;
-
 
 /**
  * Unit tests for Pathauto functions.
@@ -98,7 +97,7 @@ class PathautoKernelTest extends KernelTestBase {
         'negate' => FALSE,
         'context_mapping' => [
           'language' => 'node:langcode:language',
-        ]
+        ],
       ]
     );
 
@@ -494,7 +493,7 @@ class PathautoKernelTest extends KernelTestBase {
 
     // Check that alias uniquifying is truncating with $wordsafe param set to
     // TRUE.
-    // If it doesn't path alias result would be content/thequick-brownf-0
+    // If it doesn't path alias result would be content/thequick-brownf-0.
     $this->assertEntityAlias($node_1, '/content/thequick-brownfox');
     $this->assertEntityAlias($node_2, '/content/thequick-0');
   }
@@ -590,7 +589,7 @@ class PathautoKernelTest extends KernelTestBase {
    * @return \Drupal\node\Entity\Node
    *   The created node.
    */
-  protected function drupalCreateNode(array $settings = [] ){
+  protected function drupalCreateNode(array $settings = []) {
     // Populate defaults array.
     $settings += [
       'title' => $this->randomMachineName(8),

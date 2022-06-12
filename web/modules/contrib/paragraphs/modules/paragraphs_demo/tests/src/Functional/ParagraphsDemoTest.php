@@ -19,10 +19,10 @@ class ParagraphsDemoTest extends BrowserTestBase {
    *
    * @var string[]
    */
-  protected static $modules = array(
+  protected static $modules = [
     'paragraphs_demo',
     'block',
-  );
+  ];
 
   /**
    * {@inheritdoc}
@@ -49,7 +49,7 @@ class ParagraphsDemoTest extends BrowserTestBase {
     $this->assertSession()->pageTextContains('A search api example can be found');
     $this->assertSession()->pageTextContains('This is content from the library. We can reuse it multiple times without duplicating it.');
 
-    $admin_user = $this->drupalCreateUser(array(
+    $admin_user = $this->drupalCreateUser([
       'administer site configuration',
       'create paragraphed_content_demo content',
       'edit any paragraphed_content_demo content',
@@ -73,7 +73,7 @@ class ParagraphsDemoTest extends BrowserTestBase {
       'administer node form display',
       'administer paragraphs library',
       'use text format basic_html',
-    ));
+    ]);
 
     $this->drupalLogin($admin_user);
 
@@ -145,11 +145,11 @@ class ParagraphsDemoTest extends BrowserTestBase {
     $this->submitForm([], 'Add Text');
     $this->assertSession()->responseNotContains('<strong data-drupal-selector="edit-field-paragraphs-demo-title">Paragraphs</strong>');
     $this->assertSession()->responseContains('<h4 class="label">Paragraphs</h4>');
-    $edit = array(
+    $edit = [
       'title[0][value]' => 'Paragraph title',
       'moderation_state[0][state]' => 'published',
       'field_paragraphs_demo[0][subform][field_text_demo][0][value]' => 'Paragraph text',
-    );
+    ];
     $this->submitForm($edit, 'Add User');
     $edit = [
       'field_paragraphs_demo[1][subform][field_user_demo][0][target_id]' => $admin_user->label() . ' (' . $admin_user->id() . ')',

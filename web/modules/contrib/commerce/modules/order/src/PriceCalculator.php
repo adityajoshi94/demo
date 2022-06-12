@@ -9,6 +9,9 @@ use Drupal\commerce_price\Resolver\ChainPriceResolverInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
+/**
+ *
+ */
 class PriceCalculator implements PriceCalculatorInterface {
 
   /**

@@ -20,8 +20,8 @@
 namespace Drupal\apigee_m10n_add_credit;
 
 use Drupal\apigee_m10n\Entity\Form\PurchasedPlanForm;
-use Drupal\apigee_m10n\Entity\PurchasedPlanInterface;
 use Drupal\apigee_m10n\Entity\Form\PurchasedProductForm;
+use Drupal\apigee_m10n\Entity\PurchasedPlanInterface;
 use Drupal\apigee_m10n\Entity\PurchasedProductInterface;
 use Drupal\apigee_m10n_add_credit\Form\AddCreditAddToCartForm;
 use Drupal\apigee_m10n_add_credit\Plugin\AddCreditEntityTypeManagerInterface;
@@ -403,7 +403,7 @@ class AddCreditService implements AddCreditServiceInterface {
       }
     }
 
-    // TODO: This can be move to entity operations when/if prepaid balance are
+    // @todo This can be move to entity operations when/if prepaid balance are
     // made into entities.
     if ((count($build['table']['#rows']))) {
       $has_operations = FALSE;
@@ -593,7 +593,7 @@ class AddCreditService implements AddCreditServiceInterface {
         foreach ($add_credit_items as $add_credit_item) {
           $price = $add_credit_item->getTotalPrice();
           $currency_code = strtolower($price->getCurrencyCode());
-          // TODO: Fail validation if the currency does not exist.
+          // @todo Fail validation if the currency does not exist.
           if (isset($supported_currencies[$currency_code])
             && ($supported_currency = $supported_currencies[$currency_code])
             && ($minimum_top_up_amount = $supported_currency->getMinimumTopUpAmount())

@@ -51,7 +51,7 @@ class HttpMiddleware {
   /**
    * Creates a promise for the file_link fixture request.
    *
-   * @param RequestInterface $request
+   * @param \Psr\Http\Message\RequestInterface $request
    *
    * @return \GuzzleHttp\Promise\PromiseInterface
    */

@@ -80,7 +80,7 @@ class EntityReferenceRevisions extends EntityRevision implements ConfigurableInt
       $id_key = $this->getKey('id');
       $ids[$id_key]['type'] = 'integer';
 
-      // TODO: Improve after https://www.drupal.org/node/2783715 is finished.
+      // @todo Improve after https://www.drupal.org/node/2783715 is finished.
       $ids[$revision_key]['type'] = 'integer';
 
       if ($this->isTranslationDestination()) {

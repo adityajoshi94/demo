@@ -6,10 +6,10 @@ use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Url;
 use Drupal\Core\Session\AccountInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\Url;
 use Drupal\google_analytics\GoogleAnalitycsInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Configure Google_Analytics settings for this site.
@@ -424,7 +424,7 @@ class GoogleAnalyticsAdminSettingsForm extends ConfigFormBase {
         '#type' => 'textfield',
       ];
       $form['google_analytics_custom_dimension']['indexes'][$i]['name'] = [
-        '#default_value' => isset($google_analytics_custom_dimension[$i]['name']) ? $google_analytics_custom_dimension[$i]['name'] : '',
+        '#default_value' => $google_analytics_custom_dimension[$i]['name'] ?? '',
         '#description' => $this->t('The custom dimension name.'),
         '#maxlength' => 255,
         '#title' => $this->t('Custom dimension name #@index', ['@index' => $i]),
@@ -432,7 +432,7 @@ class GoogleAnalyticsAdminSettingsForm extends ConfigFormBase {
         '#type' => 'textfield',
       ];
       $form['google_analytics_custom_dimension']['indexes'][$i]['value'] = [
-        '#default_value' => isset($google_analytics_custom_dimension[$i]['value']) ? $google_analytics_custom_dimension[$i]['value'] : '',
+        '#default_value' => $google_analytics_custom_dimension[$i]['value'] ?? '',
         '#description' => $this->t('The custom dimension value.'),
         '#maxlength' => 255,
         '#title' => $this->t('Custom dimension value #@index', ['@index' => $i]),
@@ -489,7 +489,7 @@ class GoogleAnalyticsAdminSettingsForm extends ConfigFormBase {
         '#type' => 'textfield',
       ];
       $form['google_analytics_custom_metric']['indexes'][$i]['name'] = [
-        '#default_value' => isset($google_analytics_custom_metric[$i]['name']) ? $google_analytics_custom_metric[$i]['name'] : '',
+        '#default_value' => $google_analytics_custom_metric[$i]['name'] ?? '',
         '#description' => $this->t('The custom metric name.'),
         '#maxlength' => 255,
         '#title' => $this->t('Custom metric name #@index', ['@index' => $i]),
@@ -497,7 +497,7 @@ class GoogleAnalyticsAdminSettingsForm extends ConfigFormBase {
         '#type' => 'textfield',
       ];
       $form['google_analytics_custom_metric']['indexes'][$i]['value'] = [
-        '#default_value' => isset($google_analytics_custom_metric[$i]['value']) ? $google_analytics_custom_metric[$i]['value'] : '',
+        '#default_value' => $google_analytics_custom_metric[$i]['value'] ?? '',
         '#description' => $this->t('The custom metric value.'),
         '#maxlength' => 255,
         '#title' => $this->t('Custom metric value #@index', ['@index' => $i]),
@@ -735,7 +735,7 @@ class GoogleAnalyticsAdminSettingsForm extends ConfigFormBase {
    * @endcode
    */
   public static function tokenElementValidate(&$element, FormStateInterface $form_state) {
-    $value = isset($element['#value']) ? $element['#value'] : $element['#default_value'];
+    $value = $element['#value'] ?? $element['#default_value'];
 
     if (!mb_strlen($value)) {
       // Empty value needs no further validation since the element should depend
@@ -795,7 +795,7 @@ class GoogleAnalyticsAdminSettingsForm extends ConfigFormBase {
     // User tokens are not prefixed with colon to catch 'current-user' and
     // 'user'.
     //
-    // TODO: If someone have better ideas, share them, please!
+    // @todo If someone have better ideas, share them, please!
     $token_blacklist = [
       ':account-name]',
       ':author]',
@@ -820,16 +820,16 @@ class GoogleAnalyticsAdminSettingsForm extends ConfigFormBase {
       'user:url]',
       'user:path]',
       'user:picture]',
-      // addressfield_tokens.module
+      // addressfield_tokens.module.
       ':first-name]',
       ':last-name]',
       ':name-line]',
       ':mc-address]',
       ':thoroughfare]',
       ':premise]',
-      // realname.module
+      // realname.module.
       ':name-raw]',
-      // token.module
+      // token.module.
       ':ip-address]',
     ];
 

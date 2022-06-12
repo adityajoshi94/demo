@@ -2,14 +2,14 @@
 
 /**
  * @file
- * Contains paragraphs_type_permissions.module
+ * Contains paragraphs_type_permissions.module.
  */
 
-use Drupal\Core\Url;
 use Drupal\Core\Access\AccessResult;
-use Drupal\Core\Session\AccountInterface;
-use Drupal\paragraphs\ParagraphInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Url;
+use Drupal\paragraphs\ParagraphInterface;
 
 /**
  * Implements hook_help().
@@ -25,6 +25,7 @@ function paragraphs_type_permissions_help($route_name, RouteMatchInterface $rout
       $output .= '<dt>' . t('Configuring permissions per Paragraphs type') . '</dt>';
       $output .= '<dd>' . t('Administrators can configure the permissions to view, create, edit, and delete each <em>Paragraphs type</em> individually on the <a href=":permissions">Permissions page</a>.', [':permissions' => Url::fromRoute('user.admin_permissions')->toString()]) . '</dd>';
       return $output;
+
     break;
   }
 }
@@ -33,9 +34,9 @@ function paragraphs_type_permissions_help($route_name, RouteMatchInterface $rout
  * Implements hook_ENTITY_TYPE_access() for entity type "paragraph".
  */
 function paragraphs_type_permissions_paragraph_access(ParagraphInterface $entity, $operation, AccountInterface $account) {
-  $permissions = &drupal_static(__FUNCTION__, array());
+  $permissions = &drupal_static(__FUNCTION__, []);
 
-  if (!in_array($operation, array('view', 'update', 'delete'), TRUE)) {
+  if (!in_array($operation, ['view', 'update', 'delete'], TRUE)) {
     // If there was no type to check against, or the $op was not one of the
     // supported ones, we return access denied.
     return AccessResult::neutral();
@@ -69,8 +70,8 @@ function paragraphs_type_permissions_paragraph_access(ParagraphInterface $entity
 /**
  * Implements hook_ENTITY_TYPE_create_access() for entity type "paragraph".
  */
-function paragraphs_type_permissions_paragraph_create_access(AccountInterface $account = NULL, array $context = array(), $entity_bundle = NULL) {
-  $permissions = &drupal_static(__FUNCTION__, array());
+function paragraphs_type_permissions_paragraph_create_access(AccountInterface $account = NULL, array $context = [], $entity_bundle = NULL) {
+  $permissions = &drupal_static(__FUNCTION__, []);
 
   // Set static cache id to use the type machine name.
   $type = $entity_bundle;

@@ -42,7 +42,6 @@
   padding-right: 1em;
   position: relative;
   width: 100%;
-
   color: #777;
   overflow: hidden;
   word-break: break-all;
@@ -54,7 +53,6 @@
   top: 0;
   right: 1em;
   width: 3em;
-
   background: #fff;
   background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, #fff 100%);
 }
@@ -70,7 +68,6 @@
 .js .paragraph-type-title {
   flex-basis: 25%;
   min-width: 80px;
-
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;

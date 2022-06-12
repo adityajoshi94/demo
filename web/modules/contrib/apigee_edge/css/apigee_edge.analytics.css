@@ -20,11 +20,13 @@
  * Styles for developer app analytics pages.
  */
 
-.controls-label, .date-separator {
+.controls-label,
+.date-separator {
   font-weight: bold;
 }
 
-.form-item-metrics, .form-item-quick-date-picker {
+.form-item-metrics,
+.form-item-quick-date-picker {
   margin-right: 30px;
 }
 

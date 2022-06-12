@@ -123,10 +123,10 @@ class LibraryItem extends EditorialContentEntityBase implements LibraryItemInter
       ->setDescription(t('The time that the library item was created.'))
       ->setRevisionable(TRUE)
       ->setTranslatable(TRUE)
-      ->setDisplayOptions('form', array(
+      ->setDisplayOptions('form', [
         'region' => 'hidden',
         'weight' => 0,
-      ))
+      ])
       ->setDisplayConfigurable('form', TRUE);
 
     $fields['changed'] = BaseFieldDefinition::create('changed')
@@ -143,10 +143,10 @@ class LibraryItem extends EditorialContentEntityBase implements LibraryItemInter
       ->setSetting('handler', 'default')
       ->setDefaultValueCallback('Drupal\paragraphs_library\Entity\LibraryItem::getCurrentUserId')
       ->setTranslatable(TRUE)
-      ->setDisplayOptions('form', array(
+      ->setDisplayOptions('form', [
         'region' => 'hidden',
         'weight' => 0,
-      ))
+      ])
       ->setDisplayConfigurable('form', TRUE);
 
     $fields['status']
@@ -171,7 +171,7 @@ class LibraryItem extends EditorialContentEntityBase implements LibraryItemInter
    *   An array of default values.
    */
   public static function getCurrentUserId() {
-    return array(\Drupal::currentUser()->id());
+    return [\Drupal::currentUser()->id()];
   }
 
   /**
@@ -323,4 +323,5 @@ class LibraryItem extends EditorialContentEntityBase implements LibraryItemInter
     }
     return $uri_route_parameters;
   }
+
 }

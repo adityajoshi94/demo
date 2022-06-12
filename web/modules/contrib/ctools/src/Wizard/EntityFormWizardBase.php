@@ -7,8 +7,8 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormBuilderInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
-use Drupal\ctools\Event\WizardEvent;
 use Drupal\Core\TempStore\SharedTempStoreFactory;
+use Drupal\ctools\Event\WizardEvent;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**

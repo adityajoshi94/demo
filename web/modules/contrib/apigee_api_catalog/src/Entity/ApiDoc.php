@@ -1,32 +1,14 @@
 <?php
 
-/**
- * Copyright 2019 Google Inc.
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * version 2 as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- * MA 02110-1301, USA.
- */
-
 namespace Drupal\apigee_api_catalog\Entity;
 
 use Drupal\apigee_api_catalog\Entity\Form\ApiDocSettingsForm;
 use Drupal\Core\Entity\EditorialContentEntityBase;
+use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityStorageInterface;
+use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\RevisionableInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
-use Drupal\Core\Entity\EntityChangedTrait;
-use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\link\LinkItemInterface;
 
 /**
@@ -152,7 +134,7 @@ class ApiDoc extends EditorialContentEntityBase implements ApiDocInterface {
     if ($this->get('spec_file_source')->value === static::SPEC_AS_FILE) {
       $spec_value = $this->get('spec')->isEmpty() ? [] : $this->get('spec')->getValue()[0];
       if (!empty($spec_value['target_id'])) {
-        /* @var \Drupal\file\Entity\File $file */
+        /** @var \Drupal\file\Entity\File $file */
         $file = $this->entityTypeManager()
           ->getStorage('file')
           ->load($spec_value['target_id']);

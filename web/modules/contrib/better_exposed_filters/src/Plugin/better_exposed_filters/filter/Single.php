@@ -58,7 +58,7 @@ class Single extends FilterWidgetBase {
       // Prioritize the field ID, but default to exposed ID.
       // @todo Remove $exposed_id once
       //   https://www.drupal.org/project/drupal/issues/288429 is fixed.
-      $input_value = isset($input[$field_id]) ? $input[$field_id] : (isset($input[$exposed_id]) ? $input[$exposed_id] : NULL);
+      $input_value = $input[$field_id] ?? ($input[$exposed_id] ?? NULL);
       $checked = FALSE;
       // We need to be super careful when working with raw input values. Let's
       // make sure the value exists in our list of possible options.

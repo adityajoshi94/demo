@@ -4,7 +4,6 @@ namespace Drupal\entity_reference_revisions\Commands;
 
 use Drupal\entity_reference_revisions\EntityReferenceRevisionsOrphanPurger;
 use Drush\Commands\DrushCommands;
-use Drush\Drush;
 use Drush\Utils\StringUtils;
 
 /**
@@ -34,6 +33,7 @@ class EntityReferenceRevisionsCommands extends DrushCommands {
    * @param $types
    *   A comma delimited list of entity types to check for orphans. Omit to
    *   choose from a list.
+   *
    * @usage drush err:purge paragraph
    *   Purge orphaned paragraphs.
    *

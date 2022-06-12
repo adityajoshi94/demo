@@ -42,7 +42,7 @@ class EntityReferenceRevisions extends StylePluginBase {
    */
   protected function defineOptions() {
     $options = parent::defineOptions();
-    $options['search_fields'] = array('default' => NULL);
+    $options['search_fields'] = ['default' => NULL];
 
     return $options;
   }
@@ -54,7 +54,7 @@ class EntityReferenceRevisions extends StylePluginBase {
     parent::buildOptionsForm($form, $form_state);
 
     $options = $this->displayHandler->getFieldLabels(TRUE);
-    $form['search_fields'] = array(
+    $form['search_fields'] = [
       '#type' => 'checkboxes',
       '#title' => $this->t('Search fields'),
       '#options' => $options,
@@ -62,7 +62,7 @@ class EntityReferenceRevisions extends StylePluginBase {
       '#default_value' => $this->options['search_fields'],
       '#description' => $this->t('Select the field(s) that will be searched when using the autocomplete widget.'),
       '#weight' => -3,
-    );
+    ];
   }
 
   /**
@@ -82,7 +82,7 @@ class EntityReferenceRevisions extends StylePluginBase {
 
     // @todo We don't display grouping info for now. Could be useful for select
     // widget, though.
-    $results = array();
+    $results = [];
     foreach ($sets as $records) {
       foreach ($records as $values) {
         // Sanitize HTML, remove line breaks and extra whitespace.
@@ -100,4 +100,5 @@ class EntityReferenceRevisions extends StylePluginBase {
   public function evenEmpty() {
     return TRUE;
   }
+
 }

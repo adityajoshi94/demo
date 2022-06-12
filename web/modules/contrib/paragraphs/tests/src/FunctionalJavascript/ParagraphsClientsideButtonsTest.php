@@ -214,25 +214,25 @@ class ParagraphsClientsideButtonsTest extends WebDriverTestBase {
     $this->addFieldtoParagraphType('rich_paragraph', 'field_nested_paragraphs', 'entity_reference_revisions', ['target_type' => 'paragraph']);
     $form_display = \Drupal::service('entity_display.repository')->getFormDisplay('paragraph', 'rich_paragraph');
     $form_display->setComponent('field_nested_paragraphs', [
-        'type' => 'paragraphs',
-        'settings' => [
-          'title' => 'Paragraph',
-          'title_plural' => 'Paragraphs',
-          'edit_mode' => 'closed',
-          'closed_mode' => 'summary',
-          'autocollapse' => 'none',
-          'add_mode' => 'modal',
-          'form_display_mode' => 'default',
-          'default_paragraph_type' => '_none',
-          'features' => [
-            'duplicate' => 'duplicate',
-            'collapse_edit_all' => 'collapse_edit_all',
-            'add_above' => 'add_above',
-          ],
-          'third_party_settings' => [],
-          'region' => 'content',
+      'type' => 'paragraphs',
+      'settings' => [
+        'title' => 'Paragraph',
+        'title_plural' => 'Paragraphs',
+        'edit_mode' => 'closed',
+        'closed_mode' => 'summary',
+        'autocollapse' => 'none',
+        'add_mode' => 'modal',
+        'form_display_mode' => 'default',
+        'default_paragraph_type' => '_none',
+        'features' => [
+          'duplicate' => 'duplicate',
+          'collapse_edit_all' => 'collapse_edit_all',
+          'add_above' => 'add_above',
         ],
-      ])
+        'third_party_settings' => [],
+        'region' => 'content',
+      ],
+    ])
       ->save();
 
     $this->drupalGet("/node/{$node_id}/edit");

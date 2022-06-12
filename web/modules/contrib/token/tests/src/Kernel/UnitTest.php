@@ -57,7 +57,7 @@ class UnitTest extends KernelTestBase {
         '[user:ip-address]',
         '[user:uid]',
         '[comment:cid]',
-        // Deprecated tokens
+        // Deprecated tokens.
         '[node:tnid]',
         '[node:type]',
         '[node:type-name]',
@@ -87,7 +87,7 @@ class UnitTest extends KernelTestBase {
         '[site:invalid]',
         '[user:ip-address]',
         '[comment:cid]',
-        // Deprecated tokens
+        // Deprecated tokens.
         '[node:tnid]',
         '[node:type]',
         '[node:type-name]',

@@ -7,6 +7,9 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\profile\Entity\ProfileInterface;
 use Drupal\user\UserInterface;
 
+/**
+ *
+ */
 class AddressBook implements AddressBookInterface {
 
   /**

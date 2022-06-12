@@ -8,6 +8,9 @@ use Drupal\commerce_order\OrderTotalSummaryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 
+/**
+ *
+ */
 class OrderReceiptMail implements OrderReceiptMailInterface {
 
   use StringTranslationTrait;
@@ -53,7 +56,7 @@ class OrderReceiptMail implements OrderReceiptMailInterface {
    * {@inheritdoc}
    */
   public function send(OrderInterface $order, $to = NULL, $bcc = NULL) {
-    $to = isset($to) ? $to : $order->getEmail();
+    $to = $to ?? $order->getEmail();
     if (!$to) {
       // The email should not be empty.
       return FALSE;

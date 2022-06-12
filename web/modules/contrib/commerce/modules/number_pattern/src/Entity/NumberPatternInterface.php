@@ -5,6 +5,9 @@ namespace Drupal\commerce_number_pattern\Entity;
 use Drupal\Core\Config\Entity\ConfigEntityInterface;
 use Drupal\Core\Entity\EntityWithPluginCollectionInterface;
 
+/**
+ *
+ */
 interface NumberPatternInterface extends ConfigEntityInterface, EntityWithPluginCollectionInterface {
 
   /**

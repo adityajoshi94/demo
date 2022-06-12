@@ -26,6 +26,7 @@ class ParagraphsTypeAccessControlHandler extends EntityAccessControlHandler {
     switch ($operation) {
       case 'view label':
         return AccessResult::allowedIfHasPermission($account, 'access content');
+
       default:
         return parent::checkAccess($entity, $operation, $account);
     }

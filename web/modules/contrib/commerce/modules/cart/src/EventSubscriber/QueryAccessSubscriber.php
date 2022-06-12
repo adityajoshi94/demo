@@ -7,6 +7,9 @@ use Drupal\commerce_cart\CartSessionInterface;
 use Drupal\entity\QueryAccess\QueryAccessEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
+/**
+ *
+ */
 class QueryAccessSubscriber implements EventSubscriberInterface {
 
   /**

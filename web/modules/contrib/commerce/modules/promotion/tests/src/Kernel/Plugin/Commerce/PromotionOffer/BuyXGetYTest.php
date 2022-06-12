@@ -218,7 +218,7 @@ class BuyXGetYTest extends OrderKernelTestBase {
     $this->order->setItems([$first_order_item, $second_order_item, $third_order_item]);
     $this->order->save();
     $this->container->get('commerce_order.order_refresh')->refresh($this->order);
-    list($first_order_item, $second_order_item, $third_order_item) = $this->order->getItems();
+    [$first_order_item, $second_order_item, $third_order_item] = $this->order->getItems();
 
     $this->assertCount(0, $first_order_item->getAdjustments());
     $this->assertCount(0, $second_order_item->getAdjustments());
@@ -239,7 +239,7 @@ class BuyXGetYTest extends OrderKernelTestBase {
     $this->order->addItem($fourth_order_item);
     $this->order->save();
     $this->container->get('commerce_order.order_refresh')->refresh($this->order);
-    list($first_order_item, $second_order_item, $third_order_item, $fourth_order_item) = $this->order->getItems();
+    [$first_order_item, $second_order_item, $third_order_item, $fourth_order_item] = $this->order->getItems();
 
     $this->assertCount(0, $first_order_item->getAdjustments());
     $this->assertCount(0, $second_order_item->getAdjustments());
@@ -326,7 +326,7 @@ class BuyXGetYTest extends OrderKernelTestBase {
     $this->order->setItems([$first_order_item, $second_order_item, $third_order_item]);
     $this->order->save();
     $this->container->get('commerce_order.order_refresh')->refresh($this->order);
-    list($first_order_item, $second_order_item, $third_order_item) = $this->order->getItems();
+    [$first_order_item, $second_order_item, $third_order_item] = $this->order->getItems();
 
     $this->assertCount(0, $first_order_item->getAdjustments());
     $this->assertCount(0, $second_order_item->getAdjustments());
@@ -347,7 +347,7 @@ class BuyXGetYTest extends OrderKernelTestBase {
     $this->order->addItem($fourth_order_item);
     $this->order->save();
     $this->container->get('commerce_order.order_refresh')->refresh($this->order);
-    list($first_order_item, $second_order_item, $third_order_item, $fourth_order_item) = $this->order->getItems();
+    [$first_order_item, $second_order_item, $third_order_item, $fourth_order_item] = $this->order->getItems();
 
     $this->assertCount(0, $first_order_item->getAdjustments());
     $this->assertCount(0, $second_order_item->getAdjustments());
@@ -426,7 +426,7 @@ class BuyXGetYTest extends OrderKernelTestBase {
     $this->order->addItem($order_item);
     $this->order->save();
     $this->container->get('commerce_order.order_refresh')->refresh($this->order);
-    list($order_item) = $this->order->getItems();
+    [$order_item] = $this->order->getItems();
 
     $this->assertCount(1, $order_item->getAdjustments());
     $adjustments = $order_item->getAdjustments();
@@ -471,7 +471,7 @@ class BuyXGetYTest extends OrderKernelTestBase {
     $this->order->setItems([$first_order_item, $second_order_item, $third_order_item]);
     $this->order->save();
     $this->container->get('commerce_order.order_refresh')->refresh($this->order);
-    list($first_order_item, $second_order_item, $third_order_item) = $this->order->getItems();
+    [$first_order_item, $second_order_item, $third_order_item] = $this->order->getItems();
 
     $this->assertCount(0, $first_order_item->getAdjustments());
     $this->assertCount(0, $second_order_item->getAdjustments());
@@ -532,7 +532,7 @@ class BuyXGetYTest extends OrderKernelTestBase {
     $this->order->setItems([$first_order_item, $second_order_item, $third_order_item]);
     $this->order->save();
     $this->container->get('commerce_order.order_refresh')->refresh($this->order);
-    list($first_order_item, $second_order_item, $third_order_item) = $this->order->getItems();
+    [$first_order_item, $second_order_item, $third_order_item] = $this->order->getItems();
 
     $this->assertCount(0, $first_order_item->getAdjustments());
     $this->assertCount(0, $second_order_item->getAdjustments());
@@ -571,7 +571,7 @@ class BuyXGetYTest extends OrderKernelTestBase {
     $this->order->setItems([$first_order_item, $second_order_item, $third_order_item, $fourth_order_item]);
     $this->order->save();
     $this->container->get('commerce_order.order_refresh')->refresh($this->order);
-    list($first_order_item, $second_order_item, $third_order_item, $fourth_order_item) = $this->order->getItems();
+    [$first_order_item, $second_order_item, $third_order_item, $fourth_order_item] = $this->order->getItems();
 
     $this->assertCount(0, $first_order_item->getAdjustments());
     $this->assertCount(0, $second_order_item->getAdjustments());
@@ -634,7 +634,7 @@ class BuyXGetYTest extends OrderKernelTestBase {
     $this->container->get('commerce_order.order_refresh')->refresh($this->order);
 
     // The offer automatically added a second order item.
-    list($first_order_item, $second_order_item) = $this->order->getItems();
+    [$first_order_item, $second_order_item] = $this->order->getItems();
 
     $this->assertCount(0, $first_order_item->getAdjustments());
     $this->assertCount(1, $second_order_item->getAdjustments());
@@ -649,7 +649,7 @@ class BuyXGetYTest extends OrderKernelTestBase {
     $this->order->save();
     $this->container->get('commerce_order.order_refresh')->refresh($this->order);
 
-    list($first_order_item, $second_order_item) = $this->order->getItems();
+    [$first_order_item, $second_order_item] = $this->order->getItems();
 
     $this->assertCount(0, $first_order_item->getAdjustments());
     $this->assertEquals(4, $first_order_item->getQuantity());
@@ -663,7 +663,7 @@ class BuyXGetYTest extends OrderKernelTestBase {
     $this->order->save();
     $this->container->get('commerce_order.order_refresh')->refresh($this->order);
 
-    list($first_order_item, $second_order_item) = $this->order->getItems();
+    [$first_order_item, $second_order_item] = $this->order->getItems();
 
     $this->assertEquals(6, $first_order_item->getQuantity());
     $this->assertCount(0, $first_order_item->getAdjustments());
@@ -678,7 +678,7 @@ class BuyXGetYTest extends OrderKernelTestBase {
     $this->order->save();
     $this->container->get('commerce_order.order_refresh')->refresh($this->order);
 
-    list($first_order_item, $second_order_item) = $this->order->getItems();
+    [$first_order_item, $second_order_item] = $this->order->getItems();
 
     $this->assertEquals(6, $first_order_item->getQuantity());
     $this->assertEquals(2, $second_order_item->getQuantity());
@@ -692,7 +692,7 @@ class BuyXGetYTest extends OrderKernelTestBase {
     $this->order->save();
     $this->container->get('commerce_order.order_refresh')->refresh($this->order);
 
-    list($first_order_item, $second_order_item) = $this->order->getItems();
+    [$first_order_item, $second_order_item] = $this->order->getItems();
 
     $this->assertEquals(5, $first_order_item->getQuantity());
     $this->assertEquals(1, $second_order_item->getQuantity());
@@ -706,7 +706,7 @@ class BuyXGetYTest extends OrderKernelTestBase {
     $second_order_item->setQuantity('2');
     $first_order_item->setQuantity('1');
     $this->container->get('commerce_order.order_refresh')->refresh($this->order);
-    list(, $second_order_item) = $this->order->getItems();
+    [, $second_order_item] = $this->order->getItems();
     $this->assertNull($second_order_item->getData('promotion:1:auto_add_quantity'));
     $this->assertEquals(1, $second_order_item->getQuantity());
   }
@@ -771,7 +771,7 @@ class BuyXGetYTest extends OrderKernelTestBase {
     $first_order_item->save();
     $this->order->setItems([$first_order_item]);
     $this->container->get('commerce_order.order_refresh')->refresh($this->order);
-    list($first_order_item, $second_order_item) = $this->order->getItems();
+    [$first_order_item, $second_order_item] = $this->order->getItems();
 
     $this->assertEquals(2, $first_order_item->getQuantity());
     $this->assertEquals(2, $second_order_item->getQuantity());

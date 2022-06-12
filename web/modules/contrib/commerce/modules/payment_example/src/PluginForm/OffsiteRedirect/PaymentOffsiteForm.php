@@ -7,6 +7,9 @@ use Drupal\commerce_payment\PluginForm\PaymentOffsiteForm as BasePaymentOffsiteF
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 
+/**
+ *
+ */
 class PaymentOffsiteForm extends BasePaymentOffsiteForm {
 
   /**

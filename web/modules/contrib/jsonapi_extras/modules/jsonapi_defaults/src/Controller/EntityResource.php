@@ -172,7 +172,7 @@ class EntityResource extends JsonApiEntityResourse {
       );
       throw new \LengthException($message);
     }
-    return isset($relatable_resource_types[0]) ? $relatable_resource_types[0] : NULL;
+    return $relatable_resource_types[0] ?? NULL;
   }
 
   /**

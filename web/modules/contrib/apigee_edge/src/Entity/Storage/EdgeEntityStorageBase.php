@@ -1,23 +1,5 @@
 <?php
 
-/**
- * Copyright 2018 Google Inc.
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * version 2 as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- * MA 02110-1301, USA.
- */
-
 namespace Drupal\apigee_edge\Entity\Storage;
 
 use Apigee\Edge\Entity\EntityInterface as SdkEntityInterface;
@@ -262,7 +244,7 @@ abstract class EdgeEntityStorageBase extends DrupalEntityStorageBase implements 
       $tmp = [];
       // Speed up things by loading only one entity.
       if ($ids !== NULL && count($ids) === 1) {
-        // TODO When user's email changes do not ask Apigee Edge 3 times
+        // @todo When user's email changes do not ask Apigee Edge 3 times
         // whether a developer exists with the new email address or not.
         try {
           $entity = $controller->load(reset($ids));

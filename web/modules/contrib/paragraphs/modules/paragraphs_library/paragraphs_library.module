@@ -5,16 +5,16 @@
  * Main module file for the Paragraphs Library module.
  */
 
+use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Field\WidgetBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
-use Drupal\paragraphs\Plugin\Field\FieldWidget\ParagraphsWidget;
-use Drupal\views\ViewExecutable;
-use Drupal\paragraphs_library\Entity\LibraryItem;
-use Drupal\Core\Field\WidgetBase;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\paragraphs\ParagraphsTypeInterface;
-use Drupal\Core\Entity\Entity\EntityViewDisplay;
+use Drupal\paragraphs\Plugin\Field\FieldWidget\ParagraphsWidget;
+use Drupal\paragraphs_library\Entity\LibraryItem;
+use Drupal\views\ViewExecutable;
 
 /**
  * Implements hook_modules_installed().
@@ -29,7 +29,7 @@ function paragraphs_library_modules_installed($modules) {
     // module is enabled), make sure the extra field content moderation adds is
     // not visible inside our EB widget (i.e. in the "summary" viewmode), to
     // prevent the core bug in 2940513/2945351/2930139.
-    // @TODO Remove this when 2948254 lands.
+    // @todo Remove this when 2948254 lands.
     if (\Drupal::moduleHandler()->moduleExists('content_moderation')) {
       EntityViewDisplay::load('paragraphs_library_item.paragraphs_library_item.summary')
         ->removeComponent('content_moderation_control')
@@ -202,7 +202,6 @@ function paragraphs_library_form_paragraphs_type_form_alter(&$form, FormStateInt
     $form['#entity_builders'][] = 'paragraphs_library_form_paragraphs_type_form_builder';
   }
 }
-
 
 /**
  * Entity builder for the paragraphs type form with group property.

@@ -5,6 +5,9 @@ namespace Drupal\commerce;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 
+/**
+ *
+ */
 class EntityUuidMapper implements EntityUuidMapperInterface {
 
   /**

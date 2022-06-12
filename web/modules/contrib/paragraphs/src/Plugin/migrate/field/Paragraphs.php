@@ -64,7 +64,7 @@ class Paragraphs extends FieldPluginBase {
 
     // Add paragraphs migration as a dependency (if this is not a paragraph
     // migration).
-    // @todo: This is a great example why we should consider derive paragraph
+    // @todo This is a great example why we should consider derive paragraph
     // migrations based on parent entity type (and bundle).
     if (!in_array('Paragraphs Content', $migration->getMigrationTags(), TRUE)) {
       $dependencies = $migration->getMigrationDependencies() + ['required' => []];

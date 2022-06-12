@@ -2,6 +2,9 @@
 
 namespace Drupal\token;
 
+/**
+ *
+ */
 interface TreeBuilderInterface {
 
   /**
@@ -76,4 +79,5 @@ interface TreeBuilderInterface {
    *   Render array for the token tree.
    */
   public function buildAllRenderable(array $options = []);
+
 }

@@ -30,21 +30,21 @@ class ParagraphsSummaryFormatter extends EntityReferenceFormatterBase {
         $elements[$delta] = [
           '#type' => 'container',
           '#attributes' => [
-            'class' => ['paragraph-formatter']
-          ]
+            'class' => ['paragraph-formatter'],
+          ],
         ];
         $elements[$delta]['info'] = [
           '#type' => 'container',
           '#attributes' => [
-            'class' => ['paragraph-info']
-          ]
+            'class' => ['paragraph-info'],
+          ],
         ];
         $elements[$delta]['info'] += $entity->getIcons();
         $elements[$delta]['summary'] = [
           '#type' => 'container',
           '#attributes' => [
-            'class' => ['paragraph-summary']
-          ]
+            'class' => ['paragraph-summary'],
+          ],
         ];
         $elements[$delta]['summary']['description'] = [
           '#theme' => 'paragraphs_summary',
@@ -68,4 +68,5 @@ class ParagraphsSummaryFormatter extends EntityReferenceFormatterBase {
 
     return FALSE;
   }
+
 }

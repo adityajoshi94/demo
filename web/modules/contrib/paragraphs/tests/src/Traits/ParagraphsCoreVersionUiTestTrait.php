@@ -20,7 +20,7 @@ trait ParagraphsCoreVersionUiTestTrait {
    * @param array $edit
    *   Field data in an associative array.
    * @param mixed $submit
-   *   Value of the submit button whose click is to be emulated. For example,
+   *   Value of the submit button whose click is to be emulated. For example,.
    * @param array $options
    *   (optional) Options to be forwarded to the url generator.
    * @param array $headers
@@ -60,7 +60,7 @@ trait ParagraphsCoreVersionUiTestTrait {
    */
   protected function placeDefaultBlocks() {
     // Place the system main block explicitly and first to have a consistent
-    // block order before and after Drupal 9.4
+    // block order before and after Drupal 9.4.
     $this->drupalPlaceBlock('system_main_block', ['weight' => -1, 'region' => 'content']);
     // Place the breadcrumb, tested in fieldUIAddNewField().
     $this->drupalPlaceBlock('system_breadcrumb_block', ['region' => 'content']);

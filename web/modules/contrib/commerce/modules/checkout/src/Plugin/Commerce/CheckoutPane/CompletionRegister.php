@@ -3,9 +3,9 @@
 namespace Drupal\commerce_checkout\Plugin\Commerce\CheckoutPane;
 
 use Drupal\commerce\CredentialsCheckFloodInterface;
-use Drupal\commerce_checkout\Plugin\Commerce\CheckoutFlow\CheckoutFlowInterface;
 use Drupal\commerce_checkout\Event\CheckoutCompletionRegisterEvent;
 use Drupal\commerce_checkout\Event\CheckoutEvents;
+use Drupal\commerce_checkout\Plugin\Commerce\CheckoutFlow\CheckoutFlowInterface;
 use Drupal\commerce_order\OrderAssignmentInterface;
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -230,7 +230,7 @@ class CompletionRegister extends CheckoutPaneBase implements CheckoutPaneInterfa
     // @see \Drupal\user\AccountForm::flagViolations
     $violations = $account->validate();
     foreach ($violations->getByFields(['name', 'pass']) as $violation) {
-      list($field_name) = explode('.', $violation->getPropertyPath(), 2);
+      [$field_name] = explode('.', $violation->getPropertyPath(), 2);
       $form_state->setError($pane_form[$field_name], $violation->getMessage());
     }
   }

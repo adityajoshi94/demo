@@ -4,9 +4,9 @@ namespace Drupal\commerce_order\Entity;
 
 use Drupal\commerce\Entity\CommerceContentEntityBase;
 use Drupal\commerce_order\Adjustment;
-use Drupal\commerce_order\Exception\OrderVersionMismatchException;
 use Drupal\commerce_order\Event\OrderEvents;
 use Drupal\commerce_order\Event\OrderProfilesEvent;
+use Drupal\commerce_order\Exception\OrderVersionMismatchException;
 use Drupal\commerce_order\OrderBalanceFieldItemList;
 use Drupal\commerce_price\Price;
 use Drupal\commerce_store\Entity\StoreInterface;
@@ -15,9 +15,9 @@ use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\profile\Entity\ProfileInterface;
 use Drupal\user\Entity\User;
 use Drupal\user\UserInterface;
-use Drupal\profile\Entity\ProfileInterface;
 
 /**
  * Defines the order entity class.
@@ -548,7 +548,7 @@ class Order extends CommerceContentEntityBase implements OrderInterface {
     if (!$this->get('data')->isEmpty()) {
       $data = $this->get('data')->first()->getValue();
     }
-    return isset($data[$key]) ? $data[$key] : $default;
+    return $data[$key] ?? $default;
   }
 
   /**

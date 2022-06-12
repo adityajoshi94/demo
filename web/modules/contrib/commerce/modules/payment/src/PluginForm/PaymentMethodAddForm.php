@@ -7,6 +7,9 @@ use Drupal\commerce_payment\Exception\DeclineException;
 use Drupal\commerce_payment\Exception\PaymentGatewayException;
 use Drupal\Core\Form\FormStateInterface;
 
+/**
+ *
+ */
 class PaymentMethodAddForm extends PaymentMethodFormBase {
 
   /**

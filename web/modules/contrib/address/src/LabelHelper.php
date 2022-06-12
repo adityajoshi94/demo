@@ -3,11 +3,11 @@
 namespace Drupal\address;
 
 use CommerceGuys\Addressing\AddressFormat\AddressField;
+use CommerceGuys\Addressing\AddressFormat\AddressFormat;
 use CommerceGuys\Addressing\AddressFormat\AdministrativeAreaType;
 use CommerceGuys\Addressing\AddressFormat\DependentLocalityType;
 use CommerceGuys\Addressing\AddressFormat\LocalityType;
 use CommerceGuys\Addressing\AddressFormat\PostalCodeType;
-use CommerceGuys\Addressing\AddressFormat\AddressFormat;
 
 /**
  * Provides translated labels for the library enums.

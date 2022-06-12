@@ -299,7 +299,7 @@ class ComponentsInfo {
     $this->protectedNamespaces[$namespace] = [
       'name' => $extensionInfo['name'],
       'type' => $extensionInfo['type'],
-      'package' => isset($extensionInfo['package']) ? $extensionInfo['package'] : '',
+      'package' => $extensionInfo['package'] ?? '',
     ];
   }
 
@@ -321,9 +321,7 @@ class ComponentsInfo {
   public function getProtectedNamespaceExtensionInfo(string $namespace) {
     $this->init();
 
-    return isset($this->protectedNamespaces[$namespace])
-      ? $this->protectedNamespaces[$namespace]
-      : ['name' => '', 'type' => '', 'package' => ''];
+    return $this->protectedNamespaces[$namespace] ?? ['name' => '', 'type' => '', 'package' => ''];
   }
 
   /**

@@ -2,8 +2,8 @@
 
 namespace Drupal\entity_reference_revisions\Plugin\diff\Field;
 
-use Drupal\diff\FieldDiffBuilderBase;
 use Drupal\Core\Field\FieldItemListInterface;
+use Drupal\diff\FieldDiffBuilderBase;
 use Drupal\diff\FieldReferenceInterface;
 
 /**
@@ -23,7 +23,7 @@ class EntityReferenceRevisionsFieldDiffBuilder extends FieldDiffBuilderBase impl
    * {@inheritdoc}
    */
   public function build(FieldItemListInterface $field_items) {
-    $result_text = array();
+    $result_text = [];
     $item_counter = 0;
     /** @var \Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem $field_item */
     foreach ($field_items as $field_key => $field_item) {

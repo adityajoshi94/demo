@@ -7,6 +7,9 @@ use Drupal\Core\Entity\BundleEntityFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+/**
+ *
+ */
 class CommerceBundleEntityFormBase extends BundleEntityFormBase {
 
   /**

@@ -124,7 +124,6 @@ class UrlTest extends BrowserTestBase {
       $assert_session->elementContains('css', '#block-token-url-test-block', $test['expected3']);
     }
 
-
     // Can't do this test in the for loop above, it's too different.
     $block->getPlugin()->setConfigurationValue('label', 'prefix_[current-page:query:unicorns]_suffix');
     $block->save();

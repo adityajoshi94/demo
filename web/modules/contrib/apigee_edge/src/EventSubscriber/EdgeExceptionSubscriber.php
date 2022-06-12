@@ -1,22 +1,5 @@
 <?php
 
-/**
- * Copyright 2018 Google Inc.
- *
- * This program is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License version 2 as published by the
- * Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
- * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
- * License for more details.
- *
- * You should have received a copy of the GNU General Public License along
- * with this program; if not, write to the Free Software Foundation, Inc., 51
- * Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- */
-
 namespace Drupal\apigee_edge\EventSubscriber;
 
 use Apigee\Edge\Exception\ApiException;
@@ -136,7 +119,7 @@ final class EdgeExceptionSubscriber implements EventSubscriberInterface {
       $routeMatch = new RouteMatch('apigee_edge.error_page', new Route('/api-communication-error'));
       $renderer = $this->classResolver->getInstanceFromDefinition($this->mainContentRenderers['html']);
 
-      /* @var \Symfony\Component\HttpFoundation\Response $response */
+      /** @var \Symfony\Component\HttpFoundation\Response $response */
       $response = $renderer->renderResponse($content, $event->getRequest(), $routeMatch);
       $response->setStatusCode(503);
 

@@ -24,7 +24,7 @@ class EntityRevisionDataDefinition extends EntityDataDefinition implements Entit
       $definition->setEntityTypeId($parts[1]);
     }
     if (isset($parts[2])) {
-      $definition->setBundles(array($parts[2]));
+      $definition->setBundles([$parts[2]]);
     }
     return $definition;
   }
@@ -47,4 +47,5 @@ class EntityRevisionDataDefinition extends EntityDataDefinition implements Entit
     }
     return $type;
   }
+
 }

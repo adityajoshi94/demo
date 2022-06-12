@@ -6,6 +6,9 @@ use Drupal\profile\Entity\ProfileType;
 use Drupal\profile\Event\ProfileLabelEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
+/**
+ *
+ */
 class ProfileLabelSubscriber implements EventSubscriberInterface {
 
   /**

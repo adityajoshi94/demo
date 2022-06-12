@@ -3,10 +3,8 @@
 namespace Drupal\smtp\ConnectionTester;
 
 use Drupal\Core\Config\ConfigFactory;
-use Drupal\Core\Mail\MailManager;
 use Drupal\Core\Mail\MailManagerInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\mailsystem\MailsystemManager;
 use PHPMailer\PHPMailer\Exception as PHPMailerException;
 use PHPMailer\PHPMailer\PHPMailer;
 use Psr\Log\LoggerInterface;
@@ -94,6 +92,9 @@ class ConnectionTester {
     $this->phpMailer = new PHPMailer(TRUE);
   }
 
+  /**
+   *
+   */
   public function setMailer(PHPMailer $mailer) {
     $this->phpMailer = $mailer;
   }

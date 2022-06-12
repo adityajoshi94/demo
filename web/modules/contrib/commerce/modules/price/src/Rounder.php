@@ -4,6 +4,9 @@ namespace Drupal\commerce_price;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 
+/**
+ *
+ */
 class Rounder implements RounderInterface {
 
   /**

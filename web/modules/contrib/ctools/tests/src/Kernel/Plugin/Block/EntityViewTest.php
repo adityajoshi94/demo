@@ -2,7 +2,6 @@
 
 namespace Drupal\Tests\ctools\Kernel\Plugin\Block;
 
-use Drupal\Core\Access\AccessResultForbidden;
 use Drupal\Core\Plugin\Context\ContextDefinition;
 use Drupal\ctools\Plugin\Block\EntityView;
 use Drupal\KernelTests\KernelTestBase;

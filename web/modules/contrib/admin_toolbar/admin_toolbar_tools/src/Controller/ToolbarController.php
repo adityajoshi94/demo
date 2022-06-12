@@ -11,11 +11,11 @@ use Drupal\Core\Menu\LocalActionManager;
 use Drupal\Core\Menu\LocalTaskManager;
 use Drupal\Core\Menu\MenuLinkManagerInterface;
 use Drupal\Core\Plugin\CachedDiscoveryClearerInterface;
+use Drupal\Core\Template\TwigEnvironment;
+use Drupal\Core\Theme\Registry;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Drupal\Core\Template\TwigEnvironment;
-use Drupal\Core\Theme\Registry;
 
 /**
  * Controller for AdminToolbar Tools.

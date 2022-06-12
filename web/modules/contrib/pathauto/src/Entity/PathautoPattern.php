@@ -400,7 +400,7 @@ class PathautoPattern extends ConfigEntityBase implements PathautoPatternInterfa
    * object.
    *
    * @param string $token
-   *   A ":" delimited set of tokens representing
+   *   A ":" delimited set of tokens representing.
    * @param \Drupal\Core\Plugin\Context\ContextInterface[] $contexts
    *   The array of available contexts.
    *
@@ -415,7 +415,7 @@ class PathautoPattern extends ConfigEntityBase implements PathautoPatternInterfa
       return $contexts[$token];
     }
     else {
-      list($base, $property_path) = explode(':', $token, 2);
+      [$base, $property_path] = explode(':', $token, 2);
       // A base must always be set. This method recursively calls itself
       // setting bases for this reason.
       if (!empty($contexts[$base])) {

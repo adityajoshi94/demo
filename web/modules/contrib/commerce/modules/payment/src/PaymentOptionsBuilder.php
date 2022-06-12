@@ -9,6 +9,9 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\StringTranslation\TranslationInterface;
 
+/**
+ *
+ */
 class PaymentOptionsBuilder implements PaymentOptionsBuilderInterface {
 
   use StringTranslationTrait;

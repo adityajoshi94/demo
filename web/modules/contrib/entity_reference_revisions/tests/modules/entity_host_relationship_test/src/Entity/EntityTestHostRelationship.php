@@ -5,7 +5,6 @@ namespace Drupal\entity_host_relationship_test\Entity;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\RevisionableInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
-use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\entity_test\Entity\EntityTestMulRev;
 
 /**
@@ -48,4 +47,5 @@ class EntityTestHostRelationship extends EntityTestMulRev implements Revisionabl
 
     return $fields;
   }
+
 }

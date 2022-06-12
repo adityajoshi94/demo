@@ -41,7 +41,7 @@ class ParagraphsInlineEntityFormTest extends ParagraphsTestBase {
       'cardinality_number' => 1,
     ], [
       'required' => TRUE,
-      'settings[handler_settings][target_bundles][article]' => TRUE
+      'settings[handler_settings][target_bundles][article]' => TRUE,
     ]);
 
     // Enable IEF simple widget.
@@ -97,7 +97,7 @@ class ParagraphsInlineEntityFormTest extends ParagraphsTestBase {
       'cardinality_number' => '1',
     ], [
       'required' => TRUE,
-      'settings[handler_settings][target_bundles][article]' => TRUE
+      'settings[handler_settings][target_bundles][article]' => TRUE,
     ]);
 
     // Set cardinality explicit to -1.
@@ -139,7 +139,7 @@ class ParagraphsInlineEntityFormTest extends ParagraphsTestBase {
 
     // Set the values of second paragraph.
     $edit = [
-      'field_paragraphs[1][subform][field_article][0][inline_entity_form][title][0][value]' => 'Basic 2'
+      'field_paragraphs[1][subform][field_article][0][inline_entity_form][title][0][value]' => 'Basic 2',
     ];
     $this->submitForm($edit, 'Save');
   }

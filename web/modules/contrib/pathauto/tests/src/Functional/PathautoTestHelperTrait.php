@@ -7,9 +7,9 @@ use Drupal\Core\Language\Language;
 use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\pathauto\Entity\PathautoPattern;
 use Drupal\pathauto\PathautoPatternInterface;
-use Drupal\taxonomy\VocabularyInterface;
-use Drupal\taxonomy\Entity\Vocabulary;
 use Drupal\taxonomy\Entity\Term;
+use Drupal\taxonomy\Entity\Vocabulary;
+use Drupal\taxonomy\VocabularyInterface;
 use Drupal\Tests\Traits\Core\PathAliasTestTrait;
 
 /**
@@ -65,7 +65,7 @@ trait PathautoTestHelperTrait {
         'negate' => FALSE,
         'context_mapping' => [
           $entity_type => $entity_type,
-        ]
+        ],
       ]
     );
   }
@@ -181,7 +181,7 @@ trait PathautoTestHelperTrait {
 
   public function drupalGetTermByName($name, $reset = FALSE) {
     if ($reset) {
-      // @todo - implement cache reset.
+      // @todo implement cache reset.
     }
     $terms = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadByProperties(['name' => $name]);
     return !empty($terms) ? reset($terms) : FALSE;

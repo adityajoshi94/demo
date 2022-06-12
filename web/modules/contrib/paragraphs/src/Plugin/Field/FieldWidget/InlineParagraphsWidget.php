@@ -2,21 +2,21 @@
 
 namespace Drupal\paragraphs\Plugin\Field\FieldWidget;
 
-use Drupal\Component\Utility\NestedArray;
 use Drupal\Component\Utility\Html;
+use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldFilteredMarkup;
+use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Field\WidgetBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Render\Element;
 use Drupal\field_group\FormatterHelper;
 use Drupal\paragraphs\ParagraphInterface;
-use Symfony\Component\Validator\ConstraintViolationInterface;
 use Drupal\paragraphs\Plugin\EntityReferenceSelection\ParagraphSelection;
+use Symfony\Component\Validator\ConstraintViolationInterface;
 
 /**
  * Plugin implementation of the 'entity_reference paragraphs' widget.
@@ -81,74 +81,74 @@ class InlineParagraphsWidget extends WidgetBase {
    * {@inheritdoc}
    */
   public static function defaultSettings() {
-    return array(
+    return [
       'title' => t('Paragraph'),
       'title_plural' => t('Paragraphs'),
       'edit_mode' => 'open',
       'add_mode' => 'dropdown',
       'form_display_mode' => 'default',
       'default_paragraph_type' => '',
-    );
+    ];
   }
 
   /**
    * {@inheritdoc}
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
-    $elements = array();
+    $elements = [];
 
-    $elements['title'] = array(
+    $elements['title'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Paragraph Title'),
       '#description' => $this->t('Label to appear as title on the button as "Add new [title]", this label is translatable'),
       '#default_value' => $this->getSetting('title'),
       '#required' => TRUE,
-    );
+    ];
 
-    $elements['title_plural'] = array(
+    $elements['title_plural'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Plural Paragraph Title'),
       '#description' => $this->t('Title in its plural form.'),
       '#default_value' => $this->getSetting('title_plural'),
       '#required' => TRUE,
-    );
+    ];
 
-    $elements['edit_mode'] = array(
+    $elements['edit_mode'] = [
       '#type' => 'select',
       '#title' => $this->t('Edit mode'),
       '#description' => $this->t('The mode the paragraph is in by default. Preview will render the paragraph in the preview view mode.'),
-      '#options' => array(
+      '#options' => [
         'open' => $this->t('Open'),
         'closed' => $this->t('Closed'),
         'preview' => $this->t('Preview'),
-      ),
+      ],
       '#default_value' => $this->getSetting('edit_mode'),
       '#required' => TRUE,
-    );
+    ];
 
-    $elements['add_mode'] = array(
+    $elements['add_mode'] = [
       '#type' => 'select',
       '#title' => $this->t('Add mode'),
       '#description' => $this->t('The way to add new Paragraphs.'),
-      '#options' => array(
+      '#options' => [
         'select' => $this->t('Select list'),
         'button' => $this->t('Buttons'),
-        'dropdown' => $this->t('Dropdown button')
-      ),
+        'dropdown' => $this->t('Dropdown button'),
+      ],
       '#default_value' => $this->getSetting('add_mode'),
       '#required' => TRUE,
-    );
+    ];
 
-    $elements['form_display_mode'] = array(
+    $elements['form_display_mode'] = [
       '#type' => 'select',
       '#options' => \Drupal::service('entity_display.repository')->getFormModeOptions($this->getFieldSetting('target_type')),
       '#description' => $this->t('The form display mode to use when rendering the paragraph form.'),
       '#title' => $this->t('Form display mode'),
       '#default_value' => $this->getSetting('form_display_mode'),
       '#required' => TRUE,
-    );
+    ];
 
-    $options  = [];
+    $options = [];
     foreach ($this->getAllowedTypes() as $key => $bundle) {
       $options[$key] = $bundle['label'];
     }
@@ -169,33 +169,37 @@ class InlineParagraphsWidget extends WidgetBase {
    * {@inheritdoc}
    */
   public function settingsSummary() {
-    $summary = array();
+    $summary = [];
     $summary[] = $this->t('Title: @title', ['@title' => $this->getSetting('title')]);
     $summary[] = $this->t('Plural title: @title_plural', [
-      '@title_plural' => $this->getSetting('title_plural')
+      '@title_plural' => $this->getSetting('title_plural'),
     ]);
 
-    switch($this->getSetting('edit_mode')) {
+    switch ($this->getSetting('edit_mode')) {
       case 'open':
       default:
         $edit_mode = $this->t('Open');
         break;
+
       case 'closed':
         $edit_mode = $this->t('Closed');
         break;
+
       case 'preview':
         $edit_mode = $this->t('Preview');
         break;
     }
 
-    switch($this->getSetting('add_mode')) {
+    switch ($this->getSetting('add_mode')) {
       case 'select':
       default:
         $add_mode = $this->t('Select list');
         break;
+
       case 'button':
         $add_mode = $this->t('Buttons');
         break;
+
       case 'dropdown':
         $add_mode = $this->t('Dropdown button');
         break;
@@ -204,11 +208,11 @@ class InlineParagraphsWidget extends WidgetBase {
     $summary[] = $this->t('Edit mode: @edit_mode', ['@edit_mode' => $edit_mode]);
     $summary[] = $this->t('Add mode: @add_mode', ['@add_mode' => $add_mode]);
     $summary[] = $this->t('Form display mode: @form_display_mode', [
-      '@form_display_mode' => $this->getSetting('form_display_mode')
+      '@form_display_mode' => $this->getSetting('form_display_mode'),
     ]);
     if ($this->getDefaultParagraphTypeLabelName() !== NULL) {
       $summary[] = $this->t('Default paragraph type: @default_paragraph_type', [
-        '@default_paragraph_type' => $this->getDefaultParagraphTypeLabelName()
+        '@default_paragraph_type' => $this->getDefaultParagraphTypeLabelName(),
       ]);
     }
 
@@ -234,7 +238,7 @@ class InlineParagraphsWidget extends WidgetBase {
     $entity_type_manager = \Drupal::entityTypeManager();
     $target_type = $this->getFieldSetting('target_type');
 
-    $item_mode = isset($widget_state['paragraphs'][$delta]['mode']) ? $widget_state['paragraphs'][$delta]['mode'] : 'edit';
+    $item_mode = $widget_state['paragraphs'][$delta]['mode'] ?? 'edit';
     $default_edit_mode = $this->getSetting('edit_mode');
 
     $show_must_be_saved_warning = !empty($widget_state['paragraphs'][$delta]['show_warning']);
@@ -264,9 +268,9 @@ class InlineParagraphsWidget extends WidgetBase {
       $entity_type = $entity_type_manager->getDefinition($target_type);
       $bundle_key = $entity_type->getKey('bundle');
 
-      $paragraphs_entity = $entity_type_manager->getStorage($target_type)->create(array(
+      $paragraphs_entity = $entity_type_manager->getStorage($target_type)->create([
         $bundle_key => $widget_state['selected_bundle'],
-      ));
+      ]);
       $paragraphs_entity->setParentEntity($items->getEntity(), $field_name);
 
       $item_mode = 'edit';
@@ -287,11 +291,11 @@ class InlineParagraphsWidget extends WidgetBase {
         foreach ($violations as $violation) {
           $messages[] = $violation->getMessage();
         }
-        $info['validation_error'] = array(
+        $info['validation_error'] = [
           '#type' => 'container',
           '#markup' => $this->t('@messages', ['@messages' => strip_tags(implode('\n', $messages))]),
           '#attributes' => ['class' => ['messages', 'messages--warning']],
-        );
+        ];
       }
     }
 
@@ -349,18 +353,18 @@ class InlineParagraphsWidget extends WidgetBase {
       $element_parents[] = $delta;
       $element_parents[] = 'subform';
 
-      $id_prefix = implode('-', array_merge($parents, array($field_name, $delta)));
+      $id_prefix = implode('-', array_merge($parents, [$field_name, $delta]));
       $wrapper_id = Html::getUniqueId($id_prefix . '-item-wrapper');
 
-      $element += array(
+      $element += [
         '#type' => 'container',
-        '#element_validate' => array(array($this, 'elementValidate')),
+        '#element_validate' => [[$this, 'elementValidate']],
         '#paragraph_type' => $paragraphs_entity->bundle(),
-        'subform' => array(
+        'subform' => [
           '#type' => 'container',
           '#parents' => $element_parents,
-        ),
-      );
+        ],
+      ];
 
       $element['#prefix'] = '<div id="' . $wrapper_id . '">';
       $element['#suffix'] = '</div>';
@@ -369,32 +373,32 @@ class InlineParagraphsWidget extends WidgetBase {
       if (isset($item_bundles[$paragraphs_entity->bundle()])) {
         $bundle_info = $item_bundles[$paragraphs_entity->bundle()];
 
-        $element['top'] = array(
+        $element['top'] = [
           '#type' => 'container',
           '#weight' => -1000,
-          '#attributes' => array(
-            'class' => array(
+          '#attributes' => [
+            'class' => [
               'paragraph-type-top',
-            ),
-          ),
-        );
+            ],
+          ],
+        ];
 
-        $element['top']['paragraph_type_title'] = array(
+        $element['top']['paragraph_type_title'] = [
           '#type' => 'container',
           '#weight' => 0,
-          '#attributes' => array(
-            'class' => array(
+          '#attributes' => [
+            'class' => [
               'paragraph-type-title',
-            ),
-          ),
-        );
+            ],
+          ],
+        ];
 
-        $element['top']['paragraph_type_title']['info'] = array(
+        $element['top']['paragraph_type_title']['info'] = [
           '#markup' => $bundle_info['label'],
-        );
+        ];
 
-        $actions = array();
-        $links = array();
+        $actions = [];
+        $links = [];
 
         // Avoid checking delete access for new entities.
         $delete_access = $paragraphs_entity->isNew() || $paragraphs_entity->access('delete');
@@ -428,103 +432,103 @@ class InlineParagraphsWidget extends WidgetBase {
         if ($item_mode == 'edit') {
 
           if (isset($items[$delta]->entity) && ($default_edit_mode == 'preview' || $default_edit_mode == 'closed')) {
-            $links['collapse_button'] = array(
+            $links['collapse_button'] = [
               '#type' => 'submit',
               '#value' => $this->t('Collapse'),
               '#name' => strtr($id_prefix, '-', '_') . '_collapse',
               '#weight' => 499,
-              '#submit' => array(array(get_class($this), 'paragraphsItemSubmit')),
+              '#submit' => [[get_class($this), 'paragraphsItemSubmit']],
               '#delta' => $delta,
               '#limit_validation_errors' => [array_merge($parents, [$field_name, 'add_more'])],
-              '#ajax' => array(
-                'callback' => array(get_class($this), 'itemAjax'),
+              '#ajax' => [
+                'callback' => [get_class($this), 'itemAjax'],
                 'wrapper' => $widget_state['ajax_wrapper_id'],
                 'effect' => 'fade',
-              ),
+              ],
               '#access' => $paragraphs_entity->access('update'),
               '#prefix' => '<li class="collapse dropbutton__item  dropbutton__item--extrasmall">',
               '#suffix' => '</li>',
               '#paragraphs_mode' => 'collapsed',
               '#paragraphs_show_warning' => TRUE,
-            );
+            ];
           }
 
-          $info['edit_button_info'] = array(
+          $info['edit_button_info'] = [
             '#type' => 'container',
-            '#markup' => $this->t('You are not allowed to edit this @title.', array('@title' => $this->getSetting('title'))),
+            '#markup' => $this->t('You are not allowed to edit this @title.', ['@title' => $this->getSetting('title')]),
             '#attributes' => ['class' => ['messages', 'messages--warning']],
             '#access' => !$paragraphs_entity->access('update') && $delete_access,
-          );
+          ];
 
-          $info['remove_button_info'] = array(
+          $info['remove_button_info'] = [
             '#type' => 'container',
-            '#markup' => $this->t('You are not allowed to remove this @title.', array('@title' => $this->getSetting('title'))),
+            '#markup' => $this->t('You are not allowed to remove this @title.', ['@title' => $this->getSetting('title')]),
             '#attributes' => ['class' => ['messages', 'messages--warning']],
             '#access' => !$delete_access && $paragraphs_entity->access('update'),
-          );
+          ];
 
-          $info['edit_remove_button_info'] = array(
+          $info['edit_remove_button_info'] = [
             '#type' => 'container',
-            '#markup' => $this->t('You are not allowed to edit or remove this @title.', array('@title' => $this->getSetting('title'))),
+            '#markup' => $this->t('You are not allowed to edit or remove this @title.', ['@title' => $this->getSetting('title')]),
             '#attributes' => ['class' => ['messages', 'messages--warning']],
             '#access' => !$paragraphs_entity->access('update') && !$delete_access,
-          );
+          ];
         }
         elseif ($item_mode == 'preview' || $item_mode == 'closed') {
-          $links['edit_button'] = array(
+          $links['edit_button'] = [
             '#type' => 'submit',
             '#value' => $this->t('Edit'),
             '#name' => strtr($id_prefix, '-', '_') . '_edit',
             '#weight' => 500,
-            '#submit' => array(array(get_class($this), 'paragraphsItemSubmit')),
-            '#limit_validation_errors' => array(array_merge($parents, array($field_name, 'add_more'))),
+            '#submit' => [[get_class($this), 'paragraphsItemSubmit']],
+            '#limit_validation_errors' => [array_merge($parents, [$field_name, 'add_more'])],
             '#delta' => $delta,
-            '#ajax' => array(
-              'callback' => array(get_class($this), 'itemAjax'),
+            '#ajax' => [
+              'callback' => [get_class($this), 'itemAjax'],
               'wrapper' => $widget_state['ajax_wrapper_id'],
               'effect' => 'fade',
-            ),
+            ],
             '#access' => $paragraphs_entity->access('update'),
             '#prefix' => '<li class="edit dropbutton__item  dropbutton__item--extrasmall">',
             '#suffix' => '</li>',
             '#paragraphs_mode' => 'edit',
-          );
+          ];
 
           if ($show_must_be_saved_warning) {
-            $info['must_be_saved_info'] = array(
+            $info['must_be_saved_info'] = [
               '#type' => 'container',
-              '#markup' => $this->t('You have unsaved changes on this @title item.', array('@title' => $this->getSetting('title'))),
+              '#markup' => $this->t('You have unsaved changes on this @title item.', ['@title' => $this->getSetting('title')]),
               '#attributes' => ['class' => ['messages', 'messages--warning']],
-            );
+            ];
           }
 
-          $info['preview_info'] = array(
+          $info['preview_info'] = [
             '#type' => 'container',
-            '#markup' => $this->t('You are not allowed to view this @title.', array('@title' => $this->getSetting('title'))),
+            '#markup' => $this->t('You are not allowed to view this @title.', ['@title' => $this->getSetting('title')]),
             '#attributes' => ['class' => ['messages', 'messages--warning']],
             '#access' => !$paragraphs_entity->access('view'),
-          );
+          ];
 
-          $info['edit_button_info'] = array(
+          $info['edit_button_info'] = [
             '#type' => 'container',
-            '#markup' => $this->t('You are not allowed to edit this @title.', array('@title' => $this->getSetting('title'))),
+            '#markup' => $this->t('You are not allowed to edit this @title.', ['@title' => $this->getSetting('title')]),
             '#attributes' => ['class' => ['messages', 'messages--warning']],
             '#access' => !$paragraphs_entity->access('update') && $delete_access,
-          );
+          ];
 
-          $info['remove_button_info'] = array(
+          $info['remove_button_info'] = [
             '#type' => 'container',
-            '#markup' => $this->t('You are not allowed to remove this @title.', array('@title' => $this->getSetting('title'))),
+            '#markup' => $this->t('You are not allowed to remove this @title.', ['@title' => $this->getSetting('title')]),
             '#attributes' => ['class' => ['messages', 'messages--warning']],
             '#access' => !$delete_access && $paragraphs_entity->access('update'),
-          );
+          ];
 
-          $info['edit_remove_button_info'] = array(
+          $info['edit_remove_button_info'] = [
             '#type' => 'container',
-            '#markup' => $this->t('You are not allowed to edit or remove this @title.', array('@title' => $this->getSetting('title'))),
+            '#markup' => $this->t('You are not allowed to edit or remove this @title.', ['@title' => $this->getSetting('title')]),
             '#attributes' => ['class' => ['messages', 'messages--warning']],
             '#access' => !$paragraphs_entity->access('update') && !$delete_access,
-          );
+          ];
         }
         elseif ($item_mode == 'remove') {
 
@@ -571,7 +575,7 @@ class InlineParagraphsWidget extends WidgetBase {
 
         if (!empty($links)) {
           $show_links = 0;
-          foreach($links as $link_item) {
+          foreach ($links as $link_item) {
             if (!isset($link_item['#access']) || $link_item['#access']) {
               $show_links++;
             }
@@ -581,19 +585,19 @@ class InlineParagraphsWidget extends WidgetBase {
 
             $element['top']['links'] = $links;
             if ($show_links > 1) {
-              $element['top']['links']['#theme_wrappers'] = array('dropbutton_wrapper', 'paragraphs_dropbutton_wrapper');
-              $element['top']['links']['prefix'] = array(
+              $element['top']['links']['#theme_wrappers'] = ['dropbutton_wrapper', 'paragraphs_dropbutton_wrapper'];
+              $element['top']['links']['prefix'] = [
                 '#markup' => '<ul class="dropbutton dropbutton--multiple dropbutton--extrasmall">',
                 '#weight' => -999,
-              );
-              $element['top']['links']['suffix'] = array(
+              ];
+              $element['top']['links']['suffix'] = [
                 '#markup' => '</li>',
                 '#weight' => 999,
-              );
+              ];
             }
             else {
-              $element['top']['links']['#theme_wrappers'] = array('paragraphs_dropbutton_wrapper');
-              foreach($links as $key => $link_item) {
+              $element['top']['links']['#theme_wrappers'] = ['paragraphs_dropbutton_wrapper'];
+              foreach ($links as $key => $link_item) {
                 unset($element['top']['links'][$key]['#prefix']);
                 unset($element['top']['links'][$key]['#suffix']);
               }
@@ -604,7 +608,7 @@ class InlineParagraphsWidget extends WidgetBase {
 
         if (!empty($info)) {
           $show_info = FALSE;
-          foreach($info as $info_item) {
+          foreach ($info as $info_item) {
             if (!isset($info_item['#access']) || $info_item['#access']) {
               $show_info = TRUE;
               break;
@@ -619,7 +623,7 @@ class InlineParagraphsWidget extends WidgetBase {
 
         if (!empty($actions)) {
           $show_actions = FALSE;
-          foreach($actions as $action_item) {
+          foreach ($actions as $action_item) {
             if (!isset($action_item['#access']) || $action_item['#access']) {
               $show_actions = TRUE;
               break;
@@ -690,7 +694,7 @@ class InlineParagraphsWidget extends WidgetBase {
               else {
                 $element['subform'][$field]['widget']['#after_build'][] = [
                   static::class,
-                  'addTranslatabilityClue'
+                  'addTranslatabilityClue',
                 ];
               }
             }
@@ -699,13 +703,13 @@ class InlineParagraphsWidget extends WidgetBase {
       }
       elseif ($item_mode == 'preview') {
         $view_builder = $entity_type_manager->getViewBuilder($paragraphs_entity->getEntityTypeId());
-        $element['subform'] = array();
+        $element['subform'] = [];
         $element['behavior_plugins'] = [];
         $element['preview'] = $view_builder->view($paragraphs_entity, 'preview', $paragraphs_entity->language()->getId());
         $element['preview']['#access'] = $paragraphs_entity->access('view');
       }
       elseif ($item_mode == 'closed') {
-        $element['subform'] = array();
+        $element['subform'] = [];
         $element['behavior_plugins'] = [];
         if ($paragraphs_entity) {
           $element['top']['paragraph_summary']['fields_info'] = [
@@ -715,7 +719,7 @@ class InlineParagraphsWidget extends WidgetBase {
         }
       }
       else {
-        $element['subform'] = array();
+        $element['subform'] = [];
       }
 
       $element['subform']['#attributes']['class'][] = 'paragraphs-subform';
@@ -748,7 +752,7 @@ class InlineParagraphsWidget extends WidgetBase {
    */
   public function getAllowedTypes() {
 
-    $return_bundles = array();
+    $return_bundles = [];
     /** @var \Drupal\Core\Entity\EntityReferenceSelection\SelectionPluginManagerInterface $selection_manager */
     $selection_manager = \Drupal::service('plugin.manager.entity_reference_selection');
     $handler = $selection_manager->getSelectionHandler($this->fieldDefinition);
@@ -763,10 +767,10 @@ class InlineParagraphsWidget extends WidgetBase {
         if (empty($this->getSelectionHandlerSetting('target_bundles'))
           || in_array($machine_name, $this->getSelectionHandlerSetting('target_bundles'))) {
 
-          $return_bundles[$machine_name] = array(
+          $return_bundles[$machine_name] = [
             'label' => $bundle['label'],
             'weight' => $weight,
-          );
+          ];
 
           $weight++;
         }
@@ -776,6 +780,9 @@ class InlineParagraphsWidget extends WidgetBase {
     return $return_bundles;
   }
 
+  /**
+   *
+   */
   public function formMultipleElements(FieldItemListInterface $items, array &$form, FormStateInterface $form_state) {
     $field_name = $this->fieldDefinition->getName();
     $cardinality = $this->fieldDefinition->getFieldStorageDefinition()->getCardinality();
@@ -803,7 +810,7 @@ class InlineParagraphsWidget extends WidgetBase {
           'entity' => $paragraphs_entity,
           'display' => $display,
           'mode' => 'edit',
-          'original_delta' => 1
+          'original_delta' => 1,
         ];
         $max = 1;
         $field_state['items_count'] = $max;
@@ -816,8 +823,8 @@ class InlineParagraphsWidget extends WidgetBase {
     $title = $this->fieldDefinition->getLabel();
     $description = FieldFilteredMarkup::create(\Drupal::token()->replace($this->fieldDefinition->getDescription()));
 
-    $elements = array();
-    $this->fieldIdPrefix = implode('-', array_merge($this->fieldParents, array($field_name)));
+    $elements = [];
+    $this->fieldIdPrefix = implode('-', array_merge($this->fieldParents, [$field_name]));
     $this->fieldWrapperId = Html::getUniqueId($this->fieldIdPrefix . '-add-more-wrapper');
     $elements['#prefix'] = '<div id="' . $this->fieldWrapperId . '">';
     $elements['#suffix'] = '</div>';
@@ -836,10 +843,10 @@ class InlineParagraphsWidget extends WidgetBase {
 
         // For multiple fields, title and description are handled by the wrapping
         // table.
-        $element = array(
+        $element = [
           '#title' => $is_multiple ? '' : $title,
           '#description' => $is_multiple ? '' : $description,
-        );
+        ];
         $element = $this->formSingleElement($items, $delta, $element, $form, $form_state);
 
         if ($element) {
@@ -847,15 +854,15 @@ class InlineParagraphsWidget extends WidgetBase {
           if ($is_multiple) {
             // We name the element '_weight' to avoid clashing with elements
             // defined by widget.
-            $element['_weight'] = array(
+            $element['_weight'] = [
               '#type' => 'weight',
-              '#title' => $this->t('Weight for row @number', array('@number' => $delta + 1)),
+              '#title' => $this->t('Weight for row @number', ['@number' => $delta + 1]),
               '#title_display' => 'invisible',
               // Note: this 'delta' is the FAPI #type 'weight' element's property.
               '#delta' => $max,
               '#default_value' => $items[$delta]->_weight ?: $delta,
               '#weight' => 100,
-            );
+            ];
           }
 
           // Access for the top element is set to FALSE only when the paragraph
@@ -884,12 +891,12 @@ class InlineParagraphsWidget extends WidgetBase {
     ];
 
     if ($this->realItemCount > 0) {
-      $elements += array(
+      $elements += [
         '#theme' => 'field_multiple_value_form',
         '#cardinality_multiple' => $is_multiple,
         '#title' => $title,
         '#description' => $description,
-      );
+      ];
     }
     else {
       $classes = $this->fieldDefinition->isRequired() ? ['form-required'] : [];
@@ -909,7 +916,7 @@ class InlineParagraphsWidget extends WidgetBase {
             '#markup' => $this->t('No @title added yet.', ['@title' => $this->getSetting('title')]),
             '#prefix' => '<em>',
             '#suffix' => '</em>',
-          ]
+          ],
         ],
       ];
 
@@ -972,7 +979,7 @@ class InlineParagraphsWidget extends WidgetBase {
    * Add 'add more' button, if not working with a programmed form.
    *
    * @return array
-   *    The form element array.
+   *   The form element array.
    */
   protected function buildAddActions() {
     if (count($this->getAccessibleOptions()) === 0) {
@@ -991,7 +998,7 @@ class InlineParagraphsWidget extends WidgetBase {
         ];
       }
 
-      return $add_more_elements ;
+      return $add_more_elements;
     }
 
     if ($this->getSetting('add_mode') == 'button' || $this->getSetting('add_mode') == 'dropdown') {
@@ -1155,8 +1162,8 @@ class InlineParagraphsWidget extends WidgetBase {
 
     // Add a DIV around the delta receiving the Ajax effect.
     $delta = $element['#max_delta'];
-    $element[$delta]['#prefix'] = '<div class="ajax-new-content">' . (isset($element[$delta]['#prefix']) ? $element[$delta]['#prefix'] : '');
-    $element[$delta]['#suffix'] = (isset($element[$delta]['#suffix']) ? $element[$delta]['#suffix'] : '') . '</div>';
+    $element[$delta]['#prefix'] = '<div class="ajax-new-content">' . ($element[$delta]['#prefix'] ?? '');
+    $element[$delta]['#suffix'] = ($element[$delta]['#suffix'] ?? '') . '</div>';
 
     return $element;
   }
@@ -1191,6 +1198,9 @@ class InlineParagraphsWidget extends WidgetBase {
     $form_state->setRebuild();
   }
 
+  /**
+   *
+   */
   public static function paragraphsItemSubmit(array $form, FormStateInterface $form_state) {
     $button = $form_state->getTriggeringElement();
 
@@ -1216,13 +1226,16 @@ class InlineParagraphsWidget extends WidgetBase {
     $form_state->setRebuild();
   }
 
+  /**
+   *
+   */
   public static function itemAjax(array $form, FormStateInterface $form_state) {
     $button = $form_state->getTriggeringElement();
     // Go one level up in the form, to the widgets container.
     $element = NestedArray::getValue($form, array_slice($button['#array_parents'], 0, -4));
 
-    $element['#prefix'] = '<div class="ajax-new-content">' . (isset($element['#prefix']) ? $element['#prefix'] : '');
-    $element['#suffix'] = (isset($element['#suffix']) ? $element['#suffix'] : '') . '</div>';
+    $element['#prefix'] = '<div class="ajax-new-content">' . ($element['#prefix'] ?? '');
+    $element['#suffix'] = ($element['#suffix'] ?? '') . '</div>';
 
     return $element;
   }
@@ -1245,7 +1258,7 @@ class InlineParagraphsWidget extends WidgetBase {
    */
   protected function getSelectionHandlerSetting($setting_name) {
     $settings = $this->getFieldSetting('handler_settings');
-    return isset($settings[$setting_name]) ? $settings[$setting_name] : NULL;
+    return $settings[$setting_name] ?? NULL;
   }
 
   /**
@@ -1322,7 +1335,7 @@ class InlineParagraphsWidget extends WidgetBase {
         $paragraphs_entity = $widget_state['paragraphs'][$item['_original_delta']]['entity'];
 
         /** @var \Drupal\Core\Entity\Display\EntityFormDisplayInterface $display */
-        $display =  $widget_state['paragraphs'][$item['_original_delta']]['display'];
+        $display = $widget_state['paragraphs'][$item['_original_delta']]['display'];
         if ($widget_state['paragraphs'][$item['_original_delta']]['mode'] == 'edit') {
           $display->extractFormValues($paragraphs_entity, $element[$item['_original_delta']]['subform'], $form_state);
         }
@@ -1352,8 +1365,8 @@ class InlineParagraphsWidget extends WidgetBase {
         $item['target_revision_id'] = $paragraphs_entity->getRevisionId();
       }
       // If our mode is remove don't save or reference this entity.
-      // @todo: Maybe we should actually delete it here?
-      elseif(isset($widget_state['paragraphs'][$item['_original_delta']]['mode'])
+      // @todo Maybe we should actually delete it here?
+      elseif (isset($widget_state['paragraphs'][$item['_original_delta']]['mode'])
         && in_array($widget_state['paragraphs'][$item['_original_delta']]['mode'], ['remove', 'removed'])) {
         $item['target_id'] = NULL;
         $item['target_revision_id'] = NULL;
@@ -1451,10 +1464,10 @@ class InlineParagraphsWidget extends WidgetBase {
   /**
    * Returns the default paragraph type.
    *
-   * @return string $default_paragraph_type
+   * @return string
    *   Label name for default paragraph type.
    */
-  protected function getDefaultParagraphTypeLabelName(){
+  protected function getDefaultParagraphTypeLabelName() {
     if ($this->getDefaultParagraphTypeMachineName() !== NULL) {
       $allowed_types = $this->getAllowedTypes();
       return $allowed_types[$this->getDefaultParagraphTypeMachineName()]['label'];

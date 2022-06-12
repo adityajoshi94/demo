@@ -8,6 +8,9 @@ use Drupal\commerce_price\Price;
 use Drupal\commerce_price\RounderInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 
+/**
+ *
+ */
 class PriceSplitter implements PriceSplitterInterface {
 
   /**

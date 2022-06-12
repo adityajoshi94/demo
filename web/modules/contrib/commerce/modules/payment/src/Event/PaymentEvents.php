@@ -2,6 +2,9 @@
 
 namespace Drupal\commerce_payment\Event;
 
+/**
+ *
+ */
 final class PaymentEvents {
 
   /**

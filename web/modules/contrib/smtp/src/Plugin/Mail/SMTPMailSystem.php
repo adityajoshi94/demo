@@ -4,17 +4,17 @@ namespace Drupal\smtp\Plugin\Mail;
 
 use Drupal\Component\Utility\EmailValidatorInterface;
 use Drupal\Component\Utility\Unicode;
+use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Drupal\Core\Mail\MailFormatHelper;
 use Drupal\Core\Mail\MailInterface;
 use Drupal\Core\Messenger\Messenger;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use PHPMailer\PHPMailer\PHPMailer;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\Config\ConfigFactoryInterface;
-use Drupal\Core\Session\AccountProxyInterface;
 use Symfony\Component\HttpFoundation\File\MimeType\MimeTypeGuesserInterface;
 
 /**
@@ -241,7 +241,7 @@ class SMTPMailSystem implements MailInterface, ContainerFactoryPluginInterface {
       // If value is not defined in settings, use site_name.
       $from_name = $this->configFactory->get('system.site')->get('name');
     }
-    
+
     // Set from email.
     if (!empty($message['params']['from_mail'])) {
       $from = $message['params']['from_mail'];
@@ -321,11 +321,11 @@ class SMTPMailSystem implements MailInterface, ContainerFactoryPluginInterface {
 
           // Set the charset based on the provided value,
           // otherwise set it to UTF-8 (which is Drupal's internal default).
-          $mailer->CharSet = isset($vars['charset']) ? $vars['charset'] : 'UTF-8';
+          $mailer->CharSet = $vars['charset'] ?? 'UTF-8';
 
           // If $vars is empty then set an empty value at index 0,
           // to avoid a PHP warning in the next statement.
-          $vars[0] = isset($vars[0]) ? $vars[0] : '';
+          $vars[0] = $vars[0] ?? '';
 
           switch ($vars[0]) {
             case 'text/plain':
@@ -425,7 +425,7 @@ class SMTPMailSystem implements MailInterface, ContainerFactoryPluginInterface {
       }
     }
 
-    // TODO
+    // @todo
     // Need to figure out the following.
     //
     // Add one last header item, but not if it has already been added.
@@ -445,7 +445,7 @@ class SMTPMailSystem implements MailInterface, ContainerFactoryPluginInterface {
     switch ($content_type) {
       case 'multipart/related':
         $mailer->Body = $body;
-        // TODO: Figure out if there is anything more to handling this type.
+        // @todo Figure out if there is anything more to handling this type.
         break;
 
       case 'multipart/alternative':
@@ -601,8 +601,8 @@ class SMTPMailSystem implements MailInterface, ContainerFactoryPluginInterface {
           $mailer->AddStringAttachment($attachment['filecontent'], $attachment['filename'], 'base64', $attachment['filemime']);
         }
         if (isset($attachment['filepath'])) {
-          $filename = isset($attachment['filename']) ? $attachment['filename'] : basename($attachment['filepath']);
-          $filemime = isset($attachment['filemime']) ? $attachment['filemime'] : $this->mimeTypeGuesser->guess($attachment['filepath']);
+          $filename = $attachment['filename'] ?? basename($attachment['filepath']);
+          $filemime = $attachment['filemime'] ?? $this->mimeTypeGuesser->guess($attachment['filepath']);
           $mailer->AddAttachment($attachment['filepath'], $filename, 'base64', $filemime);
         }
       }
@@ -819,7 +819,7 @@ class SMTPMailSystem implements MailInterface, ContainerFactoryPluginInterface {
    *
    * @see _smtp_mailer_send;
    */
-  function smtpMailerSend($mailerArr) {
+  public function smtpMailerSend($mailerArr) {
     return _smtp_mailer_send($mailerArr);
   }
 

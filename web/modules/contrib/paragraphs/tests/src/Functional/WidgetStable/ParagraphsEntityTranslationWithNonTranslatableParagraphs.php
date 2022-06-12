@@ -29,14 +29,14 @@ class ParagraphsEntityTranslationWithNonTranslatableParagraphs extends Paragraph
     $this->drupalLogin($this->admin_user);
 
     // Add a languages.
-    $edit = array(
+    $edit = [
       'predefined_langcode' => 'de',
-    );
+    ];
     $this->drupalGet('admin/config/regional/language/add');
     $this->submitForm($edit, 'Add language');
-    $edit = array(
+    $edit = [
       'predefined_langcode' => 'fr',
-    );
+    ];
     $this->drupalGet('admin/config/regional/language/add');
     $this->submitForm($edit, 'Add language');
 
@@ -44,18 +44,18 @@ class ParagraphsEntityTranslationWithNonTranslatableParagraphs extends Paragraph
     $this->addParagraphedContentType('article', 'field_paragraphs');
     $this->drupalGet('admin/structure/types/manage/article');
     // Make content type translatable.
-    $edit = array(
+    $edit = [
       'language_configuration[content_translation]' => TRUE,
-    );
+    ];
     $this->drupalGet('admin/structure/types/manage/article');
     $this->submitForm($edit, 'Save content type');
     $this->drupalGet('admin/structure/types/manage/article');
 
     // Ensue the paragraphs field itself isn't translatable - this would be a
     // currently not supported configuration otherwise.
-    $edit = array(
+    $edit = [
       'translatable' => FALSE,
-    );
+    ];
     $this->drupalGet('admin/structure/types/manage/article/fields/node.article.field_paragraphs');
     $this->submitForm($edit, 'Save settings');
 
@@ -91,9 +91,9 @@ class ParagraphsEntityTranslationWithNonTranslatableParagraphs extends Paragraph
     // Make sure that the original paragraph text is displayed.
     $this->assertSession()->pageTextContains('Title English');
 
-    $edit = array(
+    $edit = [
       'title[0][value]' => 'Title French',
-    );
+    ];
     $this->submitForm($edit, 'Save (this translation)');
     $this->assertSession()->pageTextContains('article Title French has been updated.');
 
@@ -103,9 +103,9 @@ class ParagraphsEntityTranslationWithNonTranslatableParagraphs extends Paragraph
     // Make sure that the original paragraph text is displayed.
     $this->assertSession()->pageTextContains('Title English');
 
-    $edit = array(
+    $edit = [
       'title[0][value]' => 'Title German',
-    );
+    ];
     $this->submitForm($edit, 'Save (this translation)');
     $this->assertSession()->pageTextContains('article Title German has been updated.');
   }

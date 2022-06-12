@@ -27,13 +27,13 @@ class EntityReferenceRevisionsCompositeTest extends EntityKernelTestBase {
    *
    * @var array
    */
-  public static $modules = array(
+  public static $modules = [
     'node',
     'field',
     'entity_reference_revisions',
     'entity_composite_relationship_test',
-    'language'
-  );
+    'language',
+  ];
 
   /**
    * The current database connection.
@@ -46,7 +46,6 @@ class EntityReferenceRevisionsCompositeTest extends EntityKernelTestBase {
    * The entity type manager.
    *
    * @var \Drupal\Core\Entity\EntityTypeManagerInterface
-   *
    */
   protected $entityTypeManager;
 
@@ -70,20 +69,20 @@ class EntityReferenceRevisionsCompositeTest extends EntityKernelTestBase {
     NodeType::create(['type' => 'article', 'name' => 'Article'])->save();
 
     // Create the reference to the composite entity test.
-    $field_storage = FieldStorageConfig::create(array(
+    $field_storage = FieldStorageConfig::create([
       'field_name' => 'composite_reference',
       'entity_type' => 'node',
       'type' => 'entity_reference_revisions',
-      'settings' => array(
-        'target_type' => 'entity_test_composite'
-      ),
-    ));
+      'settings' => [
+        'target_type' => 'entity_test_composite',
+      ],
+    ]);
     $field_storage->save();
-    $field = FieldConfig::create(array(
+    $field = FieldConfig::create([
       'field_storage' => $field_storage,
       'bundle' => 'article',
       'translatable' => FALSE,
-    ));
+    ]);
     $field->save();
 
     // Inject database connection, entity type manager and cron for the tests.
@@ -99,10 +98,10 @@ class EntityReferenceRevisionsCompositeTest extends EntityKernelTestBase {
    */
   public function testEntityReferenceRevisionsCompositeRelationship() {
     // Create the test composite entity.
-    $composite = EntityTestCompositeRelationship::create(array(
+    $composite = EntityTestCompositeRelationship::create([
       'uuid' => $this->randomMachineName(),
       'name' => $this->randomMachineName(),
-    ));
+    ]);
     $composite->save();
 
     // Assert that there is only 1 revision of the composite entity.
@@ -111,10 +110,10 @@ class EntityReferenceRevisionsCompositeTest extends EntityKernelTestBase {
 
     // Create a node with a reference to the test composite entity.
     /** @var \Drupal\node\NodeInterface $node */
-    $node = Node::create(array(
+    $node = Node::create([
       'title' => $this->randomMachineName(),
       'type' => 'article',
-    ));
+    ]);
     $node->save();
     $node->set('composite_reference', $composite);
     $this->assertTrue($node->hasTranslationChanges());
@@ -145,7 +144,7 @@ class EntityReferenceRevisionsCompositeTest extends EntityKernelTestBase {
 
     // Make sure that there are only 2 revisions.
     $node_revisions_count = \Drupal::entityQuery('node')->condition('nid', $node->id())->allRevisions()->count()->execute();
-    $this->assertEquals(2,$node_revisions_count);
+    $this->assertEquals(2, $node_revisions_count);
 
     // Revert to first revision of the node.
     $node = $this->entityTypeManager->getStorage('node')->loadRevision($original_node_revision);
@@ -225,25 +224,24 @@ class EntityReferenceRevisionsCompositeTest extends EntityKernelTestBase {
   /**
    * Tests composite relationship with translations and an untranslatable field.
    */
-  function testCompositeRelationshipWithTranslationNonTranslatableField() {
+  public function testCompositeRelationshipWithTranslationNonTranslatableField() {
 
     ConfigurableLanguage::createFromLangcode('de')->save();
 
     // Create the test composite entity with a translation.
-    $composite = EntityTestCompositeRelationship::create(array(
+    $composite = EntityTestCompositeRelationship::create([
       'uuid' => $this->randomMachineName(),
       'name' => $this->randomMachineName(),
-    ));
+    ]);
     $composite->addTranslation('de', $composite->toArray());
     $composite->save();
 
-
     // Create a node with a reference to the test composite entity.
-    $node = Node::create(array(
+    $node = Node::create([
       'title' => $this->randomMachineName(),
       'type' => 'article',
       'composite_reference' => $composite,
-    ));
+    ]);
     $node->addTranslation('de', $node->toArray());
     $node->save();
 
@@ -279,7 +277,7 @@ class EntityReferenceRevisionsCompositeTest extends EntityKernelTestBase {
   /**
    * Tests composite relationship with translations and a translatable field.
    */
-  function testCompositeRelationshipWithTranslationTranslatableField() {
+  public function testCompositeRelationshipWithTranslationTranslatableField() {
     $field_config = FieldConfig::loadByName('node', 'article', 'composite_reference');
     $field_config->setTranslatable(TRUE);
     $field_config->save();
@@ -287,19 +285,19 @@ class EntityReferenceRevisionsCompositeTest extends EntityKernelTestBase {
     ConfigurableLanguage::createFromLangcode('de')->save();
 
     // Create the test composite entity with a translation.
-    $composite = EntityTestCompositeRelationship::create(array(
+    $composite = EntityTestCompositeRelationship::create([
       'uuid' => $this->randomMachineName(),
       'name' => $this->randomMachineName(),
-    ));
+    ]);
     $composite->addTranslation('de', $composite->toArray());
     $composite->save();
 
     // Create a node with a reference to the test composite entity.
-    $node = Node::create(array(
+    $node = Node::create([
       'title' => $this->randomMachineName(),
       'type' => 'article',
       'composite_reference' => $composite,
-    ));
+    ]);
     $node->addTranslation('de', $node->toArray());
     $node->save();
 
@@ -327,23 +325,22 @@ class EntityReferenceRevisionsCompositeTest extends EntityKernelTestBase {
   /**
    * Tests composite relationship with revisions.
    */
-  function testCompositeRelationshipWithRevisions() {
+  public function testCompositeRelationshipWithRevisions() {
 
     // Create the test composite entity with a translation.
-    $composite = EntityTestCompositeRelationship::create(array(
+    $composite = EntityTestCompositeRelationship::create([
       'uuid' => $this->randomMachineName(),
       'name' => $this->randomMachineName(),
-    ));
+    ]);
     $composite->save();
 
     // Create a node with a reference to the test composite entity.
-    $node = Node::create(array(
+    $node = Node::create([
       'title' => $this->randomMachineName(),
       'type' => 'article',
       'composite_reference' => $composite,
-    ));
+    ]);
     $node->save();
-
 
     // Verify the value of parent type and id after create a node.
     $composite = EntityTestCompositeRelationship::load($composite->id());
@@ -378,7 +375,7 @@ class EntityReferenceRevisionsCompositeTest extends EntityKernelTestBase {
   /**
    * Tests that the composite revision is not deleted if it is the default one.
    */
-  function testCompositeRelationshipDefaultRevision() {
+  public function testCompositeRelationshipDefaultRevision() {
     // Create a node with a reference to a test composite entity.
     $composite = EntityTestCompositeRelationship::create([
       'uuid' => $this->randomMachineName(),
@@ -426,7 +423,7 @@ class EntityReferenceRevisionsCompositeTest extends EntityKernelTestBase {
   /**
    * Tests that the composite revision is not deleted if it is still in use.
    */
-  function testCompositeRelationshipDuplicatedRevisions() {
+  public function testCompositeRelationshipDuplicatedRevisions() {
     // Create a node with a reference to a test composite entity.
     $composite = EntityTestCompositeRelationship::create([
       'uuid' => $this->randomMachineName(),
@@ -487,7 +484,7 @@ class EntityReferenceRevisionsCompositeTest extends EntityKernelTestBase {
    * Tests the composite entity is deleted after removing its reference.
    */
   public function testCompositeDeleteAfterRemovingReference() {
-    list($composite, $node) = $this->assignCompositeToNode();
+    [$composite, $node] = $this->assignCompositeToNode();
 
     // Remove reference to the composite entity from the node.
     $node->set('composite_reference', NULL);
@@ -511,7 +508,7 @@ class EntityReferenceRevisionsCompositeTest extends EntityKernelTestBase {
    * Includes revisions on the host entity.
    */
   public function testCompositeDeleteAfterRemovingReferenceWithRevisions() {
-    list($composite, $node) = $this->assignCompositeToNode();
+    [$composite, $node] = $this->assignCompositeToNode();
 
     // Remove reference to the composite entity from the node in a new revision.
     $node->set('composite_reference', NULL);
@@ -539,7 +536,7 @@ class EntityReferenceRevisionsCompositeTest extends EntityKernelTestBase {
    * Includes revisions on the host entity.
    */
   public function testCompositeDeleteAfterChangingParent() {
-    list($composite, $node) = $this->assignCompositeToNode();
+    [$composite, $node] = $this->assignCompositeToNode();
     // Remove reference to the composite entity from the node.
     $node->set('composite_reference', NULL);
     $node->setNewRevision();
@@ -589,7 +586,7 @@ class EntityReferenceRevisionsCompositeTest extends EntityKernelTestBase {
    * Includes revisions on the host entity.
    */
   public function testCompositeDeleteRevisionAfterChangingParent() {
-    list($composite, $node) = $this->assignCompositeToNode();
+    [$composite, $node] = $this->assignCompositeToNode();
     // Remove reference to the composite entity from the node.
     $node->set('composite_reference', NULL);
     $node->setNewRevision();
@@ -637,7 +634,7 @@ class EntityReferenceRevisionsCompositeTest extends EntityKernelTestBase {
    * Includes revisions on the host entity.
    */
   public function testCompositeDeleteAfterDuplicatingParent() {
-    list($composite, $node) = $this->assignCompositeToNode();
+    [$composite, $node] = $this->assignCompositeToNode();
     $node->setNewRevision(TRUE);
     $node->save();
 

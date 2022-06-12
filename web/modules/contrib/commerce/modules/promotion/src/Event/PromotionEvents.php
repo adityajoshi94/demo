@@ -2,6 +2,9 @@
 
 namespace Drupal\commerce_promotion\Event;
 
+/**
+ *
+ */
 final class PromotionEvents {
 
   /**

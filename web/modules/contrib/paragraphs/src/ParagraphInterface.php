@@ -2,13 +2,14 @@
 
 namespace Drupal\paragraphs;
 
-use Drupal\Core\Entity\EntityPublishedInterface;
-use Drupal\user\EntityOwnerInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Entity\EntityPublishedInterface;
 use Drupal\entity_reference_revisions\EntityNeedsSaveInterface;
+use Drupal\user\EntityOwnerInterface;
 
 /**
  * Provides an interface defining a paragraphs entity.
+ *
  * @ingroup paragraphs
  */
 interface ParagraphInterface extends ContentEntityInterface, EntityOwnerInterface, EntityNeedsSaveInterface, EntityPublishedInterface {

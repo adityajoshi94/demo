@@ -27,7 +27,7 @@ abstract class ParagraphsTestBase extends LegacyParagraphsTestBase {
     $form_display = EntityFormDisplay::load('node.' . $content_type . '.default')
       ->setComponent($paragraphs_field, [
         'type' => 'paragraphs',
-        'settings' => ['add_mode' => $mode]
+        'settings' => ['add_mode' => $mode],
       ]);
     $form_display->save();
   }

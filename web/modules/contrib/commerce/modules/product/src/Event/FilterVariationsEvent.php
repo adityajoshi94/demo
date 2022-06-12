@@ -5,6 +5,9 @@ namespace Drupal\commerce_product\Event;
 use Drupal\commerce\EventBase;
 use Drupal\commerce_product\Entity\ProductInterface;
 
+/**
+ *
+ */
 class FilterVariationsEvent extends EventBase {
 
   /**

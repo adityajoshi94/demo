@@ -9,7 +9,7 @@ namespace Drupal\Tests\token\Kernel;
  */
 class RandomTest extends KernelTestBase {
 
-  function testRandomTokens() {
+  public function testRandomTokens() {
     $tokens = [
       'number' => '[0-9]{1,}',
       'hash:md5' => '[0-9a-f]{32}',

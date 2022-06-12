@@ -28,7 +28,7 @@ class ParagraphsTranslationsTest extends ParagraphsTestBase {
     'field_ui',
     'block',
     'link',
-    'content_translation'
+    'content_translation',
   ];
 
   /**

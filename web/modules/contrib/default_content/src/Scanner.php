@@ -23,7 +23,7 @@ class Scanner implements ScannerInterface {
 
     $files = [];
     foreach ($iterator as $fileinfo) {
-      /* @var \SplFileInfo $fileinfo */
+      /** @var \SplFileInfo $fileinfo */
 
       // Skip directories and non-json files.
       if ($fileinfo->isDir() || $fileinfo->getExtension() != 'json') {

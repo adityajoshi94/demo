@@ -14,9 +14,9 @@ class ParagraphsPreviewTest extends ParagraphsTestBase {
    *
    * @var array
    */
-  protected static $modules = array(
+  protected static $modules = [
     'image',
-  );
+  ];
 
   /**
    * Tests the revision of paragraphs.
@@ -37,14 +37,14 @@ class ParagraphsPreviewTest extends ParagraphsTestBase {
     // Create paragraph type Headline + Block.
     $this->addParagraphsType('text');
     // Create field types for the text.
-    $this->fieldUIAddNewField('admin/structure/paragraphs_type/text', 'text', 'Text', 'text', array(), array());
+    $this->fieldUIAddNewField('admin/structure/paragraphs_type/text', 'text', 'Text', 'text', [], []);
     $this->assertSession()->pageTextContains('Saved Text configuration.');
 
     $test_text_1 = 'dummy_preview_text_1';
     $test_text_2 = 'dummy_preview_text_2';
     // Create node with two paragraphs.
     $this->drupalGet('node/add/article');
-    $this->submitForm(array(), 'field_paragraphs_text_add_more');
+    $this->submitForm([], 'field_paragraphs_text_add_more');
     // Set the value of the paragraphs.
     $edit = [
       'title[0][value]' => 'Page_title',
@@ -70,7 +70,7 @@ class ParagraphsPreviewTest extends ParagraphsTestBase {
     $this->submitForm($edit, 'Save');
 
     $this->clickLink('Edit');
-    $this->submitForm(array(), 'field_paragraphs_text_add_more');
+    $this->submitForm([], 'field_paragraphs_text_add_more');
     $edit = [
       'field_paragraphs[1][subform][field_text][0][value]' => $test_text_2,
     ];

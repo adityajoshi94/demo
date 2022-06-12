@@ -4,7 +4,6 @@ namespace Drupal\Tests\paragraphs\FunctionalJavascript;
 
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
-use Drupal\paragraphs\Entity\ParagraphsType;
 use Drupal\Tests\paragraphs\Traits\ParagraphsCoreVersionUiTestTrait;
 
 /**
@@ -52,7 +51,7 @@ class ParagraphsStableEditPerspectivesUiTest extends WebDriverTestBase {
    */
   public function testEditPerspectives() {
     $this->loginAsAdmin([
-      'edit behavior plugin settings'
+      'edit behavior plugin settings',
     ]);
 
     $page = $this->getSession()->getPage();
@@ -121,7 +120,7 @@ class ParagraphsStableEditPerspectivesUiTest extends WebDriverTestBase {
    */
   public function testPerspectivesAddModesVisibility() {
     $this->loginAsAdmin([
-      'edit behavior plugin settings'
+      'edit behavior plugin settings',
     ]);
 
     $page = $this->getSession()->getPage();
@@ -221,7 +220,7 @@ class ParagraphsStableEditPerspectivesUiTest extends WebDriverTestBase {
    */
   public function testPerspectivesWithMultipleFields() {
     $this->loginAsAdmin([
-      'edit behavior plugin settings'
+      'edit behavior plugin settings',
     ]);
 
     // Add a nested Paragraph type.

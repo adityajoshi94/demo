@@ -2,6 +2,9 @@
 
 namespace Drupal\commerce_order\Event;
 
+/**
+ *
+ */
 final class OrderEvents {
 
   /**

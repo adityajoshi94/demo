@@ -201,7 +201,7 @@ class KeyCommands extends DrushCommands {
   public function delete($id, array $options = []) {
     // Look for a key with the specified ID. If one does not exist, set an
     // error and abort.
-    /* @var $key \Drupal\key\Entity\Key */
+    /** @var \Drupal\key\Entity\Key $key */
     $key = $this->repository->getKey($id);
     if (!$key) {
       throw new \Exception(dt('Key !id does not exist.', ['!id' => $id]));
@@ -244,7 +244,7 @@ class KeyCommands extends DrushCommands {
   public function keyList(array $options = ['key-type' => NULL, 'key-provider' => NULL]) {
     $result = [];
 
-    /* @var $key \Drupal\key\Entity\Key */
+    /** @var \Drupal\key\Entity\Key $key */
     $keys = $this->repository->getKeys();
 
     // Filter by key type, if specified.
@@ -351,7 +351,7 @@ class KeyCommands extends DrushCommands {
     $result = [];
     // Look for a key with the specified ID. If one does not exist, set an
     // error and abort.
-    /* @var $key \Drupal\key\Entity\Key */
+    /** @var \Drupal\key\Entity\Key $key */
     $key = $this->repository->getKey($id);
     if (!$key) {
       throw new \Exception(dt('Key !id does not exist.', ['!id' => $id]));

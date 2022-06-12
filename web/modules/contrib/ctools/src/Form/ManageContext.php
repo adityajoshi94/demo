@@ -13,7 +13,9 @@ use Drupal\Core\Url;
 use Drupal\ctools\TypedDataResolver;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-
+/**
+ *
+ */
 abstract class ManageContext extends FormBase {
 
   /**
@@ -159,23 +161,25 @@ abstract class ManageContext extends FormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     if ($form_state->getTriggeringElement()['#name'] == 'add') {
       $cached_values = $form_state->getTemporaryValue('wizard');
-      list(, $route_parameters) = $this->getContextOperationsRouteInfo($cached_values, $this->machine_name, $form_state->getValue('context'));
+      [, $route_parameters] = $this->getContextOperationsRouteInfo($cached_values, $this->machine_name, $form_state->getValue('context'));
       $form_state->setRedirect($this->getContextAddRoute($cached_values), $route_parameters);
     }
     if ($form_state->getTriggeringElement()['#name'] == 'add_relationship') {
       $cached_values = $form_state->getTemporaryValue('wizard');
-      list(, $route_parameters) = $this->getRelationshipOperationsRouteInfo($cached_values, $this->machine_name, $form_state->getValue('relationships'));
+      [, $route_parameters] = $this->getRelationshipOperationsRouteInfo($cached_values, $this->machine_name, $form_state->getValue('relationships'));
       $form_state->setRedirect($this->getRelationshipAddRoute($cached_values), $route_parameters);
     }
   }
 
-
+  /**
+   *
+   */
   public function addContext(array &$form, FormStateInterface $form_state) {
     $context = $form_state->getValue('context');
     $content = $this->formBuilder->getForm($this->getContextClass(), $context, $this->getTempstoreId(), $this->machine_name);
     $content['#attached']['library'][] = 'core/drupal.dialog.ajax';
     $cached_values = $form_state->getTemporaryValue('wizard');
-    list(, $route_parameters) = $this->getContextOperationsRouteInfo($cached_values, $this->machine_name, $context);
+    [, $route_parameters] = $this->getContextOperationsRouteInfo($cached_values, $this->machine_name, $context);
     $route_name = $this->getContextAddRoute($cached_values);
     $route_options = [
       'query' => [
@@ -189,13 +193,15 @@ abstract class ManageContext extends FormBase {
     return $response;
   }
 
-
+  /**
+   *
+   */
   public function addRelationship(array &$form, FormStateInterface $form_state) {
     $relationship = $form_state->getValue('relationships');
     $content = $this->formBuilder->getForm($this->getRelationshipClass(), $relationship, $this->getTempstoreId(), $this->machine_name);
     $content['#attached']['library'][] = 'core/drupal.dialog.ajax';
     $cached_values = $form_state->getTemporaryValue('wizard');
-    list(, $route_parameters) = $this->getRelationshipOperationsRouteInfo($cached_values, $this->machine_name, $relationship);
+    [, $route_parameters] = $this->getRelationshipOperationsRouteInfo($cached_values, $this->machine_name, $relationship);
     $route_name = $this->getRelationshipAddRoute($cached_values);
     $route_options = [
       'query' => [
@@ -209,7 +215,9 @@ abstract class ManageContext extends FormBase {
     return $response;
   }
 
-
+  /**
+   *
+   */
   protected function getAvailableRelationships($cached_values) {
     /** @var \Drupal\ctools\TypedDataResolver $resolver */
     $resolver = $this->typedDataResolver;
@@ -224,7 +232,7 @@ abstract class ManageContext extends FormBase {
   protected function renderRows($cached_values) {
     $contexts = [];
     foreach ($this->getContexts($cached_values) as $row => $context) {
-      list($route_name, $route_parameters) = $this->getContextOperationsRouteInfo($cached_values, $this->machine_name, $row);
+      [$route_name, $route_parameters] = $this->getContextOperationsRouteInfo($cached_values, $this->machine_name, $row);
       $build = [
         '#type' => 'operations',
         '#links' => $this->getOperations($cached_values, $row, $route_name, $route_parameters),

@@ -2,14 +2,13 @@
 
 namespace Drupal\Tests\paragraphs\Kernel;
 
-use Drupal\Core\Entity\Entity;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\KernelTests\KernelTestBase;
 use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\paragraphs\Entity\ParagraphsType;
-use Drupal\KernelTests\KernelTestBase;
 
 /**
  * Tests the replication functionality provided by Replicate module.
@@ -147,8 +146,8 @@ class ParagraphsReplicateTest extends KernelTestBase {
     $node = Node::create([
       'title' => $this->randomMachineName(),
       'type' => 'article',
-      'node_paragraph_field' => array($paragraph, $paragraph_nested_parent),
-      ]);
+      'node_paragraph_field' => [$paragraph, $paragraph_nested_parent],
+    ]);
     $node->save();
 
     $replicated_node = $this->container->get('replicate.replicator')
@@ -185,4 +184,5 @@ class ParagraphsReplicateTest extends KernelTestBase {
     $this->assertEquals('Parent paragraph - replicated', $replicated_node->node_paragraph_field[1]->entity->title->value, 'Field value on the replicated parent paragraph are updated.');
     $this->assertEquals('Nested paragraph - replicated', $replicated_node->node_paragraph_field[1]->entity->nested_paragraph_field[0]->entity->title->value, 'Field value on the replicated nested paragraph are updated.');
   }
+
 }

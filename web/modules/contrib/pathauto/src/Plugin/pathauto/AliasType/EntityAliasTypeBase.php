@@ -8,10 +8,10 @@ use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\KeyValueStore\KeyValueFactoryInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
+use Drupal\Core\Messenger\MessengerTrait;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Plugin\Context\Context;
 use Drupal\Core\Plugin\ContextAwarePluginBase;
-use Drupal\Core\Messenger\MessengerTrait;
 use Drupal\pathauto\AliasTypeBatchUpdateInterface;
 use Drupal\pathauto\AliasTypeInterface;
 use Drupal\pathauto\PathautoState;
@@ -281,8 +281,8 @@ class EntityAliasTypeBase extends ContextAwarePluginBase implements AliasTypeInt
 
     if (!empty($options['message'])) {
       $this->messenger->addMessage($this->formatPlural(count($ids), 'Updated 1 %label URL alias.', 'Updated @count %label URL aliases.'), [
-          '%label' => $this->getLabel(),
-        ]);
+        '%label' => $this->getLabel(),
+      ]);
     }
 
     return $updates;

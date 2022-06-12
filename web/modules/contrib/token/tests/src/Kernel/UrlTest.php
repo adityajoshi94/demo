@@ -53,7 +53,7 @@ class UrlTest extends KernelTestBase {
    */
   public function testCurrentRequestUrls() {
     foreach ($this->expectedCurrentRequestUrlResults() as $data_set) {
-      list ($request, $text, $data, $options, $expected_output) = $data_set;
+      [$request, $text, $data, $options, $expected_output] = $data_set;
       // Set the request as the current one.
       $this->requestStack->pop();
       $this->requestStack->push($request);

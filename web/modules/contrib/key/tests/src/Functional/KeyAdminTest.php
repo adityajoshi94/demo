@@ -3,8 +3,8 @@
 namespace Drupal\Tests\key\Functional;
 
 use Drupal\Component\Render\FormattableMarkup;
-use Drupal\Tests\BrowserTestBase;
 use Drupal\Core\Url;
+use Drupal\Tests\BrowserTestBase;
 
 /**
  * Tests administration of keys.

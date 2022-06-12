@@ -31,7 +31,7 @@ class ParagraphsLibraryItemEntityBrowserTest extends EntityBrowserWebDriverTestB
     'node',
     'paragraphs_library',
     'entity_browser',
-    'content_translation'
+    'content_translation',
   ];
 
   /**

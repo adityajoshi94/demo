@@ -70,7 +70,7 @@ function apigee_api_catalog_entity_bundle_field_info_alter(&$fields, EntityTypeI
  * Implements hook_ENTITY_TYPE_presave().
  */
 function apigee_api_catalog_node_presave(EntityInterface $entity) {
-  /* @var \Drupal\node\NodeInterface $entity */
+  /** @var \Drupal\node\NodeInterface $entity */
 
   if ($entity->bundle() != 'apidoc') {
     return;
@@ -86,7 +86,7 @@ function apigee_api_catalog_node_presave(EntityInterface $entity) {
   if ($entity->get('field_apidoc_spec_file_source')->value === SpecFetcherInterface::SPEC_AS_FILE) {
     $spec_value = $entity->get('field_apidoc_spec')->isEmpty() ? [] : $entity->get('field_apidoc_spec')->getValue()[0];
     if (!empty($spec_value['target_id'])) {
-      /* @var \Drupal\file\Entity\File $file */
+      /** @var \Drupal\file\Entity\File $file */
       $file = \Drupal::entityTypeManager()
         ->getStorage('file')
         ->load($spec_value['target_id']);
@@ -138,7 +138,7 @@ function apigee_api_catalog_node_update(EntityInterface $entity) {
         'alias' => '/api/' . $entity->id(),
         'langcode' => $langCode,
       ])
-      ->save();
+        ->save();
     }
   }
 }
@@ -158,7 +158,7 @@ function apigee_api_catalog_form_node_form_alter(&$form, FormStateInterface $for
     ],
   ];
 
-  // @todo: #states does not work on managed files.
+  // @todo #states does not work on managed files.
   // @see: https://www.drupal.org/project/drupal/issues/2847425
   $form['field_apidoc_spec']['widget'][0]['#states'] = [
     'required' => [

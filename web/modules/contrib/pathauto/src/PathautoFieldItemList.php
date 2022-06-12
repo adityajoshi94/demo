@@ -4,6 +4,9 @@ namespace Drupal\pathauto;
 
 use Drupal\path\Plugin\Field\FieldType\PathFieldItemList;
 
+/**
+ *
+ */
 class PathautoFieldItemList extends PathFieldItemList {
 
   /**

@@ -2,12 +2,12 @@
 
 namespace Drupal\fontawesome;
 
+use Drupal\Component\Discovery\YamlDiscovery;
+use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Extension\ThemeHandlerInterface;
 use Drupal\Core\File\FileSystemInterface;
 use Symfony\Component\Yaml\Yaml;
-use Drupal\Component\Discovery\YamlDiscovery;
-use Drupal\Core\Cache\CacheBackendInterface;
 
 /**
  * Icon Manager Service for Font Awesome.

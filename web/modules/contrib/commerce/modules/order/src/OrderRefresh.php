@@ -3,11 +3,11 @@
 namespace Drupal\commerce_order;
 
 use Drupal\commerce\Context;
-use Drupal\commerce_price\Calculator;
-use Drupal\Component\Datetime\TimeInterface;
 use Drupal\commerce_order\Entity\OrderInterface;
 use Drupal\commerce_order\Entity\OrderType;
+use Drupal\commerce_price\Calculator;
 use Drupal\commerce_price\Resolver\ChainPriceResolverInterface;
+use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Session\AccountInterface;
 

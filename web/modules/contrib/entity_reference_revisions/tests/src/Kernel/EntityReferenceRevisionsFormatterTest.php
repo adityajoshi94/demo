@@ -53,7 +53,7 @@ class EntityReferenceRevisionsFormatterTest extends KernelTestBase {
       'entity_type' => 'node',
       'type' => 'entity_reference_revisions',
       'settings' => [
-        'target_type' => 'entity_test_composite'
+        'target_type' => 'entity_test_composite',
       ],
     ]);
     $field_storage->save();
@@ -89,7 +89,7 @@ class EntityReferenceRevisionsFormatterTest extends KernelTestBase {
     ]);
     $node->save();
 
-    // entity_reference_revisions_entity_view
+    // entity_reference_revisions_entity_view.
     $result = $node->composite_reference->view(['type' => 'entity_reference_revisions_entity_view']);
     $this->setRawContent($this->render($result));
     $this->assertText('Clever text');

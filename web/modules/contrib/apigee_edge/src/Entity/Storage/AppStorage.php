@@ -1,23 +1,5 @@
 <?php
 
-/**
- * Copyright 2018 Google Inc.
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * version 2 as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- * MA 02110-1301, USA.
- */
-
 namespace Drupal\apigee_edge\Entity\Storage;
 
 use Drupal\apigee_edge\Entity\AppInterface;
@@ -106,7 +88,7 @@ abstract class AppStorage extends AttributesAwareFieldableEdgeEntityStorageBase 
    * @return \Drupal\apigee_edge\Entity\AppInterface|null
    *   The unchanged entity, or NULL if the entity cannot be loaded.
    *
-   * @TODO: this method should be also available in the AppStorageInterface, but
+   * @todo this method should be also available in the AppStorageInterface, but
    *   that would be a breaking change, so we can only add that in the next
    *   major version of the module.
    */

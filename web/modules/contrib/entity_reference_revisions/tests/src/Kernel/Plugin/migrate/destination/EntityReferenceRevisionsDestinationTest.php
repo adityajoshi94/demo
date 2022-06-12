@@ -306,7 +306,7 @@ class EntityReferenceRevisionsDestinationTest extends KernelTestBase implements 
           [
             ['id' => 1, 'revision_id' => 1, 'label' => 'content item 1a'],
             ['id' => 2, 'revision_id' => 2, 'label' => 'content item 2'],
-          ]
+          ],
         ],
       ],
       'with ids, new revisions and force revision' => [
@@ -340,7 +340,7 @@ class EntityReferenceRevisionsDestinationTest extends KernelTestBase implements 
           [
             ['id' => 1, 'revision_id' => 3, 'label' => 'content item 1a'],
             ['id' => 2, 'revision_id' => 4, 'label' => 'content item 2'],
-          ]
+          ],
         ],
       ],
     ];

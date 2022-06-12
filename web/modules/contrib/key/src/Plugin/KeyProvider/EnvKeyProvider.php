@@ -3,9 +3,9 @@
 namespace Drupal\key\Plugin\KeyProvider;
 
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\key\Plugin\KeyProviderBase;
-use Drupal\key\Plugin\KeyPluginFormInterface;
 use Drupal\key\KeyInterface;
+use Drupal\key\Plugin\KeyPluginFormInterface;
+use Drupal\key\Plugin\KeyProviderBase;
 
 /**
  * A key provider that allows a key to be stored in an environment variable.

@@ -2,6 +2,9 @@
 
 namespace Drupal\commerce_log\Plugin\LogTemplate;
 
+/**
+ *
+ */
 interface LogTemplateInterface {
 
   /**

@@ -141,7 +141,7 @@ class Block extends CoreBlock {
       $form['override']['pager_offset'] = [
         '#type' => 'number',
         '#title' => $this->t('Pager offset'),
-        '#default_value' => isset($block_configuration['pager_offset']) ? $block_configuration['pager_offset'] : 0,
+        '#default_value' => $block_configuration['pager_offset'] ?? 0,
         '#description' => $this->t('For example, set this to 3 and the first 3 items will not be displayed.'),
       ];
     }
@@ -157,7 +157,7 @@ class Block extends CoreBlock {
         '#type' => 'radios',
         '#title' => $this->t('Pager'),
         '#options' => $pager_options,
-        '#default_value' => isset($block_configuration['pager']) ? $block_configuration['pager'] : 'view',
+        '#default_value' => $block_configuration['pager'] ?? 'view',
       ];
     }
 
@@ -245,7 +245,7 @@ class Block extends CoreBlock {
     if (!empty($allow_settings['disable_filters'])) {
       $items = [];
       foreach ((array) $this->getOption('filters') as $filter_name => $item) {
-        $item['value'] = isset($block_configuration["filter"][$filter_name]['value']) ? $block_configuration["filter"][$filter_name]['value'] : '';
+        $item['value'] = $block_configuration["filter"][$filter_name]['value'] ?? '';
         $items[$filter_name] = $item;
       }
       $this->setOption('filters', $items);
@@ -390,7 +390,7 @@ class Block extends CoreBlock {
 
     $allow_settings = array_filter($this->getOption('allow'));
     $config = $block->getConfiguration();
-    list(, $display_id) = explode('-', $block->getDerivativeId(), 2);
+    [, $display_id] = explode('-', $block->getDerivativeId(), 2);
 
     // Change pager offset settings based on block configuration.
     if (!empty($allow_settings['offset']) && isset($config['pager_offset'])) {
@@ -501,8 +501,8 @@ class Block extends CoreBlock {
    *   Return the more weight
    */
   public static function sortFieldsByWeight($a, $b) {
-    $a_weight = isset($a['weight']) ? $a['weight'] : 0;
-    $b_weight = isset($b['weight']) ? $b['weight'] : 0;
+    $a_weight = $a['weight'] ?? 0;
+    $b_weight = $b['weight'] ?? 0;
     if ($a_weight == $b_weight) {
       return 0;
     }

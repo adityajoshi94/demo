@@ -3,11 +3,11 @@
 namespace Drupal\paragraphs\Plugin\migrate\source;
 
 use Drupal\Component\Plugin\ConfigurableInterface;
-use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase as MigrateDrupalSqlBase;
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\State\StateInterface;
 use Drupal\migrate\Plugin\MigrationInterface;
+use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase as MigrateDrupalSqlBase;
 
 /**
  * Base Class for Paragraphs DrupalSqlBase migrate source plugins.

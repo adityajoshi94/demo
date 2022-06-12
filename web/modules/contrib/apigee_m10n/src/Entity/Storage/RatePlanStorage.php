@@ -25,7 +25,6 @@ use Drupal\apigee_edge\Entity\Storage\EdgeEntityStorageBase;
 use Drupal\apigee_m10n\Entity\RatePlanInterface;
 use Drupal\apigee_m10n\Entity\Storage\Controller\RatePlanSdkControllerProxyInterface;
 use Drupal\apigee_m10n\Exception\InvalidRatePlanIdException;
-use Drupal\apigee_m10n\Exception\SdkEntityLoadException;
 use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Cache\MemoryCache\MemoryCacheInterface;

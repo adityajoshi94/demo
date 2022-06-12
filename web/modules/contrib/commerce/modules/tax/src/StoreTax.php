@@ -9,6 +9,9 @@ use Drupal\commerce_tax\Plugin\Commerce\TaxType\LocalTaxTypeInterface;
 use Drupal\commerce_tax\Resolver\ChainTaxRateResolverInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 
+/**
+ *
+ */
 class StoreTax implements StoreTaxInterface {
 
   /**

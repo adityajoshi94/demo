@@ -66,8 +66,8 @@ function token_install() {
  */
 function token_get_token_problems() {
   // @todo Improve the duplicate checking to report which modules are the offenders.
-  //$token_info = [];
-  //foreach (module_implements('token_info') as $module) {
+  // $token_info = [];
+  // foreach (module_implements('token_info') as $module) {
   //  $module_token_info = module_invoke($module, 'token_info');
   //  if (in_array($module, _token_core_supported_modules())) {
   //    $module .= '/token';
@@ -89,8 +89,7 @@ function token_get_token_problems() {
   //  if (is_array($module_token_info)) {
   //    $token_info = array_merge_recursive($token_info, $module_token_info);
   //  }
-  //}
-
+  // }
   $token_info = \Drupal::token()->getInfo();
   $token_problems = [
     'not-array' => [

@@ -1,23 +1,5 @@
 <?php
 
-/**
- * Copyright 2019 Google Inc.
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * version 2 as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- * MA 02110-1301, USA.
- */
-
 namespace Drupal\Tests\apigee_api_catalog\Kernel;
 
 use Drupal\KernelTests\KernelTestBase;
@@ -114,7 +96,7 @@ class ApidocEntityTest extends KernelTestBase {
    * Test revisioning functionality on an apidocs entity.
    */
   public function testRevisions() {
-    /* @var \Drupal\node\NodeInterface $entity */
+    /** @var \Drupal\node\NodeInterface $entity */
 
     $description_v1 = 'Test API';
     $entity = $this->nodeStorage->create([

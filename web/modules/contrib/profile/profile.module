@@ -6,20 +6,20 @@
  */
 
 use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Entity\Display\EntityFormDisplayInterface;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemListInterface;
-use Drupal\Core\Render\Element;
-use Drupal\Core\Session\AccountInterface;
-use Drupal\profile\Plugin\Field\ProfileEntityFieldItemList;
-use Drupal\Core\Entity\Display\EntityFormDisplayInterface;
-use Drupal\Core\Entity\EntityInterface;
-use Drupal\profile\Entity\ProfileType;
-use Drupal\field\FieldConfigInterface;
-use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Element;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Url;
+use Drupal\field\FieldConfigInterface;
+use Drupal\profile\Entity\ProfileType;
+use Drupal\profile\Plugin\Field\ProfileEntityFieldItemList;
 
 /**
  * Implements hook_help().

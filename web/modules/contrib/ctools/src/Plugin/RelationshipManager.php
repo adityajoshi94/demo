@@ -2,10 +2,10 @@
 
 namespace Drupal\ctools\Plugin;
 
-use Drupal\Core\Plugin\Context\ContextAwarePluginManagerTrait;
-use Drupal\Core\Plugin\DefaultPluginManager;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
+use Drupal\Core\Plugin\Context\ContextAwarePluginManagerTrait;
+use Drupal\Core\Plugin\DefaultPluginManager;
 
 /**
  * Provides the Relationship plugin manager.

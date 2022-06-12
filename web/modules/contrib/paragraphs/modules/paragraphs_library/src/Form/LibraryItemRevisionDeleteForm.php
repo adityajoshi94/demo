@@ -10,6 +10,9 @@ use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+/**
+ *
+ */
 class LibraryItemRevisionDeleteForm extends ConfirmFormBase {
 
   /**
@@ -95,7 +98,7 @@ class LibraryItemRevisionDeleteForm extends ConfirmFormBase {
     ]));
 
     $form_state->setRedirect('entity.paragraphs_library_item.version_history', [
-      'paragraphs_library_item' => $this->revision->id()
+      'paragraphs_library_item' => $this->revision->id(),
     ]);
   }
 
@@ -104,7 +107,7 @@ class LibraryItemRevisionDeleteForm extends ConfirmFormBase {
    */
   public function getCancelUrl() {
     return new Url('entity.paragraphs_library_item.version_history', [
-      'paragraphs_library_item' => $this->revision->id()
+      'paragraphs_library_item' => $this->revision->id(),
     ]);
   }
 
@@ -120,7 +123,7 @@ class LibraryItemRevisionDeleteForm extends ConfirmFormBase {
    */
   public function getQuestion() {
     return $this->t('Are you sure you want to delete revision from %revision-date?', [
-      '%revision-date' => $this->dateFormatter->format($this->revision->getChangedTime())
+      '%revision-date' => $this->dateFormatter->format($this->revision->getChangedTime()),
     ]);
   }
 

@@ -1,32 +1,14 @@
 <?php
 
-/**
- * Copyright 2021 Google Inc.
- *
- * This program is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License version 2 as published by the
- * Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
- * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
- * License for more details.
- *
- * You should have received a copy of the GNU General Public License along
- * with this program; if not, write to the Free Software Foundation, Inc., 51
- * Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- */
-
 namespace Drupal\apigee_m10n\Controller;
 
-use Drupal\Core\Controller\ControllerBase;
-use Drupal\apigee_m10n\ApigeeSdkControllerFactoryInterface;
+use Drupal\apigee_m10n\MonetizationInterface;
 use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\user\UserInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\apigee_m10n\MonetizationInterface;
 
 /**
  * An example controller.

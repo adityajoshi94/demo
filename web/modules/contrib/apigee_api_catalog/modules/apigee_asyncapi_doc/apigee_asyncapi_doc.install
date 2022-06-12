@@ -23,22 +23,22 @@
  * Install, update, and uninstall functions for the Apigee GraphQL module.
  */
 
- /**
-  * Implements hook_install().
-  */
- function apigee_asyncapi_doc_install($is_syncing) {
-   // Do not allow to delete the asyncapi_doc's node type machine name.
-   $locked = \Drupal::state()->get('node.type.locked');
-   $locked['asyncapi_doc'] = 'asyncapi_doc';
-   \Drupal::state()->set('node.type.locked', $locked);
- }
+/**
+ * Implements hook_install().
+ */
+function apigee_asyncapi_doc_install($is_syncing) {
+  // Do not allow to delete the asyncapi_doc's node type machine name.
+  $locked = \Drupal::state()->get('node.type.locked');
+  $locked['asyncapi_doc'] = 'asyncapi_doc';
+  \Drupal::state()->set('node.type.locked', $locked);
+}
 
- /**
-  * Implements hook_uninstall().
-  */
- function apigee_asyncapi_doc_uninstall() {
-   // Allow to delete a asyncapi_doc's node type.
-   $locked = \Drupal::state()->get('node.type.locked');
-   unset($locked['asyncapi_doc']);
-   \Drupal::state()->set('node.type.locked', $locked);
- }
+/**
+ * Implements hook_uninstall().
+ */
+function apigee_asyncapi_doc_uninstall() {
+  // Allow to delete a asyncapi_doc's node type.
+  $locked = \Drupal::state()->get('node.type.locked');
+  unset($locked['asyncapi_doc']);
+  \Drupal::state()->set('node.type.locked', $locked);
+}

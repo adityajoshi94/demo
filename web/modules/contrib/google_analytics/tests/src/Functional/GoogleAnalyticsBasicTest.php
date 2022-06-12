@@ -3,8 +3,8 @@
 namespace Drupal\Tests\google_analytics\Functional;
 
 use Drupal\Core\Session\AccountInterface;
-use Drupal\Core\Url;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\Core\Url;
 use Drupal\Tests\BrowserTestBase;
 
 /**
@@ -270,7 +270,7 @@ class GoogleAnalyticsBasicTest extends BrowserTestBase {
     $this->drupalGet('');
 
     // Test may run on localhost, an ipaddress or real domain name.
-    // TODO: Workaround to run tests successfully. This feature cannot tested
+    // @todo Workaround to run tests successfully. This feature cannot tested
     // reliable.
     global $cookie_domain;
     if (count(explode('.', $cookie_domain)) > 2 && !is_numeric(str_replace('.', '', $cookie_domain))) {
@@ -297,8 +297,7 @@ class GoogleAnalyticsBasicTest extends BrowserTestBase {
     $this->config('google_analytics.settings')->set('debug', 1)->save();
     $this->drupalGet('');
     // @FIXME
-    //$this->assertRaw('https://www.google-analytics.com/analytics_debug.js');
-
+    // $this->assertRaw('https://www.google-analytics.com/analytics_debug.js');
     // Check if text and link is shown on 'Status Reports' page.
     // Requires 'administer site configuration' permission.
     $this->drupalGet('admin/reports/status');

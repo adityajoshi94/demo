@@ -24,7 +24,7 @@ class DateTest extends KernelTestBase {
     $this->installConfig(['system', 'token_module_test']);
   }
 
-  function testDateTokens() {
+  public function testDateTokens() {
     $tokens = [
       'token_module_test' => '1984',
       'invalid_format' => NULL,

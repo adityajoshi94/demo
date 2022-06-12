@@ -24,18 +24,18 @@ class PathautoWidget extends PathWidget {
     // @todo Impossible to do this in widget, use another solution
     /*
     $form['path'] += array(
-      '#type' => 'fieldset',
-      '#title' => $this->t('URL path settings'),
-      '#collapsible' => TRUE,
-      '#collapsed' => empty($form['path']['alias']),
-      '#group' => 'additional_settings',
-      '#attributes' => array(
-        'class' => array('path-form'),
-      ),
-      '#access' => \Drupal::currentUser()->hasPermission('create url aliases') || \Drupal::currentUser()->hasPermission('administer url aliases'),
-      '#weight' => 30,
-      '#tree' => TRUE,
-      '#element_validate' => array('path_form_element_validate'),
+    '#type' => 'fieldset',
+    '#title' => $this->t('URL path settings'),
+    '#collapsible' => TRUE,
+    '#collapsed' => empty($form['path']['alias']),
+    '#group' => 'additional_settings',
+    '#attributes' => array(
+    'class' => array('path-form'),
+    ),
+    '#access' => \Drupal::currentUser()->hasPermission('create url aliases') || \Drupal::currentUser()->hasPermission('administer url aliases'),
+    '#weight' => 30,
+    '#tree' => TRUE,
+    '#element_validate' => array('path_form_element_validate'),
     );*/
 
     $pattern = \Drupal::service('pathauto.generator')->getPatternByEntity($entity);

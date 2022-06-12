@@ -2,9 +2,12 @@
 
 namespace Drupal\token;
 
-use Drupal\Core\Security\TrustedCallbackInterface;
 use Drupal\Core\Render\Element;
+use Drupal\Core\Security\TrustedCallbackInterface;
 
+/**
+ *
+ */
 class TokenFieldRender implements TrustedCallbackInterface {
 
   /**
@@ -28,7 +31,7 @@ class TokenFieldRender implements TrustedCallbackInterface {
     $deltas = Element::getVisibleChildren($elements);
     $count = count($deltas);
     if ($count > 1) {
-      $join = isset($elements['#token_options']['join']) ? $elements['#token_options']['join'] : ", ";
+      $join = $elements['#token_options']['join'] ?? ", ";
       foreach ($deltas as $index => $delta) {
         // Do not add a suffix to the last item.
         if ($index < ($count - 1)) {

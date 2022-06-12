@@ -20,8 +20,8 @@
 namespace Drupal\apigee_m10n\Entity\Controller;
 
 use Apigee\Edge\Api\Monetization\Entity\Developer;
-use Drupal\apigee_m10n\Entity\XRatePlanInterface;
 use Drupal\apigee_m10n\Entity\PurchasedProduct;
+use Drupal\apigee_m10n\Entity\XRatePlanInterface;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Entity\EntityFormBuilderInterface;
@@ -75,7 +75,6 @@ class PurchaseRatePlanXController extends ControllerBase implements ContainerInj
    */
   public function purchaseForm(UserInterface $user, XRatePlanInterface $xrate_plan) {
     // Create a purchased_plan to pass to the purchased_plan edit form.
-
     $purchased_plan = PurchasedProduct::create([
       'xratePlan' => $xrate_plan,
       'developer' => new Developer(['email' => $user->getEmail()]),

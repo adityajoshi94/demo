@@ -53,7 +53,7 @@ class BulkFormEntityListBuilderTest extends BrowserTestBase {
   protected function setUp(): void {
     parent::setUp();
 
-    /* @var \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager */
+    /** @var \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager */
     $entity_type_manager = $this->container->get('entity_type.manager');
     $this->storage = $entity_type_manager->getStorage('entity_test_enhanced_with_owner');
 
@@ -134,7 +134,7 @@ class BulkFormEntityListBuilderTest extends BrowserTestBase {
    * Test the publish action on the bulk form.
    */
   public function testPublishAction() {
-    /* @var \Drupal\entity_module_test\Entity\EnhancedEntityWithOwner $entity */
+    /** @var \Drupal\entity_module_test\Entity\EnhancedEntityWithOwner $entity */
     $entity = $this->storage->create([
       'name' => 'Entity 1',
       'type' => 'default',
@@ -177,7 +177,7 @@ class BulkFormEntityListBuilderTest extends BrowserTestBase {
    * Test the unpublish action on the bulk form.
    */
   public function testUnpublishAction() {
-    /* @var \Drupal\entity_module_test\Entity\EnhancedEntityWithOwner $entity */
+    /** @var \Drupal\entity_module_test\Entity\EnhancedEntityWithOwner $entity */
     $entity = $this->storage->create([
       'name' => 'Entity 1',
       'type' => 'default',

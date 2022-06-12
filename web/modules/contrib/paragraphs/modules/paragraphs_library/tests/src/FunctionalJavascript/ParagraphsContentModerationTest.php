@@ -88,7 +88,7 @@ class ParagraphsContentModerationTest extends WebDriverTestBase {
       'bypass node access',
       'administer paragraphs library',
       'access paragraphs_library_items entity browser pages',
-      'administer workflows'
+      'administer workflows',
     ]);
 
     $this->editorUser = $this->drupalCreateUser([
@@ -488,8 +488,8 @@ class ParagraphsContentModerationTest extends WebDriverTestBase {
     $this->addFieldtoParagraphType('rich_paragraph', 'field_nested_paragraphs', 'entity_reference', ['target_type' => 'paragraphs_library_item']);
     $display = \Drupal::service('entity_display.repository')->getViewDisplay('paragraph', 'rich_paragraph');
     $display->setComponent('field_nested_paragraphs', [
-        'type' => 'entity_reference_entity_view',
-      ])->save();
+      'type' => 'entity_reference_entity_view',
+    ])->save();
 
     // Create a child library item.
     $this->drupalGet('/admin/content/paragraphs/add/default');

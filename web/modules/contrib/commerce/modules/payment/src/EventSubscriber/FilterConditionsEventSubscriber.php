@@ -5,6 +5,9 @@ namespace Drupal\commerce_payment\EventSubscriber;
 use Drupal\commerce\Event\FilterConditionsEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
+/**
+ *
+ */
 class FilterConditionsEventSubscriber implements EventSubscriberInterface {
 
   /**

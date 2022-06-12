@@ -2,6 +2,9 @@
 
 namespace Drupal\token;
 
+/**
+ *
+ */
 interface TokenEntityMapperInterface {
 
   /**
@@ -27,7 +30,7 @@ interface TokenEntityMapperInterface {
    * @see token_entity_info_alter()
    * @see http://drupal.org/node/737726
    */
-  function getEntityTypeForTokenType($token_type, $fallback = FALSE);
+  public function getEntityTypeForTokenType($token_type, $fallback = FALSE);
 
   /**
    * Return the token type of a particular entity type.
@@ -44,10 +47,11 @@ interface TokenEntityMapperInterface {
    * @see token_entity_info_alter()
    * @see http://drupal.org/node/737726
    */
-  function getTokenTypeForEntityType($entity_type, $fallback = FALSE);
+  public function getTokenTypeForEntityType($entity_type, $fallback = FALSE);
 
   /**
    * Resets metadata describing token and entity mappings.
    */
   public function resetInfo();
+
 }

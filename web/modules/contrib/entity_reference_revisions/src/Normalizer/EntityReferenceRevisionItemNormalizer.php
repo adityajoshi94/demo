@@ -31,7 +31,7 @@ class EntityReferenceRevisionItemNormalizer extends EntityReferenceItemNormalize
   /**
    * {@inheritdoc}
    */
-  public function normalize($field_item, $format = NULL, array $context = array()) {
+  public function normalize($field_item, $format = NULL, array $context = []) {
     $data = parent::normalize($field_item, $format, $context);
     $field_name = $field_item->getParent()->getName();
     $entity = $field_item->getEntity();

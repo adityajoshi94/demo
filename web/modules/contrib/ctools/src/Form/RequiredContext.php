@@ -6,12 +6,14 @@ use Drupal\Component\Plugin\PluginManagerInterface;
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\OpenModalDialogCommand;
 use Drupal\Core\Form\FormBase;
+use Drupal\Core\Form\FormBuilderInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\Form\FormBuilderInterface;
 
-
+/**
+ *
+ */
 abstract class RequiredContext extends FormBase {
 
   /**
@@ -41,7 +43,9 @@ abstract class RequiredContext extends FormBase {
     );
   }
 
-
+  /**
+   *
+   */
   public function __construct(PluginManagerInterface $typed_data_manager, FormBuilderInterface $form_builder) {
     $this->typedDataManager = $typed_data_manager;
     $this->formBuilder = $form_builder;
@@ -98,7 +102,7 @@ abstract class RequiredContext extends FormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $cached_values = $form_state->getTemporaryValue('wizard');
-    list($route_name, $route_parameters) = $this->getOperationsRouteInfo($cached_values, $this->machine_name, $form_state->getValue('contexts'));
+    [$route_name, $route_parameters] = $this->getOperationsRouteInfo($cached_values, $this->machine_name, $form_state->getValue('contexts'));
     $form_state->setRedirect($route_name . '.edit', $route_parameters);
   }
 
@@ -127,8 +131,8 @@ abstract class RequiredContext extends FormBase {
   public function renderContexts($cached_values) {
     $configured_contexts = [];
     foreach ($this->getContexts($cached_values) as $row => $context) {
-      list($plugin_id, $label, $machine_name, $description) = array_values($context);
-      list($route_name, $route_parameters) = $this->getOperationsRouteInfo($cached_values, $cached_values['id'], $row);
+      [$plugin_id, $label, $machine_name, $description] = array_values($context);
+      [$route_name, $route_parameters] = $this->getOperationsRouteInfo($cached_values, $cached_values['id'], $row);
       $build = [
         '#type' => 'operations',
         '#links' => $this->getOperations($route_name, $route_parameters),
@@ -144,7 +148,9 @@ abstract class RequiredContext extends FormBase {
     return $configured_contexts;
   }
 
-
+  /**
+   *
+   */
   protected function getOperations($route_name_base, array $route_parameters = []) {
     $operations['edit'] = [
       'title' => $this->t('Edit'),

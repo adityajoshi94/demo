@@ -20,13 +20,13 @@ class EntityReferenceRevisionsAdminTest extends BrowserTestBase {
    *
    * @var array
    */
-  public static $modules = array(
+  public static $modules = [
     'node',
     'field',
     'entity_reference_revisions',
     'field_ui',
     'block',
-  );
+  ];
 
   /**
    * {@inheritdoc}
@@ -39,11 +39,11 @@ class EntityReferenceRevisionsAdminTest extends BrowserTestBase {
   protected function setUp() {
     parent::setUp();
     // Create paragraphs and article content types.
-    $this->drupalCreateContentType(array('type' => 'entity_revisions', 'name' => 'Entity revisions'));
-    $this->drupalCreateContentType(array('type' => 'article', 'name' => 'Article'));
+    $this->drupalCreateContentType(['type' => 'entity_revisions', 'name' => 'Entity revisions']);
+    $this->drupalCreateContentType(['type' => 'article', 'name' => 'Article']);
     // Place the breadcrumb, tested in fieldUIAddNewField().
     $this->drupalPlaceBlock('system_breadcrumb_block');
-    $admin_user = $this->drupalCreateUser(array(
+    $admin_user = $this->drupalCreateUser([
       'administer site configuration',
       'administer nodes',
       'create article content',
@@ -52,7 +52,7 @@ class EntityReferenceRevisionsAdminTest extends BrowserTestBase {
       'administer node display',
       'administer node form display',
       'edit any article content',
-    ));
+    ]);
     $this->drupalLogin($admin_user);
   }
 
@@ -90,10 +90,10 @@ class EntityReferenceRevisionsAdminTest extends BrowserTestBase {
 
     // Create an article.
     $title = $this->randomMachineName();
-    $edit = array(
+    $edit = [
       'title[0][value]' => $title,
       'body[0][value]' => 'Revision 1',
-    );
+    ];
     $this->drupalGet('node/add/article');
     $this->submitForm($edit, 'Save');
     $this->assertText($title);
@@ -116,10 +116,10 @@ class EntityReferenceRevisionsAdminTest extends BrowserTestBase {
     $this->assertText('Revision 1');
 
     // Create 2nd revision of the article.
-    $edit = array(
+    $edit = [
       'body[0][value]' => 'Revision 2',
       'revision' => TRUE,
-    );
+    ];
     $this->drupalGet('node/' . $node->id() . '/edit');
     $this->submitForm($edit, 'Save');
     $this->assertText($title);
@@ -134,11 +134,11 @@ class EntityReferenceRevisionsAdminTest extends BrowserTestBase {
 
     // Make sure the non-revisionable entities are not selectable as referenced
     // entities.
-    $edit = array(
+    $edit = [
       'new_storage_type' => 'entity_reference_revisions',
       'label' => 'Entity reference revisions field',
       'field_name' => 'entity_ref_revisions_field',
-    );
+    ];
     $this->drupalGet('admin/structure/types/manage/entity_revisions/fields/add-field');
     $this->submitForm($edit, 'Save and continue');
     $this->assertNoOption('edit-settings-target-type', 'user');
@@ -164,7 +164,7 @@ class EntityReferenceRevisionsAdminTest extends BrowserTestBase {
     for ($i = 0; $i < 2; $i++) {
       $target_types[$i] = $this->drupalCreateContentType([
         'type' => strtolower($this->randomMachineName()),
-        'name' => 'Test type ' . $i
+        'name' => 'Test type ' . $i,
       ]);
     }
 

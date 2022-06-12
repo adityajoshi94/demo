@@ -21,8 +21,8 @@
 use Apigee\Edge\Exception\ApiException;
 use Drupal\apigee_m10n\Monetization;
 use Drupal\apigee_m10n\MonetizationInterface;
-use Drupal\user\RoleInterface;
 use Drupal\user\Entity\Role;
+use Drupal\user\RoleInterface;
 
 /**
  * @file
@@ -73,7 +73,7 @@ function apigee_m10n_requirements($phase) {
       /** @var \Drupal\apigee_edge\SDKConnectorInterface $sdk_connector */
       $sdk_connector = \Drupal::service('apigee_edge.sdk_connector');
       $org_controller = \Drupal::service('apigee_edge.controller.organization');
-      /* @var \Apigee\Edge\Api\Management\Entity\Organization $organization */
+      /** @var \Apigee\Edge\Api\Management\Entity\Organization $organization */
       $organization = $org_controller->load($sdk_connector->getOrganization());
 
       // Check if org is ApigeeX.
@@ -136,14 +136,14 @@ function apigee_m10n_update_8202(&$sandbox) {
     "view xrate_plan" => "view rate_plan",
     "view xrate_plan as anyone" => "view rate_plan as anyone",
     "purchase xrate_plan" => "purchase rate_plan",
-    "purchase xrate_plan as anyone" => "purchase rate_plan as anyone"
+    "purchase xrate_plan as anyone" => "purchase rate_plan as anyone",
   ];
   foreach ($roles as $rid) {
     $role_permissions = $rid->getPermissions();
     foreach ($updatePermissions as $new_permission => $old_permission) {
       if (in_array($new_permission, $role_permissions)) {
-      $rid->revokePermission($new_permission)->save();
-      $rid->grantPermission($old_permission)->save();
+        $rid->revokePermission($new_permission)->save();
+        $rid->grantPermission($old_permission)->save();
       }
     }
   }

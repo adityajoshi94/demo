@@ -20,7 +20,7 @@ class EntityReferenceRevisionsNormalizerTest extends BrowserTestBase {
    *
    * @var array
    */
-  public static $modules = array(
+  public static $modules = [
     'node',
     'field',
     'entity_reference_revisions',
@@ -29,7 +29,7 @@ class EntityReferenceRevisionsNormalizerTest extends BrowserTestBase {
     'hal',
     'serialization',
     'rest',
-  );
+  ];
 
   /**
    * {@inheritdoc}
@@ -42,8 +42,8 @@ class EntityReferenceRevisionsNormalizerTest extends BrowserTestBase {
   protected function setUp() {
     parent::setUp();
     // Create paragraphs and article content types.
-    $this->drupalCreateContentType(array('type' => 'entity_revisions', 'name' => 'Entity revisions'));
-    $this->drupalCreateContentType(array('type' => 'article', 'name' => 'Article'));
+    $this->drupalCreateContentType(['type' => 'entity_revisions', 'name' => 'Entity revisions']);
+    $this->drupalCreateContentType(['type' => 'article', 'name' => 'Article']);
     // Place the breadcrumb, tested in fieldUIAddNewField().
     $this->drupalPlaceBlock('system_breadcrumb_block');
   }
@@ -52,7 +52,7 @@ class EntityReferenceRevisionsNormalizerTest extends BrowserTestBase {
    * Tests the entity reference revisions configuration.
    */
   public function testEntityReferenceRevisions() {
-    $admin_user = $this->drupalCreateUser(array(
+    $admin_user = $this->drupalCreateUser([
       'administer site configuration',
       'administer nodes',
       'create article content',
@@ -61,18 +61,18 @@ class EntityReferenceRevisionsNormalizerTest extends BrowserTestBase {
       'administer node display',
       'administer node form display',
       'edit any article content',
-    ));
+    ]);
     $this->drupalLogin($admin_user);
     // Create entity reference revisions field.
-    static::fieldUIAddNewField('admin/structure/types/manage/entity_revisions', 'entity_reference_revisions', 'Entity reference revisions', 'entity_reference_revisions', array('settings[target_type]' => 'node', 'cardinality' => '-1'), array('settings[handler_settings][target_bundles][article]' => TRUE));
+    static::fieldUIAddNewField('admin/structure/types/manage/entity_revisions', 'entity_reference_revisions', 'Entity reference revisions', 'entity_reference_revisions', ['settings[target_type]' => 'node', 'cardinality' => '-1'], ['settings[handler_settings][target_bundles][article]' => TRUE]);
     $this->assertText('Saved Entity reference revisions configuration.');
 
     // Create an article.
     $title = $this->randomMachineName();
-    $edit = array(
+    $edit = [
       'title[0][value]' => $title,
       'body[0][value]' => 'Revision 1',
-    );
+    ];
     $this->drupalGet('node/add/article');
     $this->submitForm($edit, 'Save');
     $this->assertText($title);
@@ -81,10 +81,10 @@ class EntityReferenceRevisionsNormalizerTest extends BrowserTestBase {
 
     // Create entity revisions content that includes the above article.
     $err_title = 'Entity reference revision content';
-    $edit = array(
+    $edit = [
       'title[0][value]' => $err_title,
       'field_entity_reference_revisions[0][target_id]' => $node->label() . ' (' . $node->id() . ')',
-    );
+    ];
     $this->drupalGet('node/add/entity_revisions');
     $this->submitForm($edit, 'Save');
     $this->assertText('Entity revisions Entity reference revision content has been created.');
@@ -95,10 +95,10 @@ class EntityReferenceRevisionsNormalizerTest extends BrowserTestBase {
     $this->assertText('Revision 1');
 
     // Create 2nd revision of the article.
-    $edit = array(
+    $edit = [
       'body[0][value]' => 'Revision 2',
       'revision' => TRUE,
-    );
+    ];
     $this->drupalGet('node/' . $node->id() . '/edit');
     $this->submitForm($edit, 'Save');
     $serializer = $this->container->get('serializer');

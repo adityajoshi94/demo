@@ -5,8 +5,6 @@ namespace Drupal\Tests\pathauto\Functional;
 use Drupal\pathauto\PathautoGeneratorInterface;
 use Drupal\pathauto\PathautoState;
 use Drupal\Tests\BrowserTestBase;
-use Drupal\Component\Render\FormattableMarkup;
-
 
 /**
  * Bulk update functionality tests.
@@ -17,7 +15,7 @@ class PathautoBulkUpdateTest extends BrowserTestBase {
 
   use PathautoTestHelperTrait;
 
- /**
+  /**
    * {@inheritdoc}
    */
   protected $defaultTheme = 'stable';

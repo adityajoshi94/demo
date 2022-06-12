@@ -21,7 +21,7 @@ class ParagraphsEditModesTest extends ParagraphsTestBase {
     'block_field',
     'block_content',
     'link',
-    'field_ui'
+    'field_ui',
   ];
 
   /**
@@ -41,7 +41,7 @@ class ParagraphsEditModesTest extends ParagraphsTestBase {
     static::fieldUIAddNewField('admin/structure/paragraphs_type/' . $paragraph_type, 'text', 'Text', 'text_long', [], []);
     static::fieldUIAddNewField('admin/structure/paragraphs_type/' . $title_paragraphs_type, 'title', 'Title', 'string', [], []);
 
-    // Add a user Paragraph Type
+    // Add a user Paragraph Type.
     $paragraph_type = 'user_paragraph';
     $this->addParagraphsType($paragraph_type);
     static::fieldUIAddNewField('admin/structure/paragraphs_type/' . $paragraph_type, 'user', 'User', 'entity_reference', ['settings[target_type]' => 'user'], []);
@@ -180,14 +180,14 @@ class ParagraphsEditModesTest extends ParagraphsTestBase {
     // Allow the user to select if the paragraphs is published or not.
     $edit = [
       'fields[status][region]' => 'content',
-      'fields[status][type]' => 'boolean_checkbox'
+      'fields[status][type]' => 'boolean_checkbox',
     ];
     $this->drupalGet('admin/structure/paragraphs_type/' . $title_paragraphs_type . '/form-display');
     $this->submitForm($edit, 'Save');
     $edit = [
       'fields[field_nested_content][type]' => 'paragraphs',
       'fields[status][region]' => 'content',
-      'fields[status][type]' => 'boolean_checkbox'
+      'fields[status][type]' => 'boolean_checkbox',
     ];
     $this->drupalGet('admin/structure/paragraphs_type/nested_paragraph/form-display');
     $this->submitForm($edit, 'Save');

@@ -4,6 +4,9 @@ namespace Drupal\commerce_price\Repository;
 
 use CommerceGuys\Intl\Currency\CurrencyRepositoryInterface as ExternalRepositoryInterface;
 
+/**
+ *
+ */
 interface CurrencyRepositoryInterface extends ExternalRepositoryInterface {
 
   /**

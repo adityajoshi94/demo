@@ -6,9 +6,9 @@
  */
 
 use Drupal\admin_toolbar\Render\Element\AdminToolbar;
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Url;
-use Drupal\Component\Utility\Html;
 
 /**
  * Implements hook_toolbar_alter().

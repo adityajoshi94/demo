@@ -5,6 +5,9 @@ namespace Drupal\commerce_promotion\Form;
 use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Form\FormStateInterface;
 
+/**
+ *
+ */
 class CouponForm extends ContentEntityForm {
 
   /**

@@ -60,7 +60,7 @@ class ElementSubmit {
 
     $element['#submit'] = array_merge([[get_called_class(), 'trigger']], $element['#submit']);
     // Used to distinguish between an inline form submit and main form submit.
-    $element['#ief_submit_trigger']  = TRUE;
+    $element['#ief_submit_trigger'] = TRUE;
     $element['#ief_submit_trigger_all'] = TRUE;
   }
 

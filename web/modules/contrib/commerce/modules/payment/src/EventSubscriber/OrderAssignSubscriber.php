@@ -6,6 +6,9 @@ use Drupal\commerce_order\AddressBookInterface;
 use Drupal\commerce_order\Event\OrderAssignEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
+/**
+ *
+ */
 class OrderAssignSubscriber implements EventSubscriberInterface {
 
   /**

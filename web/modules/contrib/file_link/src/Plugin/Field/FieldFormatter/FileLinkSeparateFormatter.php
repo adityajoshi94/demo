@@ -3,8 +3,8 @@
 namespace Drupal\file_link\Plugin\Field\FieldFormatter;
 
 use Drupal\Core\Field\FieldItemListInterface;
-use Drupal\link\Plugin\Field\FieldFormatter\LinkSeparateFormatter;
 use Drupal\file_link\FileLinkFormatterTrait;
+use Drupal\link\Plugin\Field\FieldFormatter\LinkSeparateFormatter;
 
 /**
  * Plugin implementation of the 'file_link_separate' formatter.

@@ -4,6 +4,9 @@ namespace Drupal\commerce_payment\PluginForm;
 
 use Drupal\Core\Form\FormStateInterface;
 
+/**
+ *
+ */
 class ManualPaymentAddForm extends PaymentGatewayFormBase {
 
   /**

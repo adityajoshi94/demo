@@ -4,9 +4,9 @@ namespace Drupal\key\Controller;
 
 use Drupal\Core\Config\ConfigManagerInterface;
 use Drupal\Core\Config\Entity\ConfigEntityListBuilder;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
-use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Url;
 use Drupal\key\KeyRepositoryInterface;
@@ -81,7 +81,7 @@ class KeyConfigOverrideListBuilder extends ConfigEntityListBuilder {
    * {@inheritdoc}
    */
   public function buildRow(EntityInterface $entity) {
-    /* @var $entity \Drupal\key\KeyConfigOverrideInterface */
+    /** @var \Drupal\key\KeyConfigOverrideInterface $entity */
 
     // Build the complete configuration ID.
     $config_id = '';

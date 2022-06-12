@@ -25,7 +25,7 @@ function state_machine_test_workflow_callback() {
  * Implements hook_entity_type_alter().
  */
 function state_machine_test_entity_type_alter(array &$entity_types) {
-  /** @var $entity_types \Drupal\Core\Entity\EntityTypeInterface[] */
+  /** @var \Drupal\Core\Entity\EntityTypeInterface[] $entity_types */
   if (isset($entity_types['entity_test_with_bundle'])) {
     $entity_types['entity_test_with_bundle']->setLinkTemplate('state-transition-form', '/entity_test_with_bundle/{entity_test_with_bundle}/{field_name}/{transition_id}');
   }

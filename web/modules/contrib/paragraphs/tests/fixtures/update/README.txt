@@ -12,5 +12,3 @@ php ./core/scripts/db-tools.php dump-database-d8-mysql > modules/paragraphs/test
 gzip modules/paragraphs/tests/fixtures/update/drupal-8.8.standard.paragraphs_demo.php
 cd modules/paragraphs/
 git checkout 8.x-1.x
-
-

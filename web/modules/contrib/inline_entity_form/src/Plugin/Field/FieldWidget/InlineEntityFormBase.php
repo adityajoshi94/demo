@@ -161,6 +161,7 @@ abstract class InlineEntityFormBase extends WidgetBase implements ContainerFacto
    *
    * @param string[] $parents
    *   The array parents.
+   *
    * @return string
    *   The resulting inline entity form ID.
    */

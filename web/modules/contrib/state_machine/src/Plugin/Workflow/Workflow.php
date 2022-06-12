@@ -2,10 +2,10 @@
 
 namespace Drupal\state_machine\Plugin\Workflow;
 
-use Drupal\state_machine\Guard\GuardFactoryInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Plugin\PluginBase;
+use Drupal\state_machine\Guard\GuardFactoryInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -109,7 +109,7 @@ class Workflow extends PluginBase implements WorkflowInterface, ContainerFactory
    * {@inheritdoc}
    */
   public function getState($id) {
-    return isset($this->states[$id]) ? $this->states[$id] : NULL;
+    return $this->states[$id] ?? NULL;
   }
 
   /**
@@ -123,7 +123,7 @@ class Workflow extends PluginBase implements WorkflowInterface, ContainerFactory
    * {@inheritdoc}
    */
   public function getTransition($id) {
-    return isset($this->transitions[$id]) ? $this->transitions[$id] : NULL;
+    return $this->transitions[$id] ?? NULL;
   }
 
   /**

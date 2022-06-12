@@ -38,19 +38,19 @@ class ParagraphsFieldGroupTest extends ParagraphsTestBase {
     $edit = [
       'group_formatter' => 'fieldset',
       'label' => 'paragraph_field_group_title',
-      'group_name' => 'field'
+      'group_name' => 'field',
     ];
     $this->drupalGet('admin/structure/paragraphs_type/' . $paragraph_type . '/form-display/add-group');
     $this->submitForm($edit, 'Save and continue');
     $edit = [
-      'format_settings[label]' => 'field_group'
+      'format_settings[label]' => 'field_group',
     ];
     $this->submitForm($edit, 'Create group');
 
     // Put the text field into the field group.
     $edit = [
       'fields[group_field][region]' => 'content',
-      'fields[field_text][parent]' => 'group_field'
+      'fields[field_text][parent]' => 'group_field',
     ];
     $this->drupalGet('admin/structure/paragraphs_type/' . $paragraph_type . '/form-display');
     $this->submitForm($edit, 'Save');
@@ -71,4 +71,5 @@ class ParagraphsFieldGroupTest extends ParagraphsTestBase {
     ];
     $this->submitForm($edit, 'Save');
   }
+
 }

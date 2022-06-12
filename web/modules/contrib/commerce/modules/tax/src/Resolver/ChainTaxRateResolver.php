@@ -6,6 +6,9 @@ use Drupal\commerce_order\Entity\OrderItemInterface;
 use Drupal\commerce_tax\TaxZone;
 use Drupal\profile\Entity\ProfileInterface;
 
+/**
+ *
+ */
 class ChainTaxRateResolver implements ChainTaxRateResolverInterface {
 
   use TaxTypeAwareTrait;

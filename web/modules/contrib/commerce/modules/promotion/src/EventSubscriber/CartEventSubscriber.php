@@ -6,6 +6,9 @@ use Drupal\commerce_cart\Event\CartEmptyEvent;
 use Drupal\commerce_cart\Event\CartEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
+/**
+ *
+ */
 class CartEventSubscriber implements EventSubscriberInterface {
 
   /**

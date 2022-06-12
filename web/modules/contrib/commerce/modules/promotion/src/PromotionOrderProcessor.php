@@ -102,7 +102,7 @@ class PromotionOrderProcessor implements OrderPreprocessorInterface, OrderProces
     $constraints = $coupons_field_list->validate();
     /** @var \Symfony\Component\Validator\ConstraintViolationInterface $constraint */
     foreach ($constraints as $constraint) {
-      list($delta, $property_name) = explode('.', $constraint->getPropertyPath());
+      [$delta, $property_name] = explode('.', $constraint->getPropertyPath());
       $coupons_field_list->removeItem($delta);
     }
 

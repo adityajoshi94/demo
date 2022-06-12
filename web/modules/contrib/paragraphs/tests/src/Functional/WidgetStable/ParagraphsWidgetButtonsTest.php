@@ -2,11 +2,11 @@
 
 namespace Drupal\Tests\paragraphs\Functional\WidgetStable;
 
-use Drupal\language\Entity\ConfigurableLanguage;
-use Drupal\Tests\paragraphs\FunctionalJavascript\ParagraphsTestBaseTrait;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\node\Entity\NodeType;
+use Drupal\Tests\paragraphs\FunctionalJavascript\ParagraphsTestBaseTrait;
 
 /**
  * Tests paragraphs stable widget buttons.

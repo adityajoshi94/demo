@@ -2,12 +2,11 @@
 
 namespace Drupal\Tests\pathauto\Functional;
 
-use Drupal\pathauto\Entity\PathautoPattern;
+use Drupal\Component\Render\FormattableMarkup;
 use Drupal\node\Entity\Node;
+use Drupal\pathauto\Entity\PathautoPattern;
 use Drupal\pathauto\PathautoState;
 use Drupal\Tests\BrowserTestBase;
-use Drupal\Component\Render\FormattableMarkup;
-
 
 /**
  * Tests pathauto node UI integration.
@@ -118,7 +117,7 @@ class PathautoNodeWebTest extends BrowserTestBase {
       'path[0][alias]' => '/should-not-get-created',
     ];
     $this->drupalGet('node/add/page');
-    $this->submitForm( $edit, 'Save');
+    $this->submitForm($edit, 'Save');
     $this->assertNoAliasExists(['alias' => 'should-not-get-created']);
     $node = $this->drupalGetNodeByTitle($title);
     $this->assertEntityAlias($node, '/content/automatic-title');
@@ -261,7 +260,6 @@ class PathautoNodeWebTest extends BrowserTestBase {
     $node->delete();
     $this->assertNull(\Drupal::keyValue('pathauto_state.node')->get($node->id()), 'Pathauto state was deleted');
   }
-
 
   /**
    * Tests that nodes without a Pathauto pattern can set custom aliases.

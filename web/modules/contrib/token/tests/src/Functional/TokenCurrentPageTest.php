@@ -18,7 +18,7 @@ class TokenCurrentPageTest extends TokenTestBase {
    */
   public static $modules = ['node'];
 
-  function testCurrentPageTokens() {
+  public function testCurrentPageTokens() {
     // Cache clear is necessary because the frontpage was already cached by an
     // initial request.
     $this->rebuildAll();
@@ -35,7 +35,7 @@ class TokenCurrentPageTest extends TokenTestBase {
       '[current-page:page-number]' => 1,
       '[current-page:query:foo]' => NULL,
       '[current-page:query:bar]' => NULL,
-      // Deprecated tokens
+      // Deprecated tokens.
       '[current-page:arg:0]' => 'user',
       '[current-page:arg:1]' => 'login',
       '[current-page:arg:2]' => NULL,
@@ -59,11 +59,12 @@ class TokenCurrentPageTest extends TokenTestBase {
       '[current-page:page-number]' => 1,
       '[current-page:query:foo]' => 'bar',
       '[current-page:query:bar]' => NULL,
-      // Deprecated tokens
+      // Deprecated tokens.
       '[current-page:arg:0]' => 'node',
       '[current-page:arg:1]' => 1,
       '[current-page:arg:2]' => NULL,
     ];
     $this->assertPageTokens("/node/{$node->id()}", $tokens, [], ['url_options' => ['query' => ['foo' => 'bar']]]);
   }
+
 }

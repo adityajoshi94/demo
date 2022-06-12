@@ -2,6 +2,9 @@
 
 namespace Drupal\token;
 
+/**
+ *
+ */
 interface TokenInterface {
 
   /**
@@ -54,7 +57,7 @@ interface TokenInterface {
    * @return string[]
    *   An array with the invalid tokens in their original raw forms.
    */
-  function getInvalidTokens($type, $tokens);
+  public function getInvalidTokens($type, $tokens);
 
   /**
    * Validate tokens in raw text based on possible contexts.
@@ -70,4 +73,5 @@ interface TokenInterface {
    *   An array with the invalid tokens in their original raw forms.
    */
   public function getInvalidTokensByContext($value, array $valid_types = []);
+
 }

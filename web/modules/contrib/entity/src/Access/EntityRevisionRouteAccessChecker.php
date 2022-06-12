@@ -57,7 +57,7 @@ class EntityRevisionRouteAccessChecker implements AccessInterface {
     }
 
     $operation = $route->getRequirement('_entity_access_revision');
-    list($entity_type_id, $operation) = explode('.', $operation, 2);
+    [$entity_type_id, $operation] = explode('.', $operation, 2);
 
     if ($operation === 'list') {
       $_entity = $route_match->getParameter($entity_type_id);

@@ -135,7 +135,7 @@ class ApiDocReimportSpecForm extends ContentEntityConfirmFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    /* @var \Drupal\node\NodeInterface $entity */
+    /** @var \Drupal\node\NodeInterface $entity */
     $entity = $this->getEntity();
 
     if ($entity->get('field_apidoc_spec_file_source')->value != SpecFetcherInterface::SPEC_AS_URL) {

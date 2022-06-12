@@ -2,6 +2,9 @@
 
 namespace Drupal\commerce_product\Event;
 
+/**
+ *
+ */
 final class ProductEvents {
 
   /**

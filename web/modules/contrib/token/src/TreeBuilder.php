@@ -8,6 +8,9 @@ use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 
+/**
+ *
+ */
 class TreeBuilder implements TreeBuilderInterface {
 
   use StringTranslationTrait;
@@ -39,6 +42,9 @@ class TreeBuilder implements TreeBuilderInterface {
    */
   protected $builtTrees;
 
+  /**
+   *
+   */
   public function __construct(TokenInterface $token_service, TokenEntityMapperInterface $entity_mapper, CacheBackendInterface $cache_backend, LanguageManagerInterface $language_manager) {
     $this->tokenService = $token_service;
     $this->entityMapper = $entity_mapper;
@@ -233,7 +239,7 @@ class TreeBuilder implements TreeBuilderInterface {
         // Prevent duplicate recursive tokens. For example, this will prevent
         // the tree from generating the following tokens or deeper:
         // [comment:parent:parent]
-        // [comment:parent:root:parent]
+        // [comment:parent:root:parent].
         continue;
       }
 
@@ -264,4 +270,5 @@ class TreeBuilder implements TreeBuilderInterface {
 
     return $tree;
   }
+
 }

@@ -2,10 +2,10 @@
 
 namespace Drupal\profile\Plugin\views\argument_default;
 
-use Drupal\profile\Entity\ProfileInterface;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Cache\CacheableDependencyInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\profile\Entity\ProfileInterface;
 use Drupal\views\Plugin\views\argument_default\ArgumentDefaultPluginBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 

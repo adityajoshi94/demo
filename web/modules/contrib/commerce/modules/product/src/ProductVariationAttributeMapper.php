@@ -6,6 +6,9 @@ use Drupal\commerce_product\Entity\ProductVariationInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 
+/**
+ *
+ */
 class ProductVariationAttributeMapper implements ProductVariationAttributeMapperInterface {
 
   /**

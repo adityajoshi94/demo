@@ -93,7 +93,7 @@ class ParagraphsLibraryTest extends ParagraphsTestBase {
     $this->submitForm([], 'field_paragraphs_from_library_add_more');
     $edit = [
       'title[0][value]' => 'library_test',
-      'field_paragraphs[0][subform][field_reusable_paragraph][0][target_id]' => 're usable paragraph label (1)'
+      'field_paragraphs[0][subform][field_reusable_paragraph][0][target_id]' => 're usable paragraph label (1)',
     ];
     $this->submitForm($edit, 'Save');
 
@@ -187,7 +187,7 @@ class ParagraphsLibraryTest extends ParagraphsTestBase {
     $this->submitForm([], 'field_paragraphs_from_library_add_more');
     $edit = [
       'title[0][value]' => 'library_test_new',
-      'field_paragraphs[0][subform][field_reusable_paragraph][0][target_id]' => 're usable paragraph label (1)'
+      'field_paragraphs[0][subform][field_reusable_paragraph][0][target_id]' => 're usable paragraph label (1)',
     ];
     $this->submitForm($edit, 'Save');
     // Assert that the paragraph is shown correctly.
@@ -294,7 +294,7 @@ class ParagraphsLibraryTest extends ParagraphsTestBase {
     $this->assertSession()->linkExists('Manage fields');
     $this->assertSession()->linkExists('Manage form display');
     $this->assertSession()->linkExists('Manage display');
-    // Assert that users can create fields to
+    // Assert that users can create fields to.
     $this->clickLink('Manage fields');
     $this->clickLink('Add field');
     $this->assertSession()->statusCodeEquals(200);
@@ -487,7 +487,7 @@ class ParagraphsLibraryTest extends ParagraphsTestBase {
     // paragraph type label.
     $user = $this->drupalCreateUser([
       'access content',
-      'administer paragraphs library'
+      'administer paragraphs library',
     ]);
     $this->drupalLogin($user);
     $this->drupalGet('admin/content/paragraphs');
@@ -502,7 +502,7 @@ class ParagraphsLibraryTest extends ParagraphsTestBase {
     $this->loginAsAdmin([
       'create paragraphed_test content',
       'edit any paragraphed_test content',
-      'administer paragraphs library'
+      'administer paragraphs library',
     ]);
 
     // Add a Paragraph type with a text field.
@@ -545,7 +545,7 @@ class ParagraphsLibraryTest extends ParagraphsTestBase {
     $this->loginAsAdmin([
       'create paragraphed_test content',
       'edit any paragraphed_test content',
-      'administer paragraphs library'
+      'administer paragraphs library',
     ]);
     $paragraph_type = 'text';
     $this->addParagraphsType($paragraph_type);
@@ -642,7 +642,7 @@ class ParagraphsLibraryTest extends ParagraphsTestBase {
     $date_formatter = \Drupal::service('date.formatter');
     $this->clickLink('Test revisions nested first change');
     $this->clickLink('Revisions');
-   $this->assertSession()->titleEquals('Revisions for Test revisions nested first change | Drupal');
+    $this->assertSession()->titleEquals('Revisions for Test revisions nested first change | Drupal');
     $revision = $storage->loadRevision(1);
     $this->assertSession()->pageTextContains('Test revisions nested original by ' . $this->admin_user->getAccountName());
     $this->assertSession()->pageTextContains($date_formatter->format($revision->getChangedTime(), 'short') . ': ' . $revision->label());
@@ -668,7 +668,7 @@ class ParagraphsLibraryTest extends ParagraphsTestBase {
     $this->clickLink('Delete');
     $this->assertSession()->responseContains('Are you sure you want to delete revision from ' . $date_formatter->format($revision_for_deleting->getChangedTime()));
     $this->submitForm([], 'Delete');
-    $this->assertSession()->pageTextContains('Revision from ' . $date_formatter->format($revision_for_deleting->getChangedTime()) .' has been deleted.');
+    $this->assertSession()->pageTextContains('Revision from ' . $date_formatter->format($revision_for_deleting->getChangedTime()) . ' has been deleted.');
   }
 
 }

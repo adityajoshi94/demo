@@ -2,8 +2,8 @@
 
 namespace Drupal\key;
 
-use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Component\Plugin\PluginManagerInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 
 /**
  * Provides a repository for Key configuration entities.

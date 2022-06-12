@@ -2,9 +2,9 @@
 
 namespace Drupal\Tests\paragraphs\Kernel;
 
+use Drupal\KernelTests\KernelTestBase;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\paragraphs\Entity\ParagraphsType;
-use Drupal\KernelTests\KernelTestBase;
 
 /**
  * Tests the behavior plugins API.
@@ -44,15 +44,15 @@ class ParagraphsBehaviorPluginsTest extends KernelTestBase {
    */
   public function testBehaviorSettings() {
     // Create a paragraph type.
-    $paragraph_type = ParagraphsType::create(array(
+    $paragraph_type = ParagraphsType::create([
       'label' => 'test_text',
       'id' => 'test_text',
       'behavior_plugins' => [
         'test_text_color' => [
           'enabled' => TRUE,
-        ]
+        ],
       ],
-    ));
+    ]);
     $paragraph_type->save();
 
     // Create a paragraph and set its feature settings.
@@ -61,7 +61,7 @@ class ParagraphsBehaviorPluginsTest extends KernelTestBase {
     ]);
     $feature_settings = [
       'test_text_color' => [
-        'text_color' => 'red'
+        'text_color' => 'red',
       ],
     ];
     $paragraph->setAllBehaviorSettings($feature_settings);

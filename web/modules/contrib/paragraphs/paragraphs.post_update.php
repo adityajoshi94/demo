@@ -21,7 +21,6 @@ use Drupal\field\Entity\FieldStorageConfig;
 function paragraphs_post_update_set_paragraphs_parent_fields(&$sandbox) {
   // Don't execute the function if paragraphs_update_8003() was already executed
   // which used to do the same.
-
   $module_schema = drupal_get_installed_schema_version('paragraphs');
 
   // The state entry 'paragraphs_update_8003_placeholder' is used in order to

@@ -8,7 +8,7 @@
 /**
  * Get a key value.
  *
- * TODO: Only return the value (without the index), so the label can be
+ * @todo Only return the value (without the index), so the label can be
  * translated, after figuring out why dt() returns an object, instead of
  * a string, for this command.
  *
@@ -18,7 +18,7 @@
 function drush_key_value_get($id) {
   // Look for a key with the specified ID. If one does not exist, set an
   // error and abort.
-  /* @var $key \Drupal\key\Entity\Key */
+  /** @var \Drupal\key\Entity\Key $key */
   $key = \Drupal::service('key.repository')->getKey($id);
   if (!$key) {
     return drush_set_error('DRUSH_KEY_DOES_NOT_EXIST', dt('Key !id does not exist.', ['!id' => $id]));

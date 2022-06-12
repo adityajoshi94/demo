@@ -2,10 +2,8 @@
 
 namespace Drupal\Tests\file_link\Functional;
 
-use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Drupal\entity_test\Entity\EntityTest;
-use Drupal\KernelTests\KernelTestBase;
 use Drupal\Tests\BrowserTestBase;
 
 /**
@@ -37,11 +35,11 @@ class FileLinkRedirectTest extends BrowserTestBase {
    * Tests redirects.
    *
    * @param string $path
-   *    Path to request.
+   *   Path to request.
    * @param int $size
-   *    Expected file size.
+   *   Expected file size.
    * @param $format
-   *    Expected file format.
+   *   Expected file format.
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
    * @throws \Drupal\Core\TypedData\Exception\MissingDataException
@@ -80,7 +78,7 @@ class FileLinkRedirectTest extends BrowserTestBase {
    * Data provider.
    *
    * @return array
-   *    Redirect test data and expectations.
+   *   Redirect test data and expectations.
    */
   public function redirectDataProvider() {
     return [
@@ -88,4 +86,5 @@ class FileLinkRedirectTest extends BrowserTestBase {
       ['/test/redirect/302/md', 3, 'application/octet-stream'],
     ];
   }
+
 }

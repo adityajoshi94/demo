@@ -2,10 +2,13 @@
 
 namespace Drupal\commerce_cart\EventSubscriber;
 
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Drupal\commerce_cart\CartProviderInterface;
 use Drupal\state_machine\Event\WorkflowTransitionEvent;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
+/**
+ *
+ */
 class OrderEventSubscriber implements EventSubscriberInterface {
 
   /**

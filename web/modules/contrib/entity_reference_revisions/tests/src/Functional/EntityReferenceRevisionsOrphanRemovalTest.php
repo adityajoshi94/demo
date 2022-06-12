@@ -32,7 +32,7 @@ class EntityReferenceRevisionsOrphanRemovalTest extends BrowserTestBase {
     'node',
     'field',
     'entity_reference_revisions',
-    'entity_composite_relationship_test'
+    'entity_composite_relationship_test',
   ];
 
   /**
@@ -159,7 +159,7 @@ class EntityReferenceRevisionsOrphanRemovalTest extends BrowserTestBase {
       'entity_type' => 'node',
       'type' => 'entity_reference_revisions',
       'settings' => [
-        'target_type' => 'entity_test_composite'
+        'target_type' => 'entity_test_composite',
       ],
     ]);
     $field_storage->save();
@@ -368,4 +368,5 @@ class EntityReferenceRevisionsOrphanRemovalTest extends BrowserTestBase {
     $node->set('field_composite_entity', $composite_entity_third);
     $node->save();
   }
+
 }

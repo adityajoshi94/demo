@@ -33,7 +33,7 @@ class TokenBlockTest extends TokenTestBase {
     $bundle = BlockContentType::create([
       'id' => $label,
       'label' => $label,
-      'revision' => FALSE
+      'revision' => FALSE,
     ]);
     $bundle->save();
 
@@ -70,4 +70,5 @@ class TokenBlockTest extends TokenTestBase {
     // The apostraphe should only be escaped once.
     $this->assertSession()->responseContains("Site&#039;s first node block title");
   }
+
 }

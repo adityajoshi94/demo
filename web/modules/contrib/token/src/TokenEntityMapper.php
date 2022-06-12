@@ -29,6 +29,9 @@ class TokenEntityMapper implements TokenEntityMapperInterface {
    */
   protected $entityMappings;
 
+  /**
+   *
+   */
   public function __construct(EntityTypeManagerInterface $entity_type_manager, ModuleHandlerInterface $module_handler) {
     $this->entityTypeManager = $entity_type_manager;
     $this->moduleHandler = $module_handler;
@@ -52,7 +55,7 @@ class TokenEntityMapper implements TokenEntityMapperInterface {
   /**
    * {@inheritdoc}
    */
-  function getEntityTypeForTokenType($token_type, $fallback = FALSE) {
+  public function getEntityTypeForTokenType($token_type, $fallback = FALSE) {
     if (empty($this->entityMappings)) {
       $this->getEntityTypeMappings();
     }
@@ -64,12 +67,12 @@ class TokenEntityMapper implements TokenEntityMapperInterface {
   /**
    * {@inheritdoc}
    */
-  function getTokenTypeForEntityType($entity_type, $fallback = FALSE) {
+  public function getTokenTypeForEntityType($entity_type, $fallback = FALSE) {
     if (empty($this->entityMappings)) {
       $this->getEntityTypeMappings();
     }
 
-    return isset($this->entityMappings[$entity_type]) ? $this->entityMappings[$entity_type] : ($fallback ? $entity_type : FALSE);
+    return $this->entityMappings[$entity_type] ?? ($fallback ? $entity_type : FALSE);
   }
 
   /**

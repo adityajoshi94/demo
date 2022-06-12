@@ -64,8 +64,8 @@ class TestBoldTextBehavior extends ParagraphsBehaviorBase {
     return [
       [
         'label' => $this->t('Bold'),
-        'value' => $bold_setting ? $this->t('Yes') : $this->t('No')
-      ]
+        'value' => $bold_setting ? $this->t('Yes') : $this->t('No'),
+      ],
     ];
   }
 

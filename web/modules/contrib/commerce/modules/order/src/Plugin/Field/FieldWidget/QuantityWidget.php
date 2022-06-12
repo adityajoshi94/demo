@@ -4,8 +4,8 @@ namespace Drupal\commerce_order\Plugin\Field\FieldWidget;
 
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemListInterface;
-use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Field\Plugin\Field\FieldWidget\NumberWidget;
+use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Plugin implementation of the 'commerce_quantity' widget.

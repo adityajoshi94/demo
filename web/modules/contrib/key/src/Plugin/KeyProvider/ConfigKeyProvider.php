@@ -4,10 +4,10 @@ namespace Drupal\key\Plugin\KeyProvider;
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\key\Exception\KeyValueNotSetException;
-use Drupal\key\Plugin\KeyProviderBase;
-use Drupal\key\Plugin\KeyPluginFormInterface;
-use Drupal\key\Plugin\KeyProviderSettableValueInterface;
 use Drupal\key\KeyInterface;
+use Drupal\key\Plugin\KeyPluginFormInterface;
+use Drupal\key\Plugin\KeyProviderBase;
+use Drupal\key\Plugin\KeyProviderSettableValueInterface;
 
 /**
  * Adds a key provider that allows a key to be stored in configuration.
@@ -45,7 +45,7 @@ class ConfigKeyProvider extends KeyProviderBase implements KeyPluginFormInterfac
         '#type' => 'checkbox',
         '#title' => $this->t('Base64-encoded'),
         '#description' => $this->t('Checking this will store the key with Base64 encoding.'),
-        '#default_value' => isset($this->getConfiguration()['base64_encoded']) ? $this->getConfiguration()['base64_encoded'] : $this->defaultConfiguration()['base64_encoded'],
+        '#default_value' => $this->getConfiguration()['base64_encoded'] ?? $this->defaultConfiguration()['base64_encoded'],
       ];
     }
 
@@ -69,7 +69,7 @@ class ConfigKeyProvider extends KeyProviderBase implements KeyPluginFormInterfac
    * {@inheritdoc}
    */
   public function getKeyValue(KeyInterface $key) {
-    $key_value = isset($this->configuration['key_value']) ? $this->configuration['key_value'] : '';
+    $key_value = $this->configuration['key_value'] ?? '';
 
     if (isset($this->configuration['base64_encoded']) && $this->configuration['base64_encoded'] == TRUE) {
       $key_value = base64_decode($key_value);

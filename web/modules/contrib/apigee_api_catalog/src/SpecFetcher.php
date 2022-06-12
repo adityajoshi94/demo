@@ -29,8 +29,8 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\StringTranslation\TranslationInterface;
 use Drupal\Core\Url;
 use Drupal\node\NodeInterface;
-use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
@@ -108,7 +108,7 @@ class SpecFetcher implements SpecFetcherInterface {
     if ($apidoc->get('field_apidoc_spec_file_source')->value === static::SPEC_AS_URL) {
 
       // If the file_link field is empty, return without changes.
-      // TODO: The file link shouldn't be empty. Consider throwing an error.
+      // @todo The file link shouldn't be empty. Consider throwing an error.
       if ($apidoc->get('field_apidoc_file_link')->isEmpty()) {
         return FALSE;
       }

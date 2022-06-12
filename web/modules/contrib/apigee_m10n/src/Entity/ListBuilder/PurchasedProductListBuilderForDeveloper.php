@@ -27,8 +27,6 @@ use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Url;
 use Drupal\user\UserInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Drupal\apigee_m10n\Monetization;
-use Drupal\apigee_m10n\MonetizationInterface;
 
 /**
  * Defines implementation of a purchased product listing page.

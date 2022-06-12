@@ -6,8 +6,6 @@ use Drupal\Core\Url;
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 use Drupal\pathauto\Entity\PathautoPattern;
 use Drupal\Tests\pathauto\Functional\PathautoTestHelperTrait;
-use Drupal\Component\Render\FormattableMarkup;
-
 
 /**
  * Test basic pathauto functionality.
@@ -99,7 +97,7 @@ class PathautoUiTest extends WebDriverTestBase {
     $edit += [
       'id' => 'page_pattern',
     ];
-    $this->submitForm( $edit, 'Save');
+    $this->submitForm($edit, 'Save');
 
     $this->assertSession()->pageTextContains('Path pattern is using the following invalid tokens: [user:name], [term:name].');
     $this->assertSession()->pageTextNotContains('The configuration options have been saved.');

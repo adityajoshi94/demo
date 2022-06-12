@@ -17,6 +17,9 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
+/**
+ *
+ */
 class TaxNumberController implements ContainerInjectionInterface {
 
   use MessengerTrait;

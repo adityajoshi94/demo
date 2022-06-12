@@ -1,31 +1,13 @@
 <?php
 
-/**
- * Copyright 2018 Google Inc.
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * version 2 as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- * MA 02110-1301, USA.
- */
-
 namespace Drupal\apigee_edge_teams\Entity;
 
 use Drupal\apigee_edge\Entity\AppRouteProvider;
 use Drupal\apigee_edge\Entity\AppTitleProvider;
-use Drupal\apigee_edge_teams\Entity\ListBuilder\TeamAppListByTeam;
 use Drupal\apigee_edge_teams\Controller\TeamAppKeysController;
-use Drupal\apigee_edge_teams\Form\TeamAppApiKeyDeleteForm;
+use Drupal\apigee_edge_teams\Entity\ListBuilder\TeamAppListByTeam;
 use Drupal\apigee_edge_teams\Form\TeamAppApiKeyAddForm;
+use Drupal\apigee_edge_teams\Form\TeamAppApiKeyDeleteForm;
 use Drupal\apigee_edge_teams\Form\TeamAppApiKeyRevokeForm;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Symfony\Component\Routing\Route;

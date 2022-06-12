@@ -6,10 +6,10 @@ use Drupal\Component\Serialization\PhpSerialize;
 use Drupal\Component\Utility\Crypt;
 use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\KeyValueStore\KeyValueDatabaseFactory;
-use Drupal\pathauto\PathautoState;
-use Drupal\Tests\pathauto\Functional\PathautoTestHelperTrait;
 use Drupal\KernelTests\KernelTestBase;
+use Drupal\pathauto\PathautoState;
 use Drupal\pathauto_string_id_test\Entity\PathautoStringIdTest;
+use Drupal\Tests\pathauto\Functional\PathautoTestHelperTrait;
 
 /**
  * Tests auto-aliasing of entities that use string IDs.
@@ -79,7 +79,7 @@ class PathautoEntityWithStringIdTest extends KernelTestBase {
    * @dataProvider entityWithStringIdProvider
    *
    * @param string|int $id
-   *   The entity ID
+   *   The entity ID.
    * @param string $expected_key
    *   The expected key for 'pathauto_state.*' collections.
    */
@@ -114,19 +114,19 @@ class PathautoEntityWithStringIdTest extends KernelTestBase {
   public function entityWithStringIdProvider() {
     return [
       'ascii with less or equal 128 chars' => [
-        str_repeat('a', 128), str_repeat('a', 128)
+        str_repeat('a', 128), str_repeat('a', 128),
       ],
       'ascii with over 128 chars' => [
-        str_repeat('a', 191), Crypt::hashBase64(str_repeat('a', 191))
+        str_repeat('a', 191), Crypt::hashBase64(str_repeat('a', 191)),
       ],
       'non-ascii with less or equal 128 chars' => [
-        str_repeat('社', 128), Crypt::hashBase64(str_repeat('社', 128))
+        str_repeat('社', 128), Crypt::hashBase64(str_repeat('社', 128)),
       ],
       'non-ascii with over 128 chars' => [
-        str_repeat('社', 191), Crypt::hashBase64(str_repeat('社', 191))
+        str_repeat('社', 191), Crypt::hashBase64(str_repeat('社', 191)),
       ],
       'simulating an integer id' => [
-        123, '123'
+        123, '123',
       ],
     ];
   }

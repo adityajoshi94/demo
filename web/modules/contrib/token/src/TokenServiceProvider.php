@@ -17,4 +17,5 @@ class TokenServiceProvider extends ServiceProviderBase {
     $definition = $container->getDefinition('token');
     $definition->setClass('\Drupal\token\Token');
   }
+
 }

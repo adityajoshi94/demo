@@ -4,8 +4,8 @@ namespace Drupal\address\Plugin\migrate\cckfield;
 
 @trigger_error('AddressField is deprecated in address:8.x-1.3 and is removed from address:8.x-2.0. Use \Drupal\address\Plugin\migrate\field\AddressField instead. See https://www.drupal.org/project/address/issues/2912087', E_USER_DEPRECATED);
 
-use Drupal\migrate\Plugin\MigrationInterface;
 use Drupal\address\Plugin\migrate\field\AddressField as BaseAddressField;
+use Drupal\migrate\Plugin\MigrationInterface;
 use Drupal\migrate_drupal\Plugin\MigrateCckFieldInterface;
 
 /**

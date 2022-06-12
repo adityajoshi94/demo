@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * @file
  * Copyright 2020 Google Inc.
  *
  * This program is free software; you can redistribute it and/or
@@ -18,9 +19,9 @@
  * MA 02110-1301, USA.
  */
 
+use Drupal\apigee_edge\Entity\AppInterface;
 use Drupal\apigee_edge\Entity\DeveloperAppInterface;
 use Drupal\apigee_edge_actions\Event\EdgeEntityEventEdge;
-use Drupal\apigee_edge\Entity\AppInterface;
 use Drupal\apigee_edge_actions\Plugin\RulesAction\SystemEmailToUsersOfRole;
 use Drupal\Core\Entity\EntityInterface;
 
@@ -74,7 +75,7 @@ function _apigee_edge_actions_dispatch_entity_event(EntityInterface $entity, str
   $dispatched_event_name = "apigee_edge_actions_entity_$event_name:{$entity->getEntityTypeId()}";
 
   $arguments = [
-    $entity->getEntityTypeId() => $entity
+    $entity->getEntityTypeId() => $entity,
   ];
 
   // Note: Refactor this to plugins if more entity types requires custom

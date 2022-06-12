@@ -32,7 +32,7 @@
   margin-right: 0;
 }
 
-.disable-add-credit{
+.disable-add-credit {
   pointer-events: none;
   cursor: not-allowed;
   opacity: 0.65;

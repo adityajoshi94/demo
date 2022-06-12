@@ -6,6 +6,9 @@ use Drupal\commerce\EventBase;
 use Drupal\commerce_product\Entity\ProductInterface;
 use Drupal\commerce_product\Entity\ProductVariationInterface;
 
+/**
+ *
+ */
 class ProductDefaultVariationEvent extends EventBase {
 
   /**

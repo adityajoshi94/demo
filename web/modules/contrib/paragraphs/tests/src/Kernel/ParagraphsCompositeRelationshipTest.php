@@ -5,12 +5,12 @@ namespace Drupal\Tests\paragraphs\Kernel;
 use Drupal\Core\Site\Settings;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\KernelTests\KernelTestBase;
 use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\paragraphs\Entity\ParagraphsType;
-use Drupal\KernelTests\KernelTestBase;
 use Drupal\user\Entity\User;
 
 /**
@@ -25,7 +25,7 @@ class ParagraphsCompositeRelationshipTest extends KernelTestBase {
    *
    * @var array
    */
-  protected static $modules = array(
+  protected static $modules = [
     'paragraphs',
     'node',
     'user',
@@ -34,7 +34,7 @@ class ParagraphsCompositeRelationshipTest extends KernelTestBase {
     'entity_reference_revisions',
     'language',
     'file',
-  );
+  ];
 
   /**
    * {@inheritdoc}
@@ -58,66 +58,66 @@ class ParagraphsCompositeRelationshipTest extends KernelTestBase {
    */
   public function testParagraphsRevisions() {
     // Create the paragraph type.
-    $paragraph_type = ParagraphsType::create(array(
+    $paragraph_type = ParagraphsType::create([
       'label' => 'test_text',
       'id' => 'test_text',
-    ));
+    ]);
     $paragraph_type->save();
 
-    $paragraph_type_nested = ParagraphsType::create(array(
+    $paragraph_type_nested = ParagraphsType::create([
       'label' => 'test_nested',
       'id' => 'test_nested',
-    ));
+    ]);
     $paragraph_type_nested->save();
 
     // Add a paragraph field to the article.
-    $field_storage = FieldStorageConfig::create(array(
+    $field_storage = FieldStorageConfig::create([
       'field_name' => 'nested_paragraph_field',
       'entity_type' => 'paragraph',
       'type' => 'entity_reference_revisions',
       'cardinality' => '-1',
-      'settings' => array(
-        'target_type' => 'paragraph'
-      ),
-    ));
+      'settings' => [
+        'target_type' => 'paragraph',
+      ],
+    ]);
     $field_storage->save();
-    $field = FieldConfig::create(array(
+    $field = FieldConfig::create([
       'field_storage' => $field_storage,
       'bundle' => 'test_nested',
-    ));
+    ]);
     $field->save();
 
     // Add a paragraph field to the article.
-    $field_storage = FieldStorageConfig::create(array(
+    $field_storage = FieldStorageConfig::create([
       'field_name' => 'node_paragraph_field',
       'entity_type' => 'node',
       'type' => 'entity_reference_revisions',
       'cardinality' => '-1',
-      'settings' => array(
-        'target_type' => 'paragraph'
-      ),
-    ));
+      'settings' => [
+        'target_type' => 'paragraph',
+      ],
+    ]);
     $field_storage->save();
-    $field = FieldConfig::create(array(
+    $field = FieldConfig::create([
       'field_storage' => $field_storage,
       'bundle' => 'article',
-    ));
+    ]);
     $field->save();
 
     // Add a paragraph field to the user.
-    $field_storage = FieldStorageConfig::create(array(
+    $field_storage = FieldStorageConfig::create([
       'field_name' => 'user_paragraph_field',
       'entity_type' => 'user',
       'type' => 'entity_reference_revisions',
-      'settings' => array(
-        'target_type' => 'paragraph'
-      ),
-    ));
+      'settings' => [
+        'target_type' => 'paragraph',
+      ],
+    ]);
     $field_storage->save();
-    $field = FieldConfig::create(array(
+    $field = FieldConfig::create([
       'field_storage' => $field_storage,
       'bundle' => 'user',
-    ));
+    ]);
     $field->save();
 
     // Create a paragraph.
@@ -170,8 +170,8 @@ class ParagraphsCompositeRelationshipTest extends KernelTestBase {
     $node = Node::create([
       'title' => $this->randomMachineName(),
       'type' => 'article',
-      'node_paragraph_field' => array($paragraph1, $paragraph2, $paragraph3, $paragraph4_nested_parent),
-      ]);
+      'node_paragraph_field' => [$paragraph1, $paragraph2, $paragraph3, $paragraph4_nested_parent],
+    ]);
     $node->save();
 
     // Create an user with a paragraph.
@@ -296,7 +296,7 @@ class ParagraphsCompositeRelationshipTest extends KernelTestBase {
     // Create a new paragraph and add a german translation.
     $paragraph = Paragraph::create([
       'title' => 'Paragraph',
-      'type' => 'test_text'
+      'type' => 'test_text',
     ]);
     $paragraph->addTranslation('de');
     $paragraph->save();
@@ -305,7 +305,7 @@ class ParagraphsCompositeRelationshipTest extends KernelTestBase {
     $node = Node::load($node->id());
     $node->addTranslation('de', [
       'title' => 'german',
-      'node_paragraph_field' => $paragraph
+      'node_paragraph_field' => $paragraph,
     ]);
     $node->save();
 
@@ -344,4 +344,5 @@ class ParagraphsCompositeRelationshipTest extends KernelTestBase {
     self::assertEquals($paragraph['parent_type'][0]['value'], $entity_type, 'Matching parent type.');
     self::assertEquals($paragraph['parent_field_name'][0]['value'], $field_name, 'Matching parent field name.');
   }
+
 }

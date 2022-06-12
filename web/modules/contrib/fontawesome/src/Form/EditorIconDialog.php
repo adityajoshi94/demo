@@ -2,18 +2,18 @@
 
 namespace Drupal\fontawesome\Form;
 
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\CloseModalDialogCommand;
+use Drupal\Core\Ajax\HtmlCommand;
+use Drupal\Core\Config\ConfigFactory;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\editor\Entity\Editor;
-use Drupal\Core\Ajax\AjaxResponse;
-use Drupal\Core\Ajax\HtmlCommand;
-use Drupal\editor\Ajax\EditorDialogSave;
-use Drupal\Core\Ajax\CloseModalDialogCommand;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\Url;
 use Drupal\Core\Link;
-use Drupal\Core\Config\ConfigFactory;
+use Drupal\Core\Url;
+use Drupal\editor\Ajax\EditorDialogSave;
+use Drupal\editor\Entity\Editor;
 use Drupal\fontawesome\FontAwesomeManagerInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Provides a Font Awesome icon dialog for text editors.

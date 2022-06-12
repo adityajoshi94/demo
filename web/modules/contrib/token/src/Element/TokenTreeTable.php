@@ -108,10 +108,16 @@ class TokenTreeTable extends Table {
     return $element;
   }
 
+  /**
+   *
+   */
   protected static function cleanCssIdentifier($id) {
     return 'token-' . Html::cleanCssIdentifier(trim($id, '[]'), static::$cssFilter);
   }
 
+  /**
+   *
+   */
   protected static function formatRow($token, $token_info, $columns, $is_group = FALSE) {
     $row = [
       'id' => static::cleanCssIdentifier($token),
@@ -132,7 +138,7 @@ class TokenTreeTable extends Table {
           break;
 
         case 'description':
-          $row['data'][$col] = isset($token_info['description']) ? $token_info['description'] : '';
+          $row['data'][$col] = $token_info['description'] ?? '';
           break;
 
         case 'value':
@@ -152,4 +158,5 @@ class TokenTreeTable extends Table {
 
     return $row;
   }
+
 }

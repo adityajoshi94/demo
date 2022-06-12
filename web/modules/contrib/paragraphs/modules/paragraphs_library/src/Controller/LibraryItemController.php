@@ -12,6 +12,9 @@ use Drupal\paragraphs_library\Entity\LibraryItem;
 use Drupal\paragraphs_library\LibraryItemInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+/**
+ *
+ */
 class LibraryItemController extends ControllerBase implements ContainerInjectionInterface {
 
   /**
@@ -119,11 +122,11 @@ class LibraryItemController extends ControllerBase implements ContainerInjection
         $links = [
           'revert' => [
             'title' => $revision_id < $paragraphs_library_item->getRevisionId() ? $this->t('Revert') : $this->t('Set as current revision'),
-            'url' => $revision->toUrl('revision-revert')
+            'url' => $revision->toUrl('revision-revert'),
           ],
           'delete' => [
             'title' => $this->t('Delete'),
-            'url' => $revision->toUrl('revision-delete')
+            'url' => $revision->toUrl('revision-delete'),
           ],
         ];
         $row[] = [
@@ -167,7 +170,7 @@ class LibraryItemController extends ControllerBase implements ContainerInjection
   }
 
   /**
-   *  Display a library item revision.
+   * Display a library item revision.
    *
    * @param int $paragraphs_library_item_revision
    *   The library item revision ID.

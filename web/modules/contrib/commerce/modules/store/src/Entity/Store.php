@@ -8,10 +8,10 @@ use Drupal\address\AddressInterface;
 use Drupal\commerce\EntityOwnerTrait;
 use Drupal\commerce_price\Entity\CurrencyInterface;
 use Drupal\Core\Entity\ContentEntityBase;
+use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
-use Drupal\Core\Entity\EntityChangedTrait;
 
 /**
  * Defines the store entity class.

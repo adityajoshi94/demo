@@ -22,13 +22,13 @@ class EntityReferenceRevisionsAutocompleteTest extends BrowserTestBase {
    *
    * @var array
    */
-  public static $modules = array(
+  public static $modules = [
     'block_content',
     'node',
     'field',
     'entity_reference_revisions',
     'field_ui',
-  );
+  ];
 
   /**
    * {@inheritdoc}
@@ -41,7 +41,7 @@ class EntityReferenceRevisionsAutocompleteTest extends BrowserTestBase {
   protected function setUp() {
     parent::setUp();
     // Create article content type.
-    $this->drupalCreateContentType(array('type' => 'article', 'name' => 'Article'));
+    $this->drupalCreateContentType(['type' => 'article', 'name' => 'Article']);
     // Place the breadcrumb, tested in fieldUIAddNewField().
     $this->drupalPlaceBlock('system_breadcrumb_block');
   }
@@ -53,7 +53,7 @@ class EntityReferenceRevisionsAutocompleteTest extends BrowserTestBase {
    * referenced entity and of the entity the field is attached to are different.
    */
   public function testEntityReferenceRevisionsAutocompleteProcessing() {
-    $admin_user = $this->drupalCreateUser(array(
+    $admin_user = $this->drupalCreateUser([
       'administer site configuration',
       'administer nodes',
       'administer blocks',
@@ -63,11 +63,11 @@ class EntityReferenceRevisionsAutocompleteTest extends BrowserTestBase {
       'administer node display',
       'administer node form display',
       'edit any article content',
-    ));
+    ]);
     $this->drupalLogin($admin_user);
 
     // Create a custom block content bundle.
-    $this->createBlockContentType(array('type' => 'customblockcontent', 'name' => 'Custom Block Content'));
+    $this->createBlockContentType(['type' => 'customblockcontent', 'name' => 'Custom Block Content']);
 
     // Create entity reference revisions field attached to article.
     static::fieldUIAddNewField(
@@ -75,28 +75,28 @@ class EntityReferenceRevisionsAutocompleteTest extends BrowserTestBase {
       'entity_reference_revisions',
       'Entity reference revisions',
       'entity_reference_revisions',
-      array('settings[target_type]' => 'block_content', 'cardinality' => '-1'),
-      array('settings[handler_settings][target_bundles][customblockcontent]' => TRUE)
+      ['settings[target_type]' => 'block_content', 'cardinality' => '-1'],
+      ['settings[handler_settings][target_bundles][customblockcontent]' => TRUE]
     );
 
     // Create custom block.
     $block_label = $this->randomMachineName();
     $block_content = $this->randomString();
-    $edit = array(
+    $edit = [
       'info[0][value]' => $block_label,
       'body[0][value]' => $block_content,
-    );
+    ];
     $this->drupalGet('block/add');
     $this->submitForm($edit, 'Save');
     $block = $this->drupalGetBlockByInfo($block_label);
 
     // Create an article.
     $title = $this->randomMachineName();
-    $edit = array(
+    $edit = [
       'title[0][value]' => $title,
       'body[0][value]' => 'Revision 1',
       'field_entity_reference_revisions[0][target_id]' => $block_label . ' (' . $block->id() . ')',
-    );
+    ];
     $this->drupalGet('node/add/article');
     $this->submitForm($edit, 'Save');
     $this->assertText($title);
@@ -121,11 +121,11 @@ class EntityReferenceRevisionsAutocompleteTest extends BrowserTestBase {
    * @return \Drupal\block\BlockInterface
    *   A block entity matching $info.
    */
-  function drupalGetBlockByInfo($info, $reset = FALSE) {
+  public function drupalGetBlockByInfo($info, $reset = FALSE) {
     if ($reset) {
       \Drupal::entityTypeManager()->getStorage('block_content')->resetCache();
     }
-    $blocks = \Drupal::entityTypeManager()->getStorage('block_content')->loadByProperties(array('info' => $info));
+    $blocks = \Drupal::entityTypeManager()->getStorage('block_content')->loadByProperties(['info' => $info]);
     // Get the first block returned from the database.
     $returned_block = reset($blocks);
     return $returned_block;
@@ -138,14 +138,14 @@ class EntityReferenceRevisionsAutocompleteTest extends BrowserTestBase {
    *   An assoc array with name (human readable) and type (bundle machine name)
    *   as keys.
    */
-  function createBlockContentType($parameters) {
+  public function createBlockContentType($parameters) {
     $label = $parameters['name'];
     $machine_name = $parameters['type'];
-    $edit = array(
+    $edit = [
       'label' => $label,
       'id' => $machine_name,
       'revision' => TRUE,
-    );
+    ];
     $this->drupalGet('admin/structure/block/block-content/types/add');
     $this->submitForm($edit, 'Save');
     $this->assertText($label);

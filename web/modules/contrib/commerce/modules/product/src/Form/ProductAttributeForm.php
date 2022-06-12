@@ -11,6 +11,9 @@ use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+/**
+ *
+ */
 class ProductAttributeForm extends BundleEntityFormBase {
 
   /**

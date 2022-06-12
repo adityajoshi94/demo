@@ -7,12 +7,12 @@ use Drupal\Core\Url;
 use Drupal\file_link\Plugin\Field\FieldType\FileLinkItem;
 use Drupal\file_link\Plugin\QueueWorker\FileLinkMetadataUpdate;
 use GuzzleHttp\Exception\RequestException;
-use Symfony\Component\Validator\Constraint;
-use Symfony\Component\Validator\ConstraintValidatorInterface;
-use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Uri;
+use Symfony\Component\Validator\Constraint;
+use Symfony\Component\Validator\ConstraintValidatorInterface;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * Validation constraint for file_link, checking that URI points to a file.

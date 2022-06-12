@@ -6,9 +6,9 @@ use Drupal\entity_reference_revisions\Plugin\migrate\destination\EntityReference
 use Drupal\migrate\Plugin\Derivative\MigrateEntityRevision;
 
 /**
- * Class MigrateEntityReferenceRevisions
+ * Class MigrateEntityReferenceRevisions.
  */
-class MigrateEntityReferenceRevisions extends MigrateEntityRevision  {
+class MigrateEntityReferenceRevisions extends MigrateEntityRevision {
 
   /**
    * {@inheritdoc}

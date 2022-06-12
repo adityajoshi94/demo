@@ -3,11 +3,14 @@
 namespace Drupal\commerce_store\Form;
 
 use Drupal\commerce\Form\CommerceBundleEntityFormBase;
-use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\entity\Form\EntityDuplicateFormTrait;
 use Drupal\language\Entity\ContentLanguageSettings;
 
+/**
+ *
+ */
 class StoreTypeForm extends CommerceBundleEntityFormBase {
 
   use EntityDuplicateFormTrait;

@@ -22,15 +22,15 @@ class ParagraphsAccessTest extends ParagraphsTestBase {
    *
    * @var array
    */
-  protected static $modules = array(
+  protected static $modules = [
     'content_translation',
     'image',
     'field',
     'field_ui',
     'block',
     'language',
-    'node'
-  );
+    'node',
+  ];
 
   /**
    * {@inheritdoc}
@@ -68,7 +68,7 @@ class ParagraphsAccessTest extends ParagraphsTestBase {
       'settings[paragraph][images][fields][field_images_demo]' => TRUE,
       'settings[paragraph][text_image][fields][field_image_demo]' => TRUE,
       'settings[paragraph][text_image][fields][field_text_demo]' => TRUE,
-      'settings[node][paragraphed_content_demo][settings][language][language_alterable]' => TRUE
+      'settings[node][paragraphed_content_demo][settings][language][language_alterable]' => TRUE,
     ];
     $this->drupalGet('admin/config/regional/content-language');
     $this->submitForm($edit, 'Save configuration');
@@ -93,7 +93,7 @@ class ParagraphsAccessTest extends ParagraphsTestBase {
 
     // Remove the "access content" for anonymous users. That results in
     // anonymous users not being able to "view" the host entity.
-    /* @var \Drupal\user\Entity\Role $role */
+    /** @var \Drupal\user\Entity\Role $role */
     $role = \Drupal::entityTypeManager()
       ->getStorage('user_role')
       ->load(RoleInterface::ANONYMOUS_ID);
@@ -101,9 +101,9 @@ class ParagraphsAccessTest extends ParagraphsTestBase {
     $role->save();
 
     // Set field_images from demo to private file storage.
-    $edit = array(
+    $edit = [
       'settings[uri_scheme]' => 'private',
-    );
+    ];
     $this->drupalGet('admin/structure/paragraphs_type/images/fields/paragraph.images.field_images_demo/storage');
     $this->submitForm($edit, 'Save field settings');
 
@@ -131,16 +131,16 @@ class ParagraphsAccessTest extends ParagraphsTestBase {
     $file_path_2 = $this->container->get('file_system')
       ->realpath('temporary://privateImage2.jpg');
 
-    $edit = array(
+    $edit = [
       'title[0][value]' => 'Security test node',
       'files[field_paragraphs_demo_0_subform_field_images_demo_0][]' => $file_path,
-    );
+    ];
 
     $this->submitForm($edit, 'Upload');
 
-    $edit = array(
+    $edit = [
       'files[field_paragraphs_demo_0_subform_field_images_demo_1][]' => $file_path_2,
-    );
+    ];
 
     $this->submitForm($edit, 'Preview');
     $image_style = ImageStyle::load('medium');
@@ -195,4 +195,5 @@ class ParagraphsAccessTest extends ParagraphsTestBase {
     $node = $this->getNodeByTitle('delete_permissions');
     $this->assertSession()->addressEquals('node/' . $node->id());
   }
+
 }

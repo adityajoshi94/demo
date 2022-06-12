@@ -110,7 +110,7 @@ class PatternEditForm extends EntityForm {
       '#suffix' => '</div>',
     ];
 
-    // if there is no type yet, stop here.
+    // If there is no type yet, stop here.
     if ($this->entity->getType()) {
 
       $alias_type = $this->entity->getAliasType();
@@ -237,7 +237,7 @@ class PatternEditForm extends EntityForm {
             'negate' => FALSE,
             'context_mapping' => [
               $entity_type => $entity_type,
-            ]
+            ],
           ]
         );
       }
@@ -252,7 +252,7 @@ class PatternEditForm extends EntityForm {
             'negate' => FALSE,
             'context_mapping' => [
               'language' => $language_mapping,
-            ]
+            ],
           ]
         );
         $entity->addRelationship($language_mapping, $this->t('Language'));

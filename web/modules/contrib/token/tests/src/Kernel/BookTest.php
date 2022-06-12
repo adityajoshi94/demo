@@ -2,8 +2,8 @@
 
 namespace Drupal\Tests\token\Kernel;
 
-use Drupal\node\Entity\Node;
 use Drupal\Core\Url;
+use Drupal\node\Entity\Node;
 
 /**
  * Test the book tokens.
@@ -32,7 +32,7 @@ class BookTest extends KernelTestBase {
     $this->installConfig(['node', 'book', 'field']);
   }
 
-  function testBookTokens() {
+  public function testBookTokens() {
     $book = Node::create([
       'type' => 'book',
       'title' => 'Book Main Page',
@@ -65,8 +65,8 @@ class BookTest extends KernelTestBase {
       'book:root:title' => $book_title,
       'book:root:url' => Url::fromRoute('entity.node.canonical', ['node' => $book->id()], ['absolute' => TRUE])->toString(),
       'book:root:content-type' => 'Book page',
-      'book:parent' => null,
-      'book:parents' => null,
+      'book:parent' => NULL,
+      'book:parents' => NULL,
     ];
     $this->assertTokens('node', ['node' => $book], $tokens);
 

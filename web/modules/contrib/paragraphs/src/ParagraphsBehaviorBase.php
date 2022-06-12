@@ -4,14 +4,17 @@ namespace Drupal\paragraphs;
 
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
-use Drupal\Core\Plugin\PluginBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Plugin\PluginBase;
 use Drupal\field\FieldConfigInterface;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\paragraphs\Entity\ParagraphsType;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+/**
+ *
+ */
 abstract class ParagraphsBehaviorBase extends PluginBase implements ParagraphsBehaviorInterface, ContainerFactoryPluginInterface {
 
   /**
@@ -58,12 +61,12 @@ abstract class ParagraphsBehaviorBase extends PluginBase implements ParagraphsBe
   /**
    * {@inheritdoc}
    */
-  public function validateConfigurationForm(array &$form, FormStateInterface $form_state) { }
+  public function validateConfigurationForm(array &$form, FormStateInterface $form_state) {}
 
   /**
    * {@inheritdoc}
    */
-  public function submitConfigurationForm(array &$form, FormStateInterface $form_state) { }
+  public function submitConfigurationForm(array &$form, FormStateInterface $form_state) {}
 
   /**
    * {@inheritdoc}
@@ -96,7 +99,7 @@ abstract class ParagraphsBehaviorBase extends PluginBase implements ParagraphsBe
   /**
    * {@inheritdoc}
    */
-  public function preprocess(&$variables) { }
+  public function preprocess(&$variables) {}
 
   /**
    * {@inheritdoc}
@@ -168,8 +171,7 @@ abstract class ParagraphsBehaviorBase extends PluginBase implements ParagraphsBe
     do {
       $old_array = $new_array;
       $new_array = NestedArray::filter($old_array);
-    }
-    while ($new_array !== $old_array);
+    } while ($new_array !== $old_array);
 
     return $new_array;
   }

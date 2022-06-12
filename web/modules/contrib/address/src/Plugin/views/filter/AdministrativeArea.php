@@ -5,10 +5,10 @@ namespace Drupal\address\Plugin\views\filter;
 use CommerceGuys\Addressing\AddressFormat\AddressFormatRepositoryInterface;
 use CommerceGuys\Addressing\Country\CountryRepositoryInterface;
 use CommerceGuys\Addressing\Subdivision\SubdivisionRepositoryInterface;
+use Drupal\address\LabelHelper;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\address\LabelHelper;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**

@@ -5,10 +5,10 @@
  * Allows users to register with an email address as their username.
  */
 
-use Drupal\user\UserInterface;
-use Drupal\Core\Render\Element\Email;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Element\Email;
 use Drupal\Core\Url;
+use Drupal\user\UserInterface;
 
 /**
  * Implements hook_ENTITY_TYPE_insert().

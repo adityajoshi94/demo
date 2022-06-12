@@ -2,10 +2,10 @@
 
 namespace Drupal\fontawesome_iconpicker_widget\Commands;
 
+use Drupal\Core\Archiver\ArchiverManager;
+use Drupal\Core\Asset\LibraryDiscoveryInterface;
 use Drupal\Core\File\FileSystemInterface;
 use Drush\Commands\DrushCommands;
-use Drupal\Core\Asset\LibraryDiscoveryInterface;
-use Drupal\Core\Archiver\ArchiverManager;
 
 /**
  * A Drush commandfile for Font Awesome module.
@@ -56,8 +56,8 @@ class FontawesomeIconPickerCommands extends DrushCommands {
   public function download($path = '') {
 
     if (empty($path)) {
-      // We have dependencies on libraries module so no need to check for that
-      // TODO: any way to get path for libraries directory?
+      // We have dependencies on libraries module so no need to check for that.
+      // @todo any way to get path for libraries directory?
       // Just in case if it is site specific? e.g. sites/domain.com/libraries ?
       $path = DRUPAL_ROOT . '/libraries/fonticonpicker--fonticonpicker';
     }

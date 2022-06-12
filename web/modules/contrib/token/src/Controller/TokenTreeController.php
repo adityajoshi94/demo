@@ -18,6 +18,9 @@ class TokenTreeController extends ControllerBase {
    */
   protected $treeBuilder;
 
+  /**
+   *
+   */
   public function __construct(TreeBuilderInterface $tree_builder) {
     $this->treeBuilder = $tree_builder;
   }
@@ -34,7 +37,7 @@ class TokenTreeController extends ControllerBase {
   /**
    * Page callback to output a token tree as an empty page.
    */
-  function outputTree(Request $request) {
+  public function outputTree(Request $request) {
     $options = $request->query->has('options') ? Json::decode($request->query->get('options')) : [];
 
     // The option token_types may only be an array OR 'all'. If it is not set,

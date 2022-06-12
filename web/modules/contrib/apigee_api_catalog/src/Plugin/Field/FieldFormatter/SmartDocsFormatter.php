@@ -1,33 +1,13 @@
 <?php
 
-/**
- * Copyright 2018 Google Inc.
- *
- * This program is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License version 2 as published by the
- * Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
- * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
- * License for more details.
- *
- * You should have received a copy of the GNU General Public License along
- * with this program; if not, write to the Free Software Foundation, Inc., 51
- * Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- */
-
 namespace Drupal\apigee_api_catalog\Plugin\Field\FieldFormatter;
 
-use Drupal\Component\Serialization\Exception\InvalidDataTypeException;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\Core\Serialization\Yaml;
 use Drupal\file\Plugin\Field\FieldFormatter\FileFormatterBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Component\Serialization\Json;
 
 /**
  * Plugin implementation of the SmartDocs OpenAPI spec formatter.
@@ -133,7 +113,7 @@ class SmartDocsFormatter extends FileFormatterBase implements ContainerFactoryPl
       'library' => [
         'apigee_api_catalog/js_yaml',
         'apigee_api_catalog/smartdocs_integration',
-        'apigee_api_catalog/smartdocs'
+        'apigee_api_catalog/smartdocs',
       ],
     ];
 

@@ -21,14 +21,14 @@ class EntityReferenceRevisionsSaveTest extends KernelTestBase {
    *
    * @var array
    */
-  public static $modules = array(
+  public static $modules = [
     'node',
     'user',
     'system',
     'field',
     'entity_reference_revisions',
     'entity_composite_relationship_test',
-  );
+  ];
 
   /**
    * {@inheritdoc}
@@ -54,27 +54,27 @@ class EntityReferenceRevisionsSaveTest extends KernelTestBase {
   public function testNeedsSave() {
 
     // Add the entity_reference_revisions field to article.
-    $field_storage = FieldStorageConfig::create(array(
+    $field_storage = FieldStorageConfig::create([
       'field_name' => 'composite_reference',
       'entity_type' => 'node',
       'type' => 'entity_reference_revisions',
-      'settings' => array(
-        'target_type' => 'entity_test_composite'
-      ),
-    ));
+      'settings' => [
+        'target_type' => 'entity_test_composite',
+      ],
+    ]);
     $field_storage->save();
-    $field = FieldConfig::create(array(
+    $field = FieldConfig::create([
       'field_storage' => $field_storage,
       'bundle' => 'article',
-    ));
+    ]);
     $field->save();
 
     $text = 'Dummy text';
     // Create the test composite entity.
-    $entity_test = EntityTestCompositeRelationship::create(array(
+    $entity_test = EntityTestCompositeRelationship::create([
       'uuid' => $text,
       'name' => $text,
-    ));
+    ]);
     $entity_test->save();
 
     $text = 'Clever text';
@@ -89,7 +89,7 @@ class EntityReferenceRevisionsSaveTest extends KernelTestBase {
       'composite_reference' => $entity_test,
     ]);
     // Check the name is properly set and that getValue() returns the entity
-    // when it is marked as needs save."
+    // when it is marked as needs save.".
     $values = $node->composite_reference->getValue();
     $this->assertTrue(isset($values[0]['entity']));
     static::assertEquals($values[0]['entity']->name->value, $text);
@@ -143,27 +143,27 @@ class EntityReferenceRevisionsSaveTest extends KernelTestBase {
    */
   public function testSaveNewEntity() {
     // Add the entity_reference_revisions field to article.
-    $field_storage = FieldStorageConfig::create(array(
+    $field_storage = FieldStorageConfig::create([
       'field_name' => 'composite_reference',
       'entity_type' => 'node',
       'type' => 'entity_reference_revisions',
-      'settings' => array(
-        'target_type' => 'entity_test_composite'
-      ),
-    ));
+      'settings' => [
+        'target_type' => 'entity_test_composite',
+      ],
+    ]);
     $field_storage->save();
-    $field = FieldConfig::create(array(
+    $field = FieldConfig::create([
       'field_storage' => $field_storage,
       'bundle' => 'article',
-    ));
+    ]);
     $field->save();
 
     $text = 'Dummy text';
     // Create the test entity.
-    $entity_test = EntityTestCompositeRelationship::create(array(
+    $entity_test = EntityTestCompositeRelationship::create([
       'uuid' => $text,
       'name' => $text,
-    ));
+    ]);
 
     // Create a node with a reference to the test entity and save.
     $node = Node::create([
@@ -184,10 +184,10 @@ class EntityReferenceRevisionsSaveTest extends KernelTestBase {
 
     // Create a new test entity.
     $text = 'Smart text';
-    $second_entity_test = EntityTestCompositeRelationship::create(array(
+    $second_entity_test = EntityTestCompositeRelationship::create([
       'uuid' => $text,
       'name' => $text,
-    ));
+    ]);
     $second_entity_test->save();
 
     // Set the new test entity to the node field.
@@ -268,7 +268,7 @@ class EntityReferenceRevisionsSaveTest extends KernelTestBase {
   }
 
   /**
-   * Tests FieldType\EntityReferenceRevisionsItem::deleteRevision
+   * Tests FieldType\EntityReferenceRevisionsItem::deleteRevision.
    */
   public function testEntityReferenceRevisionsDeleteHandleDeletedChild() {
     $field_storage = FieldStorageConfig::create([
@@ -299,7 +299,7 @@ class EntityReferenceRevisionsSaveTest extends KernelTestBase {
         [
           'target_id' => $child->id(),
           'target_revision_id' => $child->getRevisionId(),
-        ]
+        ],
       ],
     ]);
 

@@ -4,6 +4,9 @@ namespace Drupal\commerce_log\Plugin\LogTemplate;
 
 use Drupal\Component\Plugin\PluginBase;
 
+/**
+ *
+ */
 class LogTemplate extends PluginBase implements LogTemplateInterface {
 
   /**

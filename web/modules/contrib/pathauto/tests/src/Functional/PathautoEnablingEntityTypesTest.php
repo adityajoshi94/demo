@@ -2,8 +2,8 @@
 
 namespace Drupal\Tests\pathauto\Functional;
 
-use Drupal\Tests\BrowserTestBase;
 use Drupal\comment\Tests\CommentTestTrait;
+use Drupal\Tests\BrowserTestBase;
 
 /**
  * Tests pathauto settings form.
@@ -72,7 +72,7 @@ class PathautoEnablingEntityTypesTest extends BrowserTestBase {
     $edit = [
       'enabled_entity_types[comment]' => TRUE,
     ];
-    $this->submitForm($edit, "Save configuration" );
+    $this->submitForm($edit, "Save configuration");
     $this->createPattern('comment', '/comment/[comment:body]');
 
     // Create a node, a comment type and a comment entity.

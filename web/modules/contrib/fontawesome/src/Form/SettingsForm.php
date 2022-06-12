@@ -2,14 +2,14 @@
 
 namespace Drupal\fontawesome\Form;
 
-use Drupal\Core\Form\ConfigFormBase;
-use Drupal\Core\Config\ConfigFactoryInterface;
-use Drupal\Core\Form\FormStateInterface;
 use Drupal\Component\Utility\UrlHelper;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Asset\LibraryDiscoveryInterface;
+use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Form\ConfigFormBase;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Url;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Defines a form that configures fontawesome settings.

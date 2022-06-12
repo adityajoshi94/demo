@@ -3,13 +3,13 @@
 namespace Drupal\commerce_product;
 
 use Drupal\commerce_product\Entity\ProductAttributeInterface;
-use Drupal\Core\Entity\EntityFieldManagerInterface;
+use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Entity\Display\EntityFormDisplayInterface;
+use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Cache\CacheBackendInterface;
-use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\field\Entity\FieldConfig;
+use Drupal\field\Entity\FieldStorageConfig;
 
 /**
  * Default implementation of the ProductAttributeFieldManagerInterface.
@@ -111,7 +111,7 @@ class ProductAttributeFieldManager implements ProductAttributeFieldManagerInterf
 
     if ($variation_type_id) {
       // The map is empty for any variation type that has no attribute fields.
-      return isset($this->fieldMap[$variation_type_id]) ? $this->fieldMap[$variation_type_id] : [];
+      return $this->fieldMap[$variation_type_id] ?? [];
     }
     else {
       return $this->fieldMap;

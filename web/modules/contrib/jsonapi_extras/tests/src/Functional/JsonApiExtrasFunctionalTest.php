@@ -676,7 +676,7 @@ class JsonApiExtrasFunctionalTest extends JsonApiFunctionalTestBase {
     $row = $this->assertSession()->elementExists('css', sprintf('#jsonapi-disabled-resources-list table tr:contains("%s")', 'taxonomy_term--' . $vocabulary->id()));
     $this->assertSession()->elementExists('named', ['link', 'Revert'], $row);
 
-    // Add another vocabulary
+    // Add another vocabulary.
     $vocabulary2 = Vocabulary::create([
       'name' => $this->randomMachineName(),
       'vid' => mb_strtolower($this->randomMachineName()),
@@ -723,4 +723,5 @@ class JsonApiExtrasFunctionalTest extends JsonApiFunctionalTestBase {
     $this->assertSession()
       ->elementNotExists('css', '#jsonapi-disabled-resources-list tbody');
   }
+
 }

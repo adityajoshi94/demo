@@ -2,9 +2,9 @@
 
 namespace Drupal\components\Template\Loader;
 
+use Drupal\components\Template\ComponentsInfo;
 use Drupal\Core\Theme\ActiveTheme;
 use Drupal\Core\Theme\ThemeManagerInterface;
-use Drupal\components\Template\ComponentsInfo;
 use Twig\Loader\FilesystemLoader;
 
 /**

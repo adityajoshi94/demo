@@ -16,9 +16,9 @@ class ParagraphsContactTest extends ParagraphsTestBase {
    *
    * @var array
    */
-  protected static $modules = array(
+  protected static $modules = [
     'contact',
-  );
+  ];
 
   /**
    * Tests adding paragraphs in contact forms.
@@ -26,7 +26,7 @@ class ParagraphsContactTest extends ParagraphsTestBase {
   public function testContactForm() {
     $this->loginAsAdmin([
       'administer contact forms',
-      'access site-wide contact form'
+      'access site-wide contact form',
     ]);
     // Add a paragraph type.
     $this->addParagraphsType('paragraphs_contact');
@@ -48,4 +48,5 @@ class ParagraphsContactTest extends ParagraphsTestBase {
     $this->assertEquals($elements, []);
     $this->assertNotEquals($header, []);
   }
+
 }

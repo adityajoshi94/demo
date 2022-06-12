@@ -6,6 +6,9 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\profile\Form\ProfileForm;
 
+/**
+ *
+ */
 class ProfileAddressBookForm extends ProfileForm {
 
   /**

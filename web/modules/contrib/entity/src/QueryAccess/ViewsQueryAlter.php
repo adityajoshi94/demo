@@ -164,7 +164,7 @@ class ViewsQueryAlter implements ContainerInjectionInterface {
         $field = $condition->getField();
         $property_name = NULL;
         if (strpos($field, '.') !== FALSE) {
-          list($field, $property_name) = explode('.', $field);
+          [$field, $property_name] = explode('.', $field);
         }
         // Skip unknown fields.
         if (!isset($field_storage_definitions[$field])) {

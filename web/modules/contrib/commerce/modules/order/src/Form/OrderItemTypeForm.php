@@ -5,10 +5,13 @@ namespace Drupal\commerce_order\Form;
 use Drupal\commerce\EntityHelper;
 use Drupal\commerce\Form\CommerceBundleEntityFormBase;
 use Drupal\commerce\PurchasableEntityInterface;
-use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\entity\Form\EntityDuplicateFormTrait;
 
+/**
+ *
+ */
 class OrderItemTypeForm extends CommerceBundleEntityFormBase {
 
   use EntityDuplicateFormTrait;

@@ -3,8 +3,8 @@
 namespace Drupal\entity\Controller;
 
 use Drupal\Core\Entity\ContentEntityInterface;
-use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Language\LanguageInterface;
 
 /**
  * Defines a trait for common revision UI functionality.

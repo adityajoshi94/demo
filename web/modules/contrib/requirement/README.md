@@ -81,6 +81,7 @@ To create a new requirement, create a new class in your module under `src/Plugin
 namespace Drupal\my_module\Plugin\Requirement\Requirement;
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\node\Entity\NodeType;
 use Drupal\requirement\Annotation\Requirement;
 use Drupal\requirement\Plugin\RequirementBase;
 
@@ -128,7 +129,7 @@ class RequirementA extends RequirementBase {
    * Submit handler - do something that will implement the requirement.
    */
   public function submitConfigurationForm(array &$form, FormStateInterface $form_state) {
-    $content_type = \Drupal\node\Entity\NodeType::create([
+    $content_type = NodeType::create([
       'type' => $form_state->getValue('machine_name'),
       'name' => $form_state->getValue('name'),
     ]);
@@ -167,11 +168,11 @@ class RequirementA extends RequirementBase {
 
 ```
 
-To create a new requirement group, create a new class in your module under `src/Plugin/Requirement/RequirementGroup/`.
-Example `src/Plugin/Requirement/RequirementGroup/MyModuleGroup.php`:
+To create a new requirement group, create a new class in your module under `src / Plugin / Requirement / RequirementGroup / `.
+Example `src / Plugin / Requirement / RequirementGroup / MyModuleGroup . php`:
 
 ```php
-<?php
+< ? php
 
 namespace Drupal\my_module\Plugin\Requirement\RequirementGroup;
 
